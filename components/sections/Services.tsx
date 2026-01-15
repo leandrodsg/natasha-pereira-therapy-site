@@ -36,6 +36,7 @@ const services = [
 export default function Services() {
   return (
     <section
+      id="servicos"
       className="services py-16 px-4 bg-gray-50"
       aria-labelledby="services-title"
     >

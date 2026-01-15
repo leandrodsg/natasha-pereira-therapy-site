@@ -3,6 +3,7 @@ import Image from 'next/image';
 export function AboutTherapist() {
   return (
     <section
+      id="quem-sou"
       className="about-therapist py-16 md:py-24 bg-white"
       aria-labelledby="about-heading"
     >

@@ -5,17 +5,21 @@ import { AboutTherapist } from '@/components/sections/AboutTherapist';
 import Services from '@/components/sections/Services';
 import { CTASection } from '@/components/sections/CTASection';
 import Footer from '@/components/sections/Footer';
+import { SkipLink } from '@/components/SkipLink';
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <ProblemStatement />
-      <SoundFamiliar />
-      <AboutTherapist />
-      <Services />
-      <CTASection />
+    <>
+      <SkipLink />
+      <main id="main-content" tabIndex={-1}>
+        <Hero />
+        <ProblemStatement />
+        <SoundFamiliar />
+        <AboutTherapist />
+        <Services />
+        <CTASection />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
