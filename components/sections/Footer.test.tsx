@@ -12,7 +12,7 @@ describe('Footer', () => {
     expect(
       screen.getByText('Psicóloga especializada em terapia para mulheres.')
     ).toBeInTheDocument();
-    expect(screen.getByText('Contato')).toBeInTheDocument();
+    expect(screen.getAllByText('Contato')).toHaveLength(2);
     expect(screen.getByText('WhatsApp: +55 61 99999-9999')).toBeInTheDocument();
     expect(
       screen.getByText('Email: contato@natashapereira.com.br')
@@ -30,7 +30,7 @@ describe('Footer', () => {
     expect(screen.getByRole('link', { name: 'Início' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Quem sou' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Serviços' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Dúvidas' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Contato' })).toBeInTheDocument();
   });
 
   it('renders social link with correct attributes', () => {

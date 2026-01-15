@@ -9,15 +9,47 @@ describe('Button', () => {
   });
 
   it('renders with different variants', () => {
-    render(<Button variant="destructive">Delete</Button>);
-    const button = screen.getByRole('button', { name: /delete/i });
+    const { rerender } = render(<Button variant="destructive">Delete</Button>);
+    let button = screen.getByRole('button', { name: /delete/i });
     expect(button).toHaveClass('bg-destructive');
+
+    rerender(<Button variant="outline">Outline</Button>);
+    button = screen.getByRole('button', { name: /outline/i });
+    expect(button).toHaveClass('border');
+
+    rerender(<Button variant="secondary">Secondary</Button>);
+    button = screen.getByRole('button', { name: /secondary/i });
+    expect(button).toHaveClass('bg-secondary');
+
+    rerender(<Button variant="ghost">Ghost</Button>);
+    button = screen.getByRole('button', { name: /ghost/i });
+    expect(button).toHaveClass('hover:bg-accent');
+
+    rerender(<Button variant="link">Link</Button>);
+    button = screen.getByRole('button', { name: /link/i });
+    expect(button).toHaveClass('underline-offset-4');
   });
 
   it('renders with different sizes', () => {
-    render(<Button size="sm">Small</Button>);
-    const button = screen.getByRole('button', { name: /small/i });
+    const { rerender } = render(<Button size="sm">Small</Button>);
+    let button = screen.getByRole('button', { name: /small/i });
     expect(button).toHaveClass('h-8');
+
+    rerender(<Button size="lg">Large</Button>);
+    button = screen.getByRole('button', { name: /large/i });
+    expect(button).toHaveClass('h-10');
+
+    rerender(<Button size="icon">Icon</Button>);
+    button = screen.getByRole('button', { name: /icon/i });
+    expect(button).toHaveClass('size-9');
+
+    rerender(<Button size="icon-sm">Icon Small</Button>);
+    button = screen.getByRole('button', { name: /icon small/i });
+    expect(button).toHaveClass('size-8');
+
+    rerender(<Button size="icon-lg">Icon Large</Button>);
+    button = screen.getByRole('button', { name: /icon large/i });
+    expect(button).toHaveClass('size-10');
   });
 
   it('handles click events', () => {

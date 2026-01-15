@@ -24,6 +24,7 @@ test.describe('Security Headers', () => {
         ].forEach((headerName) => {
           const value = response.headers.get(headerName);
           if (value) {
+            // eslint-disable-next-line security/detect-object-injection
             headers[headerName] = value;
           }
         });
