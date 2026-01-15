@@ -42,3 +42,9 @@ next-env.d.ts
 
 # setup files
 setup/
+
+# playwright
+playwright-report/
+
+# claude
+.claude/
