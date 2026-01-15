@@ -1,6 +1,13 @@
 import { Button } from '@/components/ui/button';
+import { getWhatsAppLink } from '@/lib/whatsapp';
+import { env } from '@/lib/env';
 
 export function Hero() {
+  const whatsappLink = getWhatsAppLink(
+    env.NEXT_PUBLIC_WHATSAPP_NUMBER,
+    'Olá, gostaria de conversar sobre terapia'
+  );
+
   return (
     <section
       id="inicio"
@@ -18,11 +25,14 @@ export function Hero() {
           desejam se ouvir com mais força e liberdade.
         </p>
         <Button
+          asChild
           size="lg"
           className="cta-button-primary"
           aria-describedby="hero-description"
         >
-          Vamos conversar?
+          <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+            Vamos conversar?
+          </a>
         </Button>
       </div>
       <div className="hero-background absolute inset-0 -z-10">

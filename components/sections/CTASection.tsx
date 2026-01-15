@@ -1,6 +1,13 @@
 import { Button } from '@/components/ui/button';
+import { getWhatsAppLink } from '@/lib/whatsapp';
+import { env } from '@/lib/env';
 
 export function CTASection() {
+  const whatsappLink = getWhatsAppLink(
+    env.NEXT_PUBLIC_WHATSAPP_NUMBER,
+    'Olá, gostaria de agendar uma sessão'
+  );
+
   return (
     <section
       id="contato"
@@ -17,11 +24,14 @@ export function CTASection() {
           Agende sua sessão e comece a se ouvir com mais força e liberdade.
         </p>
         <Button
+          asChild
           size="lg"
           className="cta-button-primary"
           aria-describedby="cta-description"
         >
-          Agende sua sessão
+          <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+            Agende sua sessão
+          </a>
         </Button>
       </div>
     </section>

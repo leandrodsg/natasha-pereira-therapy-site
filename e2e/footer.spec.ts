@@ -31,7 +31,7 @@ test.describe('Footer Section', () => {
     await expect(instagramLink).toBeVisible();
     await expect(instagramLink).toHaveAttribute(
       'href',
-      'https://instagram.com/natashapereira.psi'
+      'https://instagram.com/sounatashapsi'
     );
     await expect(instagramLink).toHaveAttribute('target', '_blank');
     await expect(instagramLink).toHaveAttribute('rel', 'noopener noreferrer');
@@ -39,21 +39,21 @@ test.describe('Footer Section', () => {
     // Check WhatsApp link
     const whatsappLink = footer
       .locator('a')
-      .filter({ hasText: 'WhatsApp: +55 61 99999-9999' });
+      .filter({ hasText: 'WhatsApp: +55 61 98144-8553' });
     await expect(whatsappLink).toBeVisible();
     await expect(whatsappLink).toHaveAttribute(
       'href',
-      'https://wa.me/5561999999999'
+      'https://wa.me/5561981448553'
     );
 
     // Check Email link
     const emailLink = footer
       .locator('a')
-      .filter({ hasText: 'Email: contato@natashapereira.com.br' });
+      .filter({ hasText: 'Email: natashaa.pereira@hotmail.com' });
     await expect(emailLink).toBeVisible();
     await expect(emailLink).toHaveAttribute(
       'href',
-      'mailto:contato@natashapereira.com.br'
+      'mailto:natashaa.pereira@hotmail.com'
     );
   });
 
@@ -93,6 +93,10 @@ test.describe('Footer Section', () => {
     await expect(
       footer.locator('h3').filter({ hasText: 'Contato' })
     ).toBeVisible();
-    await expect(footer.locator('text=Endereço: Brasília, DF')).toBeVisible();
+    await expect(
+      footer.locator(
+        'text=Endereço: SEPS 705/905 Bloco A - Centro Empresarial Santa Cruz -'
+      )
+    ).toBeVisible();
   });
 });

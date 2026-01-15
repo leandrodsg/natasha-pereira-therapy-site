@@ -1,6 +1,11 @@
 import React from 'react';
+import { getWhatsAppLink } from '@/lib/whatsapp';
+import { env } from '@/lib/env';
 
 const Footer: React.FC = () => {
+  const whatsappLink = getWhatsAppLink(env.NEXT_PUBLIC_WHATSAPP_NUMBER);
+  const instagramLink = `https://instagram.com/${env.NEXT_PUBLIC_INSTAGRAM_HANDLE}`;
+
   return (
     <footer
       id="rodape"
@@ -15,7 +20,7 @@ const Footer: React.FC = () => {
             Psicóloga especializada em terapia para mulheres.
           </p>
           <a
-            href="https://instagram.com/natashapereira.psi"
+            href={instagramLink}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block text-pink-400 hover:text-pink-300 transition-colors"
@@ -32,20 +37,25 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-semibold mb-3">Contato</h3>
             <div className="space-y-2 text-gray-300">
               <a
-                href="https://wa.me/5561999999999"
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block hover:text-white transition-colors"
-                aria-label="WhatsApp: +55 61 99999-9999"
+                aria-label="WhatsApp: +55 61 98144-8553"
               >
-                WhatsApp: +55 61 99999-9999
+                WhatsApp: +55 61 98144-8553
               </a>
               <a
-                href="mailto:contato@natashapereira.com.br"
+                href={`mailto:${env.NEXT_PUBLIC_EMAIL}`}
                 className="block hover:text-white transition-colors"
-                aria-label="Email: contato@natashapereira.com.br"
+                aria-label={`Email: ${env.NEXT_PUBLIC_EMAIL}`}
               >
-                Email: contato@natashapereira.com.br
+                Email: {env.NEXT_PUBLIC_EMAIL}
               </a>
-              <p>Endereço: Brasília, DF</p>
+              <p>
+                Endereço: SEPS 705/905 Bloco A - Centro Empresarial Santa Cruz -
+                Sala 427, Asa Sul, Brasília 70390-055
+              </p>
             </div>
           </div>
 

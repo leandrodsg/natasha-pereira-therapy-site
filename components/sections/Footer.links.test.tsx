@@ -35,16 +35,16 @@ describe('Footer Links', () => {
     render(<Footer />);
 
     const whatsappLink = screen.getByRole('link', {
-      name: 'WhatsApp: +55 61 99999-9999',
+      name: 'WhatsApp: +55 61 98144-8553',
     });
-    expect(whatsappLink).toHaveAttribute('href', 'https://wa.me/5561999999999');
+    expect(whatsappLink).toHaveAttribute('href', 'https://wa.me/5561981448553');
 
     const emailLink = screen.getByRole('link', {
-      name: 'Email: contato@natashapereira.com.br',
+      name: 'Email: natashaa.pereira@hotmail.com',
     });
     expect(emailLink).toHaveAttribute(
       'href',
-      'mailto:contato@natashapereira.com.br'
+      'mailto:natashaa.pereira@hotmail.com'
     );
   });
 });

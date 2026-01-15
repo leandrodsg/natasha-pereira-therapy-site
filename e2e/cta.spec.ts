@@ -25,7 +25,7 @@ test.describe('CTA Section', () => {
 
     // Check button
     const ctaButton = ctaSection
-      .locator('button')
+      .locator('a')
       .filter({ hasText: 'Agende sua sessão' });
     await expect(ctaButton).toBeVisible();
     await expect(ctaButton).toHaveAttribute(
@@ -42,7 +42,7 @@ test.describe('CTA Section', () => {
     await expect(description).toBeVisible();
 
     const ctaButton = ctaSection
-      .locator('button')
+      .locator('a')
       .filter({ hasText: 'Agende sua sessão' });
     await expect(ctaButton).toHaveAttribute(
       'aria-describedby',
