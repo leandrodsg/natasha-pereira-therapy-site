@@ -284,7 +284,7 @@ Contributions are welcome! Please:
 
 - **8 PRs** successfully implemented
 - **86 unit tests** (100% coverage)
-- **25 E2E tests** (5 browsers)
+- **35+ E2E tests** (5 browsers)
 - **Performance**: Lighthouse ≥ 90
 - **Accessibility**: WCAG 2.1 AA (100)
 - **Bundle Size**: Optimized
