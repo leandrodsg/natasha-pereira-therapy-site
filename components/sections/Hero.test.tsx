@@ -19,7 +19,7 @@ describe('Hero', () => {
     ).toBeInTheDocument();
 
     expect(
-      screen.getByRole('button', { name: 'Vamos conversar?' })
+      screen.getByRole('link', { name: 'Vamos conversar?' })
     ).toBeInTheDocument();
   });
 

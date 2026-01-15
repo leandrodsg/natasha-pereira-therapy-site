@@ -21,7 +21,7 @@ describe('CTASection', () => {
     ).toBeInTheDocument();
 
     expect(
-      screen.getByRole('button', { name: 'Agende sua sessão' })
+      screen.getByRole('link', { name: 'Agende sua sessão' })
     ).toBeInTheDocument();
   });
 
