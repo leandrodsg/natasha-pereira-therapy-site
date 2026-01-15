@@ -17,9 +17,9 @@ describe('Footer Links', () => {
       'href',
       '#servicos'
     );
-    expect(screen.getByRole('link', { name: 'Dúvidas' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'Contato' })).toHaveAttribute(
       'href',
-      '#duvidas'
+      '#contato'
     );
   });
 

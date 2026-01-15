@@ -29,8 +29,10 @@ describe('Footer Responsive', () => {
   it('renders contact and navigation in second column on desktop', () => {
     render(<Footer />);
 
-    const contactSection = screen.getByText('Contato');
-    const navigationSection = screen.getByText('Navegação');
+    const contactSection = screen.getByRole('heading', { name: 'Contato' });
+    const navigationSection = screen.getByRole('heading', {
+      name: 'Navegação',
+    });
 
     // On mobile, they stack; on desktop, they are in columns
     expect(contactSection).toBeInTheDocument();
