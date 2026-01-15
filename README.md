@@ -2,8 +2,8 @@
 
 Responsive and modern landing page for psychologist Natasha Pereira, specialized in therapy for women.
 
-[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-18-blue)](https://reactjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-blue)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC)](https://tailwindcss.com/)
 [![License](https://img.shields.io/badge/License-MIT-green)](https://github.com/leandrodsg/natasha-pereira-site/blob/main/LICENSE)
@@ -59,8 +59,8 @@ npm start
 
 ### Frontend
 
-- **Next.js 14** - React framework with App Router
-- **React 18** - JavaScript library for interfaces
+- **Next.js 16** - React framework with App Router
+- **React 19** - JavaScript library for interfaces
 - **TypeScript** - Typed JavaScript
 - **Tailwind CSS** - Utility-first CSS framework
 
@@ -68,7 +68,7 @@ npm start
 
 - **shadcn/ui** - Accessible and customizable components
 - **Lucide React** - Modern icons
-- **Figtree** - Google Fonts typeface
+- **Geist** - Modern typeface
 
 ### Quality & Testing
 
@@ -89,7 +89,7 @@ npm start
 ### 🎨 Complete Design System
 
 - Consistent color system (beige, olive green)
-- Hierarchical typography with Figtree
+- Hierarchical typography with Geist
 - Reusable components (Button, Card, Input)
 - Responsive grid layout (24 desktop columns, 8 mobile)
 - Mobile-first design
@@ -212,14 +212,17 @@ npm run test:e2e:ui
 ### Available Scripts
 
 ```bash
-npm run dev          # Development server
-npm run build        # Production build
-npm run start        # Production server
-npm run lint         # ESLint
-npm run format       # Prettier
-npm run test         # Jest
+npm run dev           # Development server
+npm run build         # Production build
+npm run start         # Production server
+npm run lint          # ESLint
+npm run lint:fix      # ESLint with auto-fix
+npm run format        # Prettier
+npm run test          # Jest
+npm run test:watch    # Jest in watch mode
 npm run test:coverage # Jest with coverage
-npm run test:e2e     # Playwright E2E
+npm run test:e2e      # Playwright E2E
+npm run test:e2e:ui   # Playwright with UI
 ```
 
 ### TDD Process
@@ -279,7 +282,7 @@ Contributions are welcome! Please:
 
 ### Development Metrics
 
-- **7 PRs** successfully implemented
+- **8 PRs** successfully implemented
 - **86 unit tests** (100% coverage)
 - **25 E2E tests** (5 browsers)
 - **Performance**: Lighthouse ≥ 90
