@@ -1,13 +1,27 @@
 import type { NextConfig } from 'next';
+import { getSecurityHeaders, getCSPHeader } from './lib/security';
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
+    remotePatterns:
+      process.env.NODE_ENV === 'development'
+        ? [
+            {
+              protocol: 'https',
+              hostname: 'via.placeholder.com',
+            },
+          ]
+        : [],
+  },
+  // Security headers - only applied in production builds
+  async headers() {
+    return [
       {
-        protocol: 'https',
-        hostname: 'via.placeholder.com',
+        // Apply to all routes
+        source: '/:path*',
+        headers: [...getSecurityHeaders(), getCSPHeader()],
       },
-    ],
+    ];
   },
 };
 
