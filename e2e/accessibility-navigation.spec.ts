@@ -22,13 +22,13 @@ test('keyboard navigation works for all sections', async ({ page }) => {
 test('CTAs have aria-describedby', async ({ page }) => {
   await page.goto('/');
 
-  const heroButton = page.locator('button', { hasText: 'Vamos conversar?' });
+  const heroButton = page.locator('a', { hasText: 'Vamos conversar?' });
   await expect(heroButton).toHaveAttribute(
     'aria-describedby',
     'hero-description'
   );
 
-  const ctaButton = page.locator('button', { hasText: 'Agende sua sessão' });
+  const ctaButton = page.locator('a', { hasText: 'Agende sua sessão' });
   await expect(ctaButton).toHaveAttribute(
     'aria-describedby',
     'cta-description'

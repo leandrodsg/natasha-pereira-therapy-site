@@ -23,7 +23,7 @@ test.describe('Landing Page E2E', () => {
       })
     ).toBeVisible();
     await expect(
-      page.locator('button').filter({ hasText: 'Vamos conversar?' })
+      page.locator('a').filter({ hasText: 'Vamos conversar?' })
     ).toBeVisible();
 
     // Problem Statement section
@@ -69,7 +69,7 @@ test.describe('Landing Page E2E', () => {
       )
     ).toBeVisible();
     await expect(
-      page.locator('button').filter({ hasText: 'Agende sua sessão' })
+      page.locator('a').filter({ hasText: 'Agende sua sessão' })
     ).toBeVisible();
 
     // Footer
@@ -116,7 +116,7 @@ test.describe('Landing Page E2E', () => {
     // Check if content is visible and properly sized
     await expect(page.locator('h1')).toBeVisible();
     await expect(
-      page.locator('button').filter({ hasText: 'Vamos conversar?' })
+      page.locator('a').filter({ hasText: 'Vamos conversar?' })
     ).toBeVisible();
 
     // Check CTA section on mobile
@@ -126,7 +126,7 @@ test.describe('Landing Page E2E', () => {
         .filter({ hasText: 'Você não precisa continuar se anulando' })
     ).toBeVisible();
     await expect(
-      page.locator('button').filter({ hasText: 'Agende sua sessão' })
+      page.locator('a').filter({ hasText: 'Agende sua sessão' })
     ).toBeVisible();
   });
 
