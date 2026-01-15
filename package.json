@@ -28,6 +28,7 @@
     "zod": "^4.3.5"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
     "@axe-core/react": "^4.11.0",
     "@playwright/test": "^1.57.0",
     "@swc/jest": "^0.2.39",
