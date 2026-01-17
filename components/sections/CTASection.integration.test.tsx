@@ -27,13 +27,30 @@ describe('CTASection Integration', () => {
   it('renders CTA content correctly', () => {
     render(<CTASection />);
 
+    expect(screen.getByText(/Pronta para/)).toBeInTheDocument();
+    expect(screen.getByText(/abraçar/)).toBeInTheDocument();
+    expect(screen.getByText(/a mudança\?/)).toBeInTheDocument();
     expect(
-      screen.getByText(
-        'Você não precisa continuar se anulando para dar conta de tudo.'
-      )
+      screen.getByText(/Você não precisa continuar se anulando/)
     ).toBeInTheDocument();
     expect(
       screen.getByText(/Agende sua sessão e comece a se ouvir/)
     ).toBeInTheDocument();
+  });
+
+  it('renders background image and overlay structure', () => {
+    render(<CTASection />);
+
+    // Check for background image
+    const bgImage = screen.getByAltText('Ambiente acolhedor para terapia');
+    expect(bgImage).toBeInTheDocument();
+
+    // Check for overlay
+    const overlay = screen.getByTestId('cta-overlay');
+    expect(overlay).toBeInTheDocument();
+
+    // Check for content container
+    const content = screen.getByTestId('cta-content');
+    expect(content).toBeInTheDocument();
   });
 });
