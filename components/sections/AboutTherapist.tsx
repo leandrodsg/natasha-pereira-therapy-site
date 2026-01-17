@@ -4,34 +4,23 @@ export function AboutTherapist() {
   return (
     <section
       id="quem-sou"
-      className="about-therapist py-16 md:py-24 bg-white"
+      className="py-24 px-6 md:px-12 bg-white"
       aria-labelledby="about-heading"
     >
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="about-image order-2 md:order-1">
-            <Image
-              src="/images/_DSC9840.jpg"
-              alt="Natasha Pereira - Psicóloga"
-              width={692}
-              height={1038}
-              className="w-full h-auto rounded-lg shadow-lg"
-              loading="lazy"
-            />
-          </div>
-          <div className="about-content order-1 md:order-2">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="about-content order-1 md:order-1">
+            <span className="block text-xs font-bold tracking-widest uppercase text-muted-foreground mb-4">
+              Olá, sou Natasha.
+            </span>
             <h2
               id="about-heading"
-              className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4"
+              className="font-display text-4xl md:text-5xl text-foreground font-light mb-8"
             >
-              Olá, sou Natasha Pereira.
+              Acredito que você tem o poder de criar um{' '}
+              <span className="italic">refúgio seguro</span> dentro de si mesma.
             </h2>
-            <h3 className="text-lg md:text-xl text-gray-700 mb-6 italic">
-              Sou uma psicóloga que não tem dúvidas: crio espaços seguros para
-              que mulheres possam se libertar e ocupar, enfim, o lugar que
-              merecem.
-            </h3>
-            <div className="space-y-4 text-gray-600">
+            <div className="space-y-6 text-muted-foreground">
               <p>
                 Formada em 2019, minha trajetória profissional foi moldada pela
                 compreensão de uma dinâmica que, vivida na pele, percebo ser
@@ -65,12 +54,16 @@ export function AboutTherapist() {
                 merecem.
               </p>
             </div>
-            <a
-              href="#about"
-              className="inline-block mt-6 text-primary hover:text-primary-dark font-medium underline decoration-2 underline-offset-4 transition-colors"
-            >
-              Saiba mais sobre mim
-            </a>
+          </div>
+          <div className="about-image order-2 md:order-2">
+            <Image
+              src="/images/_DSC9840.jpg"
+              alt="Natasha Pereira, psicóloga especializada em terapia para mulheres"
+              width={692}
+              height={1038}
+              className="w-full h-auto rounded-tr-[100px] rounded-bl-[100px] shadow-2xl"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
