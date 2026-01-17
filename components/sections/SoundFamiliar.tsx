@@ -1,38 +1,64 @@
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 const soundFamiliarItems = [
-  'Sobrecarga emocional',
-  'Dificuldade em estabelecer limites',
-  'Medo de desapontar os outros',
-  'Culpa ao priorizar a si mesma',
-  'Sensação de estar sempre "dividida"',
-  'Pressão por ser forte o tempo todo',
+  'Você sente uma sobrecarga emocional constante, como se carregasse o mundo nos ombros.',
+  'Estabelecer limites parece impossível - você sempre acaba cedendo.',
+  'O medo de desapontar os outros te paralisa nas decisões.',
+  'Culpa ao priorizar você mesma, como se fosse egoísmo.',
+  'Sensação de estar sempre "dividida" entre papéis e expectativas.',
+  'Pressão por ser forte o tempo todo, sem espaço para vulnerabilidade.',
 ];
 
 export default function SoundFamiliar() {
   return (
     <section
-      className="sound-familiar py-16 md:py-24 bg-gray-50"
+      className="w-full flex flex-col md:flex-row mt-24 md:mt-32"
       aria-labelledby="sound-familiar-heading"
+      role="region"
+      aria-label="Seção Isso soa familiar"
     >
-      <div className="max-w-4xl mx-auto px-4">
+      {/* Imagem */}
+      <div
+        data-testid="sound-familiar-image"
+        className="w-full md:w-5/12 relative h-[400px] md:h-auto bg-background p-6 md:p-12 flex items-center justify-center"
+      >
+        <div
+          data-testid="sound-familiar-image-container"
+          className="w-full h-full relative z-10 rounded-tr-[80px] rounded-bl-[80px] overflow-hidden shadow-xl aspect-[4/5]"
+        >
+          <Image
+            src="/images/segunda.jpg"
+            alt="Ambiente acolhedor com plantas e luz natural"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 42vw"
+          />
+        </div>
+      </div>
+
+      {/* Conteúdo */}
+      <div
+        data-testid="sound-familiar-content"
+        className="w-full md:w-7/12 bg-primary text-white p-12 md:p-20 flex flex-col justify-center"
+      >
         <h2
           id="sound-familiar-heading"
-          className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 text-center mb-12"
+          className="font-display text-4xl md:text-5xl mb-12 font-light"
         >
           Isso soa familiar?
         </h2>
-        <ul className="space-y-4 md:space-y-6">
+        <ul className="space-y-8">
           {soundFamiliarItems.map((item, index) => (
-            <li key={index} className="flex items-start space-x-4">
+            <li key={index} className="flex items-start gap-6 group">
               <ArrowRight
                 data-testid="arrow-icon"
-                className="w-6 h-6 text-primary flex-shrink-0 mt-1"
+                className="mt-1 opacity-70 group-hover:translate-x-1 transition-transform flex-shrink-0"
                 aria-hidden="true"
               />
-              <span className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              <p className="text-sm font-light leading-relaxed opacity-90">
                 {item}
-              </span>
+              </p>
             </li>
           ))}
         </ul>
