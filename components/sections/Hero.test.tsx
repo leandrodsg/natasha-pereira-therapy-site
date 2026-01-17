@@ -9,7 +9,11 @@ describe('Hero', () => {
     render(<Hero />);
 
     expect(
-      screen.getByText('Um espaço onde você finalmente pode existir sem medo.')
+      screen.getByText('Terapia online para mulheres em Brasília')
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByText('Um espaço onde você finalmente pode', { exact: false })
     ).toBeInTheDocument();
 
     expect(
@@ -23,25 +27,96 @@ describe('Hero', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders the headline as h1', () => {
+  it('renders the headline as h1 with italic emphasis', () => {
     render(<Hero />);
 
     const headline = screen.getByRole('heading', { level: 1 });
     expect(headline).toHaveTextContent(
       'Um espaço onde você finalmente pode existir sem medo.'
     );
+    expect(headline).toHaveClass(
+      'font-display',
+      'text-5xl',
+      'md:text-7xl',
+      'font-light'
+    );
   });
 
-  it('renders with responsive text sizes', () => {
+  it('renders subtitle with uppercase and tracking', () => {
     render(<Hero />);
 
-    const headline = screen.getByRole('heading', { level: 1 });
-    expect(headline).toHaveClass('text-4xl', 'md:text-6xl', 'lg:text-7xl');
-
-    const subheadline = screen.getByText(
-      'Para mulheres que carregam histórias, decisões, pressões, dúvidas e desejam se ouvir com mais força e liberdade.'
+    const subtitle = screen.getByText(
+      'Terapia online para mulheres em Brasília'
     );
-    expect(subheadline).toHaveClass('text-lg', 'md:text-xl');
+    expect(subtitle).toHaveClass(
+      'text-xs',
+      'font-bold',
+      'tracking-[0.2em]',
+      'uppercase',
+      'text-muted-foreground'
+    );
+  });
+
+  it('renders with split layout classes', () => {
+    render(<Hero />);
+
+    const section = screen.getByRole('region', {
+      name: 'Um espaço onde você finalmente pode existir sem medo.',
+    });
+    expect(section).toHaveClass(
+      'flex',
+      'flex-col',
+      'md:flex-row',
+      'items-center',
+      'gap-12'
+    );
+  });
+
+  it('renders text content in left column', () => {
+    render(<Hero />);
+
+    const textDiv = screen
+      .getByText('Terapia online para mulheres em Brasília')
+      .closest('div');
+    expect(textDiv).toHaveClass('w-full', 'md:w-1/2', 'space-y-8');
+  });
+
+  it('renders image in right column with asymmetric rounded corners', () => {
+    render(<Hero />);
+
+    const image = screen.getByAltText(
+      'Natasha Pereira, psicóloga especializada em terapia para mulheres'
+    );
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute('src', expect.stringContaining('hero.jpg'));
+
+    const imageContainer = image.closest('div');
+    expect(imageContainer).toHaveClass(
+      'aspect-[4/5]',
+      'rounded-tl-[100px]',
+      'rounded-br-[100px]',
+      'shadow-2xl'
+    );
+  });
+
+  it('renders CTA button with hover effects', () => {
+    render(<Hero />);
+
+    const button = screen.getByRole('link', { name: 'Vamos conversar?' });
+    expect(button).toHaveClass(
+      'bg-primary',
+      'text-white',
+      'text-xs',
+      'font-bold',
+      'uppercase',
+      'px-8',
+      'py-4',
+      'rounded',
+      'shadow-lg',
+      'transform',
+      'hover:-translate-y-1',
+      'duration-200'
+    );
   });
 
   it('has no accessibility violations', async () => {

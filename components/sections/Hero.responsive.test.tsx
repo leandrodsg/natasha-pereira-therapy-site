@@ -6,25 +6,55 @@ describe('Hero Responsive', () => {
     render(<Hero />);
 
     const headline = screen.getByRole('heading', { level: 1 });
-    expect(headline).toHaveClass('text-4xl', 'md:text-6xl', 'lg:text-7xl');
+    expect(headline).toHaveClass('text-5xl', 'md:text-7xl');
 
-    const subheadline = screen.getByText(
-      'Para mulheres que carregam histórias, decisões, pressões, dúvidas e desejam se ouvir com mais força e liberdade.'
+    const subtitle = screen.getByText(
+      'Terapia online para mulheres em Brasília'
     );
-    expect(subheadline).toHaveClass('text-lg', 'md:text-xl');
+    expect(subtitle).toHaveClass('text-xs');
   });
 
-  it('renders with responsive layout classes', () => {
+  it('renders with responsive split layout', () => {
     render(<Hero />);
 
-    const heroContent = screen
-      .getByText('Um espaço onde você finalmente pode existir sem medo.')
-      .closest('div');
-    expect(heroContent).toHaveClass(
-      'text-center',
-      'max-w-4xl',
-      'mx-auto',
-      'px-4'
+    const section = screen.getByRole('region', {
+      name: 'Um espaço onde você finalmente pode existir sem medo.',
+    });
+    expect(section).toHaveClass(
+      'flex',
+      'flex-col',
+      'md:flex-row',
+      'items-center',
+      'gap-12'
     );
+  });
+
+  it('renders text column with responsive width', () => {
+    render(<Hero />);
+
+    const textDiv = screen
+      .getByText('Terapia online para mulheres em Brasília')
+      .closest('div');
+    expect(textDiv).toHaveClass('w-full', 'md:w-1/2');
+  });
+
+  it('renders image column with responsive width', () => {
+    render(<Hero />);
+
+    const image = screen.getByAltText(
+      'Natasha Pereira, psicóloga especializada em terapia para mulheres'
+    );
+    const imageDiv = image.parentElement?.parentElement; // div.aspect > div.relative > img
+    expect(imageDiv).toHaveClass('w-full', 'md:w-1/2');
+  });
+
+  it('stacks vertically on mobile', () => {
+    render(<Hero />);
+
+    const section = screen.getByRole('region', {
+      name: 'Um espaço onde você finalmente pode existir sem medo.',
+    });
+    expect(section).toHaveClass('flex-col'); // Mobile first
+    expect(section).toHaveClass('md:flex-row'); // Desktop split
   });
 });
