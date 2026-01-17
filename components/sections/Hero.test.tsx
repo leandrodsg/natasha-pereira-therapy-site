@@ -88,7 +88,10 @@ describe('Hero', () => {
       'Natasha Pereira, psicóloga especializada em terapia para mulheres'
     );
     expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('src', expect.stringContaining('hero.jpg'));
+    expect(image).toHaveAttribute(
+      'src',
+      expect.stringContaining('primeira.png')
+    );
 
     const imageContainer = image.closest('div');
     expect(imageContainer).toHaveClass(
