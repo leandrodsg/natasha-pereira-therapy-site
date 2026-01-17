@@ -142,15 +142,3 @@
 .font-display {
   font-family: 'Cormorant Garamond', serif;
 }
-
-.font-body {
-  font-family: 'Montserrat', sans-serif;
-}
-
-.rounded-asymmetric-tl {
-  border-radius: 100px 0 100px 0;
-}
-
-.rounded-asymmetric-tr {
-  border-radius: 0 100px 0 100px;
-}
