@@ -10,4 +10,10 @@ const envSchema = z.object({
   NEXT_PUBLIC_INSTAGRAM_HANDLE: z.string().min(1),
 });
 
-export const env = envSchema.parse(process.env);
+export const env = envSchema.parse({
+  NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+  NEXT_PUBLIC_SITE_NAME: process.env.NEXT_PUBLIC_SITE_NAME,
+  NEXT_PUBLIC_WHATSAPP_NUMBER: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER,
+  NEXT_PUBLIC_EMAIL: process.env.NEXT_PUBLIC_EMAIL,
+  NEXT_PUBLIC_INSTAGRAM_HANDLE: process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE,
+});
