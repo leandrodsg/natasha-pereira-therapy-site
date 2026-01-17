@@ -8,38 +8,46 @@ describe('AboutTherapist', () => {
   it('renders the about therapist section with correct Portuguese text', () => {
     render(<AboutTherapist />);
 
-    expect(screen.getByText('Olá, sou Natasha Pereira.')).toBeInTheDocument();
+    expect(screen.getByText('Olá, sou Natasha.')).toBeInTheDocument();
 
-    // Test the h3 specifically
-    const subheading = screen.getByRole('heading', { level: 3 });
-    expect(subheading).toHaveTextContent(
-      'Sou uma psicóloga que não tem dúvidas: crio espaços seguros para que mulheres possam se libertar e ocupar, enfim, o lugar que merecem.'
+    // Test the main headline
+    const headline = screen.getByRole('heading', { level: 2 });
+    expect(headline).toHaveTextContent(
+      'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.'
     );
-
-    expect(
-      screen.getByRole('link', { name: 'Saiba mais sobre mim' })
-    ).toBeInTheDocument();
   });
 
-  it('renders the main heading as h2', () => {
+  it('renders the intro as span', () => {
     render(<AboutTherapist />);
 
-    const heading = screen.getByRole('heading', { level: 2 });
-    expect(heading).toHaveTextContent('Olá, sou Natasha Pereira.');
+    const intro = screen.getByText('Olá, sou Natasha.');
+    expect(intro).toBeInTheDocument();
+    expect(intro).toHaveClass(
+      'block',
+      'text-xs',
+      'font-bold',
+      'tracking-widest',
+      'uppercase',
+      'text-muted-foreground',
+      'mb-4'
+    );
   });
 
-  it('renders the image with correct alt text', () => {
+  it('renders the image with correct alt text and asymmetric corners', () => {
     render(<AboutTherapist />);
 
-    const image = screen.getByAltText('Natasha Pereira - Psicóloga');
+    const image = screen.getByAltText(
+      'Natasha Pereira, psicóloga especializada em terapia para mulheres'
+    );
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute(
       'src',
       expect.stringContaining('_DSC9840.jpg')
     );
+    expect(image).toHaveClass('rounded-tr-[100px]', 'rounded-bl-[100px]');
   });
 
-  it('renders all paragraphs of the bio', () => {
+  it('renders concise bio paragraphs', () => {
     render(<AboutTherapist />);
 
     expect(
@@ -66,19 +74,39 @@ describe('AboutTherapist', () => {
       )
     ).toBeInTheDocument();
 
-    // Test the last paragraph specifically by finding all paragraphs and checking the last one
-    const paragraphs = screen.getAllByRole('paragraph');
-    const lastParagraph = paragraphs[paragraphs.length - 1];
-    expect(lastParagraph).toHaveTextContent(
-      'Sou uma psicóloga que não tem dúvidas: crio espaços seguros para que mulheres possam se libertar e ocupar, enfim, o lugar que merecem.'
-    );
+    expect(
+      screen.getByText(
+        'Sou uma psicóloga que não tem dúvidas: crio espaços seguros para que mulheres possam se libertar e ocupar, enfim, o lugar que merecem.'
+      )
+    ).toBeInTheDocument();
   });
 
-  it('renders the link with correct href', () => {
+  it('renders with desktop layout (text left, image right)', () => {
     render(<AboutTherapist />);
 
-    const link = screen.getByRole('link', { name: 'Saiba mais sobre mim' });
-    expect(link).toHaveAttribute('href', '#about');
+    const section = screen.getByRole('region', {
+      name: 'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.',
+    });
+
+    // Check grid layout
+    const gridContainer = section.querySelector('.grid');
+    expect(gridContainer).toHaveClass('md:grid-cols-2', 'gap-12');
+
+    // Check order classes
+    const contentDiv = section.querySelector('.about-content');
+    const imageDiv = section.querySelector('.about-image');
+
+    expect(contentDiv).toHaveClass('order-1', 'md:order-1'); // text first on mobile, stays first on desktop
+    expect(imageDiv).toHaveClass('order-2', 'md:order-2'); // image second on mobile, moves to second on desktop
+  });
+
+  it('renders headline with italic emphasis', () => {
+    render(<AboutTherapist />);
+
+    const headline = screen.getByRole('heading', { level: 2 });
+    const italicSpan = headline.querySelector('span.italic');
+    expect(italicSpan).toBeInTheDocument();
+    expect(italicSpan).toHaveTextContent('refúgio seguro');
   });
 
   it('has no accessibility violations', async () => {
