@@ -1,22 +1,21 @@
 export default function ProblemStatement() {
   return (
     <section
-      className="problem-statement py-16 md:py-24"
+      className="py-24 px-6 md:px-12 bg-white text-center"
       aria-labelledby="problem-statement-heading"
+      role="region"
     >
-      <div className="content-wrapper max-w-4xl mx-auto px-4 text-center">
+      <div className="max-w-3xl mx-auto space-y-6">
         <h2
           id="problem-statement-heading"
-          className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-6 leading-relaxed"
+          className="font-display text-4xl md:text-5xl text-foreground font-light"
         >
+          Você está aqui porque <span className="italic">encontrar paz</span> é
+          importante para você.
+        </h2>
+        <p className="text-muted-foreground text-sm leading-relaxed md:px-12">
           Para mulheres que carregam histórias, decisões, pressões, dúvidas e
           desejam se ouvir com mais força e liberdade.
-        </h2>
-        <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-          Se você já tentou de tudo para perder peso e não obteve resultados, ou
-          se a ansiedade está controlando sua vida, a psicoterapia pode ajudar.
-          Especializada em terapia cognitivo comportamental, trabalho com
-          mulheres para desenvolver uma relação saudável com o corpo e a mente.
         </p>
       </div>
     </section>
