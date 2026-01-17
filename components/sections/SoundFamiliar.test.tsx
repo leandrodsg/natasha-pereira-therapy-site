@@ -13,16 +13,16 @@ describe('SoundFamiliar', () => {
     expect(heading).toHaveTextContent(/soa familiar/i);
   });
 
-  it('renders all sound familiar items', () => {
+  it('renders all sound familiar items with expanded text', () => {
     render(<SoundFamiliar />);
 
     const items = [
-      'Sobrecarga emocional',
-      'Dificuldade em estabelecer limites',
-      'Medo de desapontar os outros',
-      'Culpa ao priorizar a si mesma',
-      'Sensação de estar sempre "dividida"',
-      'Pressão por ser forte o tempo todo',
+      'Você sente uma sobrecarga emocional constante, como se carregasse o mundo nos ombros.',
+      'Estabelecer limites parece impossível - você sempre acaba cedendo.',
+      'O medo de desapontar os outros te paralisa nas decisões.',
+      'Culpa ao priorizar você mesma, como se fosse egoísmo.',
+      'Sensação de estar sempre "dividida" entre papéis e expectativas.',
+      'Pressão por ser forte o tempo todo, sem espaço para vulnerabilidade.',
     ];
 
     items.forEach((item) => {
@@ -46,6 +46,40 @@ describe('SoundFamiliar', () => {
 
     const listItems = screen.getAllByRole('listitem');
     expect(listItems).toHaveLength(6);
+  });
+
+  it('renders image with correct alt text', () => {
+    render(<SoundFamiliar />);
+
+    const image = screen.getByAltText(
+      'Ambiente acolhedor com plantas e luz natural'
+    );
+    expect(image).toBeInTheDocument();
+  });
+
+  it('has split layout structure', () => {
+    render(<SoundFamiliar />);
+
+    // Check for split layout containers
+    const imageContainer = screen.getByTestId('sound-familiar-image');
+    const contentContainer = screen.getByTestId('sound-familiar-content');
+
+    expect(imageContainer).toBeInTheDocument();
+    expect(contentContainer).toBeInTheDocument();
+  });
+
+  it('applies primary background to content section', () => {
+    render(<SoundFamiliar />);
+
+    const contentContainer = screen.getByTestId('sound-familiar-content');
+    expect(contentContainer).toHaveClass('bg-primary');
+  });
+
+  it('renders title with font-display class', () => {
+    render(<SoundFamiliar />);
+
+    const heading = screen.getByRole('heading', { level: 2 });
+    expect(heading).toHaveClass('font-display');
   });
 
   it('is accessible', async () => {
