@@ -5,9 +5,6 @@ const mockService = {
   title: 'Atendimento Individual',
   description:
     'Um espaço seguro para falar de si, elaborar emoções e se escutar com mais profundidade.',
-  imageSrc:
-    'https://via.placeholder.com/400x300/7a8b6f/f5f2ed?text=Atendimento+Individual',
-  imageAlt: 'Atendimento Individual',
   linkText: 'SAIBA MAIS',
   linkHref: '#',
 };
@@ -23,16 +20,6 @@ describe('ServiceCard', () => {
     expect(
       screen.getByText(/Um espaço seguro para falar de si/)
     ).toBeInTheDocument();
-  });
-
-  it('renders image with correct alt text', () => {
-    render(<ServiceCard {...mockService} />);
-    const image = screen.getByAltText('Atendimento Individual');
-    expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute(
-      'src',
-      expect.stringContaining('via.placeholder.com')
-    );
   });
 
   it('renders link with correct text', () => {
@@ -52,5 +39,41 @@ describe('ServiceCard', () => {
     render(<ServiceCard {...mockService} />);
     const link = screen.getByRole('link', { name: 'SAIBA MAIS' });
     expect(link).toBeInTheDocument();
+  });
+
+  it('applies white background to card', () => {
+    render(<ServiceCard {...mockService} />);
+    const article = screen.getByRole('article');
+    expect(article).toHaveClass('bg-white');
+  });
+
+  it('applies hover lift effect', () => {
+    render(<ServiceCard {...mockService} />);
+    const article = screen.getByRole('article');
+    expect(article).toHaveClass('hover:-translate-y-2');
+  });
+
+  it('applies shadow on hover', () => {
+    render(<ServiceCard {...mockService} />);
+    const article = screen.getByRole('article');
+    expect(article).toHaveClass('hover:shadow-xl');
+  });
+
+  it('renders title with serif font and large size', () => {
+    render(<ServiceCard {...mockService} />);
+    const title = screen.getByText('Atendimento Individual');
+    expect(title).toHaveClass('font-display', 'text-3xl');
+  });
+
+  it('renders button with pill style', () => {
+    render(<ServiceCard {...mockService} />);
+    const button = screen.getByText('SAIBA MAIS');
+    expect(button).toHaveClass('rounded-full', 'bg-secondary');
+  });
+
+  it('renders button with uppercase text and tracking', () => {
+    render(<ServiceCard {...mockService} />);
+    const button = screen.getByText('SAIBA MAIS');
+    expect(button).toHaveClass('uppercase', 'tracking-widest');
   });
 });

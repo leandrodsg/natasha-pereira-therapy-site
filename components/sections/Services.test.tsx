@@ -40,12 +40,23 @@ describe('Services', () => {
     expect(section.tagName).toBe('SECTION');
   });
 
-  it('renders images with alt text', () => {
+  it('applies beige background to section', () => {
     render(<Services />);
-    const images = screen.getAllByRole('img');
-    expect(images).toHaveLength(3);
-    expect(images[0]).toHaveAttribute('alt', 'Atendimento Individual');
-    expect(images[1]).toHaveAttribute('alt', 'Roda de conversa');
-    expect(images[2]).toHaveAttribute('alt', 'Terapia de grupo para mulheres');
+    const section = screen.getByRole('region', {
+      name: /como posso te ajudar/i,
+    });
+    expect(section).toHaveClass('bg-accent');
+  });
+
+  it('renders title with serif font and large size', () => {
+    render(<Services />);
+    const title = screen.getByText('Como posso te ajudar?');
+    expect(title).toHaveClass('font-display', 'text-5xl');
+  });
+
+  it('renders title centered', () => {
+    render(<Services />);
+    const title = screen.getByText('Como posso te ajudar?');
+    expect(title).toHaveClass('text-center');
   });
 });
