@@ -53,7 +53,7 @@ export function Hero() {
       <div className="w-full md:w-1/2 relative">
         <div className="aspect-[4/5] w-full relative overflow-hidden rounded-tl-[100px] rounded-br-[100px] shadow-2xl">
           <Image
-            src="/images/hero.jpg"
+            src="/images/primeira.png"
             alt="Natasha Pereira, psicóloga especializada em terapia para mulheres"
             fill
             className="object-cover"
