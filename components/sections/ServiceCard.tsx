@@ -1,11 +1,8 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 interface ServiceCardProps {
   title: string;
   description: string;
-  imageSrc: string;
-  imageAlt: string;
   linkText: string;
   linkHref: string;
 }
@@ -13,36 +10,26 @@ interface ServiceCardProps {
 export default function ServiceCard({
   title,
   description,
-  imageSrc,
-  imageAlt,
   linkText,
   linkHref,
 }: ServiceCardProps) {
   return (
-    <article className="service-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <div className="service-image relative h-48 w-full">
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          unoptimized
-        />
-      </div>
-      <div className="service-content p-6">
-        <h3 className="service-title text-xl font-semibold text-gray-900 mb-3">
+    <article className="service-card bg-white p-10 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 h-full">
+      <div className="service-content flex flex-col h-full">
+        <h3 className="service-title font-display text-3xl font-semibold text-gray-900 mb-4">
           {title}
         </h3>
-        <p className="service-description text-gray-700 mb-4 leading-relaxed">
+        <p className="service-description text-gray-700 leading-relaxed flex-grow">
           {description}
         </p>
-        <Link
-          href={linkHref}
-          className="service-link inline-block text-primary hover:text-primary/80 font-medium hover:underline transition-colors duration-200"
-        >
-          {linkText}
-        </Link>
+        <div className="mt-6">
+          <Link
+            href={linkHref}
+            className="inline-block bg-secondary text-white px-6 py-3 rounded-full uppercase tracking-widest font-bold hover:opacity-90 transition-opacity duration-200"
+          >
+            {linkText}
+          </Link>
+        </div>
       </div>
     </article>
   );
