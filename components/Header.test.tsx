@@ -61,10 +61,11 @@ describe('Header Component - PR #14', () => {
 
     it('should render logo with correct text', () => {
       render(<Header />);
-      const logo = screen.getByText('Natasha');
+      const logo = screen.getByAltText('Natasha Pereira - Psicóloga');
+      const logoLink = logo.closest('a');
       expect(logo).toBeInTheDocument();
-      expect(logo.tagName).toBe('A');
-      expect(logo).toHaveAttribute('href', '/');
+      expect(logoLink?.tagName).toBe('A');
+      expect(logoLink).toHaveAttribute('href', '/');
     });
 
     it('should render all navigation links', () => {
@@ -72,12 +73,12 @@ describe('Header Component - PR #14', () => {
       expect(screen.getByText('Início')).toBeInTheDocument();
       expect(screen.getByText('Quem sou')).toBeInTheDocument();
       expect(screen.getByText('Serviços')).toBeInTheDocument();
-      expect(screen.getByText('Contato')).toBeInTheDocument();
+      expect(screen.getByText('Como Funciona')).toBeInTheDocument();
     });
 
     it('should render WhatsApp CTA button', () => {
       render(<Header />);
-      const ctaButtons = screen.getAllByText('Vamos conversar?');
+      const ctaButtons = screen.getAllByText('Agende sua sessão');
       expect(ctaButtons.length).toBeGreaterThan(0);
     });
 
@@ -110,8 +111,11 @@ describe('Header Component - PR #14', () => {
         '#servicos'
       );
 
-      const contatoLinks = screen.getAllByText('Contato');
-      expect(contatoLinks[0].closest('a')).toHaveAttribute('href', '#contato');
+      const comoFuncionaLinks = screen.getAllByText('Como Funciona');
+      expect(comoFuncionaLinks[0].closest('a')).toHaveAttribute(
+        'href',
+        '#como-funciona'
+      );
     });
 
     it('should have aria-label on desktop navigation', () => {
@@ -124,7 +128,7 @@ describe('Header Component - PR #14', () => {
   describe('WhatsApp CTA', () => {
     it('should generate correct WhatsApp link', () => {
       render(<Header />);
-      const ctaLinks = screen.getAllByText('Vamos conversar?');
+      const ctaLinks = screen.getAllByText('Agende sua sessão');
       const whatsappLink = ctaLinks[0].closest('a');
 
       expect(whatsappLink).toHaveAttribute(
@@ -135,7 +139,7 @@ describe('Header Component - PR #14', () => {
 
     it('should open WhatsApp link in new tab', () => {
       render(<Header />);
-      const ctaLinks = screen.getAllByText('Vamos conversar?');
+      const ctaLinks = screen.getAllByText('Agende sua sessão');
       const whatsappLink = ctaLinks[0].closest('a');
 
       expect(whatsappLink).toHaveAttribute('target', '_blank');
@@ -143,7 +147,7 @@ describe('Header Component - PR #14', () => {
 
     it('should have noopener noreferrer for security', () => {
       render(<Header />);
-      const ctaLinks = screen.getAllByText('Vamos conversar?');
+      const ctaLinks = screen.getAllByText('Agende sua sessão');
       const whatsappLink = ctaLinks[0].closest('a');
 
       expect(whatsappLink).toHaveAttribute('rel', 'noopener noreferrer');
@@ -273,8 +277,10 @@ describe('Header Component - PR #14', () => {
 
     it('should apply font-display class to logo', () => {
       render(<Header />);
-      const logo = screen.getByText('Natasha');
-      expect(logo.className).toContain('font-display');
+      const logoLink = screen
+        .getByAltText('Natasha Pereira - Psicóloga')
+        .closest('a');
+      expect(logoLink?.className).toContain('hover:opacity-80');
     });
 
     it('should have uppercase transformation on nav links', () => {
@@ -285,8 +291,10 @@ describe('Header Component - PR #14', () => {
 
     it('should have hover styles on logo', () => {
       render(<Header />);
-      const logo = screen.getByText('Natasha');
-      expect(logo.className).toContain('hover:opacity-80');
+      const logoLink = screen
+        .getByAltText('Natasha Pereira - Psicóloga')
+        .closest('a');
+      expect(logoLink?.className).toContain('hover:opacity-80');
     });
 
     it('should have transition effects on nav links', () => {
@@ -299,23 +307,25 @@ describe('Header Component - PR #14', () => {
   describe('Logo Functionality', () => {
     it('should link to home page', () => {
       render(<Header />);
-      const logo = screen.getByText('Natasha');
-      expect(logo).toHaveAttribute('href', '/');
+      const logoLink = screen
+        .getByAltText('Natasha Pereira - Psicóloga')
+        .closest('a');
+      expect(logoLink).toHaveAttribute('href', '/');
     });
 
     it('should have display font styling', () => {
       render(<Header />);
-      const logo = screen.getByText('Natasha');
-      expect(logo.className).toContain('font-display');
-      expect(logo.className).toContain('text-3xl');
-      expect(logo.className).toContain('tracking-widest');
+      const logo = screen.getByAltText('Natasha Pereira - Psicóloga');
+      expect(logo.className).toContain('h-12');
+      expect(logo.className).toContain('md:h-14');
+      expect(logo.className).toContain('w-auto');
     });
   });
 
   describe('Environment Integration', () => {
     it('should use WhatsApp number from environment', () => {
       render(<Header />);
-      const ctaLinks = screen.getAllByText('Vamos conversar?');
+      const ctaLinks = screen.getAllByText('Agende sua sessão');
       const whatsappLink = ctaLinks[0].closest('a');
 
       // Should use the mocked environment variable

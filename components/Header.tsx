@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
@@ -18,7 +19,7 @@ export function Header() {
     { label: 'Início', href: '#inicio' },
     { label: 'Quem sou', href: '#quem-sou' },
     { label: 'Serviços', href: '#servicos' },
-    { label: 'Contato', href: '#contato' },
+    { label: 'Como Funciona', href: '#como-funciona' },
   ];
 
   useEffect(() => {
@@ -41,14 +42,29 @@ export function Header() {
     >
       <Link
         href="/"
-        className="font-display text-3xl tracking-widest uppercase font-semibold text-foreground hover:opacity-80 transition-opacity"
+        className="ml-4 md:ml-6 hover:opacity-80 transition-opacity flex items-center gap-0.5 md:gap-1"
       >
-        Natasha
+        <Image
+          src="/images/logo_flor.svg"
+          alt="Flor decorativa"
+          width={40}
+          height={40}
+          className="h-14 md:h-16 w-auto"
+          priority
+        />
+        <Image
+          src="/images/logo.svg"
+          alt="Natasha Pereira - Psicóloga"
+          width={280}
+          height={60}
+          className="h-12 md:h-14 w-auto"
+          priority
+        />
       </Link>
 
       {/* Desktop Navigation */}
       <nav
-        className="hidden md:flex items-center gap-8"
+        className="hidden md:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2"
         role="navigation"
         aria-label="Navegação principal"
       >
@@ -61,15 +77,17 @@ export function Header() {
             {link.label}
           </a>
         ))}
-        <Button
-          asChild
-          className="bg-primary text-white text-xs font-bold uppercase px-6 py-3 rounded"
-        >
-          <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-            Vamos conversar?
-          </a>
-        </Button>
       </nav>
+
+      {/* Desktop Button */}
+      <Button
+        asChild
+        className="hidden md:flex items-center justify-center bg-secondary text-white text-xs font-bold uppercase px-6 py-3 rounded"
+      >
+        <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+          Agende sua sessão
+        </a>
+      </Button>
 
       {/* Mobile Menu Button */}
       <button
@@ -105,7 +123,7 @@ export function Header() {
             ))}
             <Button
               asChild
-              className="bg-primary text-white text-xs font-bold uppercase px-6 py-3 rounded"
+              className="bg-secondary text-white text-xs font-bold uppercase px-6 py-3 rounded"
             >
               <a
                 href={whatsappLink}

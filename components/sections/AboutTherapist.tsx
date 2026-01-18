@@ -57,10 +57,10 @@ export function AboutTherapist() {
           </div>
           <div className="about-image order-2 md:order-2">
             <Image
-              src="/images/_DSC9840.jpg"
+              src="/images/sou_natasha.png"
               alt="Natasha Pereira, psicóloga especializada em terapia para mulheres"
-              width={692}
-              height={1038}
+              width={500}
+              height={750}
               className="w-full h-auto rounded-tr-[100px] rounded-bl-[100px] shadow-2xl"
               loading="lazy"
             />

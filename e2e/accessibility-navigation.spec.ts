@@ -9,12 +9,13 @@ test('keyboard navigation works for all sections', async ({ page }) => {
     { href: '#inicio', text: 'Início' },
     { href: '#quem-sou', text: 'Quem sou' },
     { href: '#servicos', text: 'Serviços' },
-    { href: '#contato', text: 'Contato' },
+    // Note: #contato was removed, replaced with WhatsApp CTA
   ];
 
   for (const { href } of footerLinks) {
     const link = footer.locator(`nav a[href="${href}"]`);
     await link.click();
+    await page.waitForTimeout(500); // Wait for smooth scroll
     const section = page.locator(href);
     await expect(section).toBeInViewport();
   }

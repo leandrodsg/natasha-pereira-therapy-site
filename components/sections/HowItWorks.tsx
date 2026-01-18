@@ -28,6 +28,7 @@ const processSteps: ProcessStep[] = [
 export default function HowItWorks() {
   return (
     <section
+      id="como-funciona"
       className="py-24 px-6 md:px-12 bg-background"
       aria-labelledby="how-it-works-heading"
     >

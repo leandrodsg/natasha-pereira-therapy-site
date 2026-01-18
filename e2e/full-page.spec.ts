@@ -129,12 +129,18 @@ test.describe('Landing Page E2E', () => {
   }) => {
     await page.goto('/');
 
-    // Check if navigation links exist in header
+    // Check if navigation links exist in header (desktop only)
+    // On mobile, these are in the hamburger menu
     const header = page.locator('header');
-    await expect(header.locator('a[href="#inicio"]')).toBeVisible();
-    await expect(header.locator('a[href="#quem-sou"]')).toBeVisible();
-    await expect(header.locator('a[href="#servicos"]')).toBeVisible();
-    await expect(header.locator('a[href="#contato"]')).toBeVisible();
+    const viewportSize = page.viewportSize();
+    const isMobile = viewportSize && viewportSize.width < 768;
+
+    if (!isMobile) {
+      await expect(header.locator('a[href="#inicio"]')).toBeVisible();
+      await expect(header.locator('a[href="#quem-sou"]')).toBeVisible();
+      await expect(header.locator('a[href="#servicos"]')).toBeVisible();
+    }
+    // Note: #contato was replaced with WhatsApp CTA button
   });
 
   test('should load fast', async ({ page }) => {

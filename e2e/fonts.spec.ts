@@ -12,7 +12,7 @@ test.describe('Font Loading - PR #13', () => {
     await page.goto('/');
   });
 
-  test('should load Cormorant Garamond font from Google Fonts', async ({
+  test('should load Sorts Mill Goudy font from Google Fonts', async ({
     page,
   }) => {
     // Wait for fonts to load
@@ -26,10 +26,10 @@ test.describe('Font Loading - PR #13', () => {
       (el) => window.getComputedStyle(el).fontFamily
     );
 
-    expect(fontFamily).toContain('Cormorant Garamond');
+    expect(fontFamily).toContain('Sorts Mill Goudy');
   });
 
-  test('should load Montserrat font from Google Fonts', async ({ page }) => {
+  test('should load Lora font from Google Fonts', async ({ page }) => {
     // Wait for fonts to load
     await page.waitForLoadState('networkidle');
 
@@ -39,10 +39,10 @@ test.describe('Font Loading - PR #13', () => {
       (el) => window.getComputedStyle(el).fontFamily
     );
 
-    expect(fontFamily).toContain('Montserrat');
+    expect(fontFamily).toContain('Lora');
   });
 
-  test('should apply Cormorant Garamond to all heading levels', async ({
+  test('should apply Sorts Mill Goudy to all heading levels', async ({
     page,
   }) => {
     await page.waitForLoadState('networkidle');
@@ -53,7 +53,7 @@ test.describe('Font Loading - PR #13', () => {
       const h1Font = await h1.evaluate(
         (el) => window.getComputedStyle(el).fontFamily
       );
-      expect(h1Font).toContain('Cormorant Garamond');
+      expect(h1Font).toContain('Sorts Mill Goudy');
     }
 
     // Check h2
@@ -62,7 +62,7 @@ test.describe('Font Loading - PR #13', () => {
       const h2Font = await h2.evaluate(
         (el) => window.getComputedStyle(el).fontFamily
       );
-      expect(h2Font).toContain('Cormorant Garamond');
+      expect(h2Font).toContain('Sorts Mill Goudy');
     }
 
     // Check h3
@@ -71,7 +71,7 @@ test.describe('Font Loading - PR #13', () => {
       const h3Font = await h3.evaluate(
         (el) => window.getComputedStyle(el).fontFamily
       );
-      expect(h3Font).toContain('Cormorant Garamond');
+      expect(h3Font).toContain('Sorts Mill Goudy');
     }
   });
 
@@ -90,7 +90,7 @@ test.describe('Font Loading - PR #13', () => {
         (el) => window.getComputedStyle(el).fontFamily
       );
 
-      expect(fontFamily).toContain('Cormorant Garamond');
+      expect(fontFamily).toContain('Sorts Mill Goudy');
     }
   });
 
@@ -109,7 +109,7 @@ test.describe('Font Loading - PR #13', () => {
     );
 
     // Should have custom font, not fallback
-    expect(fontFamily).toContain('Cormorant Garamond');
+    expect(fontFamily).toContain('Sorts Mill Goudy');
     expect(fontFamily).not.toBe('serif'); // Not just fallback
   });
 
@@ -204,7 +204,7 @@ test.describe('Font Loading - PR #13', () => {
         .getPropertyValue('--primary');
     });
 
-    expect(primaryColor).toContain('111 18% 55%');
+    expect(primaryColor).toContain('72 14% 32%');
   });
 
   test('should not have console errors related to fonts', async ({ page }) => {

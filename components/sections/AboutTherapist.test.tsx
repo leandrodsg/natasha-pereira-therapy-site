@@ -42,7 +42,7 @@ describe('AboutTherapist', () => {
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute(
       'src',
-      expect.stringContaining('_DSC9840.jpg')
+      expect.stringContaining('sou_natasha.png')
     );
     expect(image).toHaveClass('rounded-tr-[100px]', 'rounded-bl-[100px]');
   });
