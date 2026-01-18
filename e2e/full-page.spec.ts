@@ -17,20 +17,19 @@ test.describe('Landing Page E2E', () => {
       })
     ).toBeVisible();
     await expect(
-      page.locator('.hero-subheadline').filter({
-        hasText:
-          'Para mulheres que carregam histórias, decisões, pressões, dúvidas e',
+      page.locator('#hero-description').filter({
+        hasText: 'Para mulheres que carregam histórias',
       })
     ).toBeVisible();
+    // Use specific selector for Hero CTA button
     await expect(
-      page.locator('a').filter({ hasText: 'Vamos conversar?' })
+      page.locator('section#inicio a').filter({ hasText: 'Vamos conversar?' })
     ).toBeVisible();
 
     // Problem Statement section
     await expect(
-      page.locator('.problem-statement h2').filter({
-        hasText:
-          'Para mulheres que carregam histórias, decisões, pressões, dúvidas e desejam se ouvir',
+      page.locator('h2').filter({
+        hasText: 'Você está aqui porque',
       })
     ).toBeVisible();
 
@@ -38,16 +37,13 @@ test.describe('Landing Page E2E', () => {
     await expect(
       page.locator('h2').filter({ hasText: 'Isso soa familiar?' })
     ).toBeVisible();
-    await expect(page.locator('text=Sobrecarga emocional')).toBeVisible();
+    await expect(page.locator('text=sobrecarga emocional')).toBeVisible();
 
     // About Therapist section
     await expect(
-      page.locator('h2').filter({ hasText: 'Olá, sou Natasha Pereira.' })
-    ).toBeVisible();
-    await expect(
       page
-        .locator('h3')
-        .filter({ hasText: 'Sou uma psicóloga que não tem dúvidas:' })
+        .locator('h2')
+        .filter({ hasText: 'Acredito que você tem o poder de criar um' })
     ).toBeVisible();
 
     // Services section
@@ -59,25 +55,24 @@ test.describe('Landing Page E2E', () => {
     // CTA Section
     await expect(
       page.locator('h2').filter({
-        hasText:
-          'Você não precisa continuar se anulando para dar conta de tudo.',
+        hasText: 'Pronta para abraçar a mudança?',
       })
     ).toBeVisible();
     await expect(
       page.locator(
-        'text=Agende sua sessão e comece a se ouvir com mais força e liberdade.'
+        'text=Você não precisa continuar se anulando para dar conta de tudo'
       )
     ).toBeVisible();
     await expect(
-      page.locator('a').filter({ hasText: 'Agende sua sessão' })
+      page.locator('section#contato a').filter({ hasText: 'Agende sua sessão' })
     ).toBeVisible();
 
     // Footer
     await expect(
-      page.locator('h3').filter({ hasText: 'Contato' })
+      page.locator('footer h3').filter({ hasText: 'Contato' })
     ).toBeVisible();
     await expect(
-      page.locator('text=© 2025 Natasha Pereira | CRP 01/22302')
+      page.locator('text=© 2026 Natasha Pereira | CRP 01/22302')
     ).toBeVisible();
   });
 
@@ -115,18 +110,17 @@ test.describe('Landing Page E2E', () => {
 
     // Check if content is visible and properly sized
     await expect(page.locator('h1')).toBeVisible();
+    // Use specific selector for Hero CTA
     await expect(
-      page.locator('a').filter({ hasText: 'Vamos conversar?' })
+      page.locator('section#inicio a').filter({ hasText: 'Vamos conversar?' })
     ).toBeVisible();
 
     // Check CTA section on mobile
     await expect(
-      page
-        .locator('h2')
-        .filter({ hasText: 'Você não precisa continuar se anulando' })
+      page.locator('h2').filter({ hasText: 'Pronta para abraçar a mudança?' })
     ).toBeVisible();
     await expect(
-      page.locator('a').filter({ hasText: 'Agende sua sessão' })
+      page.locator('section#contato a').filter({ hasText: 'Agende sua sessão' })
     ).toBeVisible();
   });
 
@@ -135,10 +129,12 @@ test.describe('Landing Page E2E', () => {
   }) => {
     await page.goto('/');
 
-    // Check if footer links exist (navigation)
-    await expect(page.locator('text=Início')).toBeVisible();
-    await expect(page.locator('text=Quem sou')).toBeVisible();
-    await expect(page.locator('text=Serviços')).toBeVisible();
+    // Check if navigation links exist in header
+    const header = page.locator('header');
+    await expect(header.locator('a[href="#inicio"]')).toBeVisible();
+    await expect(header.locator('a[href="#quem-sou"]')).toBeVisible();
+    await expect(header.locator('a[href="#servicos"]')).toBeVisible();
+    await expect(header.locator('a[href="#contato"]')).toBeVisible();
   });
 
   test('should load fast', async ({ page }) => {

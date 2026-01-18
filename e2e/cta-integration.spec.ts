@@ -69,9 +69,7 @@ test.describe('CTA Integration', () => {
   test('Footer Instagram link is correct', async ({ page }) => {
     await page.goto('/');
 
-    const instagramLink = page
-      .locator('footer a')
-      .filter({ hasText: 'Instagram' });
+    const instagramLink = page.locator('footer a[aria-label="Instagram"]');
     await expect(instagramLink).toBeVisible();
 
     await expect(instagramLink).toHaveAttribute(

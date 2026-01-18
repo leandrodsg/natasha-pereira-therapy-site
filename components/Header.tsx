@@ -56,7 +56,7 @@ export function Header() {
           <a
             key={link.href}
             href={link.href}
-            className="text-xs font-semibold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+            className="text-xs font-semibold uppercase tracking-widest text-foreground/80 hover:text-primary transition-colors"
           >
             {link.label}
           </a>
@@ -97,7 +97,7 @@ export function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-xs font-semibold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+                className="text-xs font-semibold uppercase tracking-widest text-foreground/80 hover:text-primary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}
