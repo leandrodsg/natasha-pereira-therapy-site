@@ -36,8 +36,9 @@ describe('Hero', () => {
     );
     expect(headline).toHaveClass(
       'font-display',
-      'text-5xl',
-      'md:text-7xl',
+      'text-4xl',
+      'md:text-5xl',
+      'lg:text-6xl',
       'font-light'
     );
   });
@@ -90,14 +91,18 @@ describe('Hero', () => {
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute(
       'src',
-      expect.stringContaining('primeira.png')
+      expect.stringContaining('hero-natasha.png')
     );
 
     const imageContainer = image.closest('div');
     expect(imageContainer).toHaveClass(
-      'aspect-[4/5]',
-      'rounded-tl-[100px]',
-      'rounded-br-[100px]',
+      'aspect-[3/4]',
+      'w-full',
+      'max-h-[500px]',
+      'relative',
+      'overflow-hidden',
+      'rounded-tl-[80px]',
+      'rounded-br-[80px]',
       'shadow-2xl'
     );
   });
@@ -107,7 +112,7 @@ describe('Hero', () => {
 
     const button = screen.getByRole('link', { name: 'Vamos conversar?' });
     expect(button).toHaveClass(
-      'bg-primary',
+      'bg-secondary',
       'text-white',
       'text-xs',
       'font-bold',

@@ -159,11 +159,12 @@ describe('Header Accessibility - PR #14', () => {
 
   describe('Keyboard Navigation', () => {
     it('should have focusable logo link', () => {
-      const { getByText } = render(<Header />);
-      const logo = getByText('Natasha');
+      const { getByAltText } = render(<Header />);
+      const logo = getByAltText('Natasha Pereira - Psicóloga');
+      const logoLink = logo.closest('a');
 
-      logo.focus();
-      expect(document.activeElement).toBe(logo);
+      logoLink.focus();
+      expect(document.activeElement).toBe(logoLink);
     });
 
     it('should have focusable navigation links', () => {
@@ -177,7 +178,7 @@ describe('Header Accessibility - PR #14', () => {
 
     it('should have focusable WhatsApp CTA', () => {
       const { getAllByText } = render(<Header />);
-      const ctaLinks = getAllByText('Vamos conversar?');
+      const ctaLinks = getAllByText('Agende sua sessão');
       const firstCTA = ctaLinks[0];
 
       firstCTA.focus();
@@ -203,30 +204,24 @@ describe('Header Accessibility - PR #14', () => {
   });
 
   describe('Color Contrast', () => {
-    it('should use foreground color on logo for contrast', () => {
-      const { getByText } = render(<Header />);
-      const logo = getByText('Natasha');
-      expect(logo.className).toContain('text-foreground');
-    });
-
     it('should use foreground color on nav links with sufficient contrast', () => {
       const { getAllByText } = render(<Header />);
       const inicioLinks = getAllByText('Início');
       expect(inicioLinks[0]).toHaveClass('text-foreground/80');
     });
 
-    it('should use white text on primary background for CTA', () => {
+    it('should use white text on secondary background for CTA', () => {
       const { getAllByText } = render(<Header />);
-      const ctaLinks = getAllByText('Vamos conversar?');
+      const ctaLinks = getAllByText('Agende sua sessão');
       const ctaButton = ctaLinks[0].closest('a');
-      expect(ctaButton).toHaveClass('bg-primary', 'text-white');
+      expect(ctaButton).toHaveClass('bg-secondary', 'text-white');
     });
   });
 
   describe('Link Security', () => {
     it('should have rel="noopener noreferrer" on external links', () => {
       const { getAllByText } = render(<Header />);
-      const ctaLinks = getAllByText('Vamos conversar?');
+      const ctaLinks = getAllByText('Agende sua sessão');
       const whatsappLink = ctaLinks[0].closest('a');
 
       expect(whatsappLink).toHaveAttribute('rel', 'noopener noreferrer');
@@ -234,7 +229,7 @@ describe('Header Accessibility - PR #14', () => {
 
     it('should open external links in new tab', () => {
       const { getAllByText } = render(<Header />);
-      const ctaLinks = getAllByText('Vamos conversar?');
+      const ctaLinks = getAllByText('Agende sua sessão');
       const whatsappLink = ctaLinks[0].closest('a');
 
       expect(whatsappLink).toHaveAttribute('target', '_blank');
@@ -248,8 +243,8 @@ describe('Header Accessibility - PR #14', () => {
       expect(getAllByText('Início').length).toBeGreaterThan(0);
       expect(getAllByText('Quem sou').length).toBeGreaterThan(0);
       expect(getAllByText('Serviços').length).toBeGreaterThan(0);
-      expect(getAllByText('Contato').length).toBeGreaterThan(0);
-      expect(getAllByText('Vamos conversar?').length).toBeGreaterThan(0);
+      expect(getAllByText('Como Funciona').length).toBeGreaterThan(0);
+      expect(getAllByText('Agende sua sessão').length).toBeGreaterThan(0);
     });
 
     it('should provide context with navigation labels', () => {
@@ -299,7 +294,7 @@ describe('Header Accessibility - PR #14', () => {
 
     it('should have adequate size on CTA button', () => {
       const { getAllByText } = render(<Header />);
-      const ctaLinks = getAllByText('Vamos conversar?');
+      const ctaLinks = getAllByText('Agende sua sessão');
       const ctaButton = ctaLinks[0].closest('a');
 
       // Button should have px-6 py-3 for adequate touch target
@@ -309,13 +304,14 @@ describe('Header Accessibility - PR #14', () => {
 
   describe('Focus Indicators', () => {
     it('should have visible focus on logo', () => {
-      const { getByText } = render(<Header />);
-      const logo = getByText('Natasha');
+      const { getByAltText } = render(<Header />);
+      const logo = getByAltText('Natasha Pereira - Psicóloga');
+      const logoLink = logo.closest('a');
 
-      logo.focus();
+      logoLink.focus();
 
       // Should have focus-visible styles from global CSS
-      expect(document.activeElement).toBe(logo);
+      expect(document.activeElement).toBe(logoLink);
     });
 
     it('should have visible focus on navigation links', () => {
@@ -345,7 +341,7 @@ describe('Header Accessibility - PR #14', () => {
       expect(getAllByText('Início')).toBeTruthy();
       expect(getAllByText('Quem sou')).toBeTruthy();
       expect(getAllByText('Serviços')).toBeTruthy();
-      expect(getAllByText('Contato')).toBeTruthy();
+      expect(getAllByText('Como Funciona')).toBeTruthy();
     });
 
     it('should use Portuguese for menu labels', () => {
@@ -357,7 +353,7 @@ describe('Header Accessibility - PR #14', () => {
     it('should use Portuguese for CTA button', () => {
       const { getAllByText } = render(<Header />);
 
-      expect(getAllByText('Vamos conversar?')).toBeTruthy();
+      expect(getAllByText('Agende sua sessão')).toBeTruthy();
     });
   });
 });

@@ -44,7 +44,7 @@ describe('Header Security Tests - PR #14', () => {
   describe('External Link Security', () => {
     it('should use rel="noopener noreferrer" on WhatsApp links', () => {
       render(<Header />);
-      const ctaLinks = screen.getAllByText('Vamos conversar?');
+      const ctaLinks = screen.getAllByText('Agende sua sessão');
 
       ctaLinks.forEach((cta) => {
         const link = cta.closest('a');
@@ -54,7 +54,7 @@ describe('Header Security Tests - PR #14', () => {
 
     it('should open external links in new tab', () => {
       render(<Header />);
-      const ctaLinks = screen.getAllByText('Vamos conversar?');
+      const ctaLinks = screen.getAllByText('Agende sua sessão');
 
       ctaLinks.forEach((cta) => {
         const link = cta.closest('a');
@@ -64,7 +64,7 @@ describe('Header Security Tests - PR #14', () => {
 
     it('should use HTTPS for WhatsApp links', () => {
       render(<Header />);
-      const ctaLinks = screen.getAllByText('Vamos conversar?');
+      const ctaLinks = screen.getAllByText('Agende sua sessão');
       const whatsappLink = ctaLinks[0].closest('a');
 
       expect(whatsappLink?.getAttribute('href')).toMatch(/^https:\/\//);
@@ -149,7 +149,7 @@ describe('Header Security Tests - PR #14', () => {
 
     it('should validate WhatsApp number format', () => {
       render(<Header />);
-      const ctaLinks = screen.getAllByText('Vamos conversar?');
+      const ctaLinks = screen.getAllByText('Agende sua sessão');
       const whatsappLink = ctaLinks[0].closest('a');
       const href = whatsappLink?.getAttribute('href');
 
@@ -174,7 +174,7 @@ describe('Header Security Tests - PR #14', () => {
         { text: 'Início', id: 'inicio' },
         { text: 'Quem sou', id: 'quem-sou' },
         { text: 'Serviços', id: 'servicos' },
-        { text: 'Contato', id: 'contato' },
+        { text: 'Como Funciona', id: 'como-funciona' },
       ];
 
       navLinks.forEach(({ text, id }) => {
@@ -192,9 +192,8 @@ describe('Header Security Tests - PR #14', () => {
       const { container } = render(<Header />);
 
       // Verify only expected content is rendered
-      expect(container.textContent).toContain('Natasha');
       expect(container.textContent).toContain('Início');
-      expect(container.textContent).toContain('Vamos conversar?');
+      expect(container.textContent).toContain('Agende sua sessão');
     });
 
     it('should not have inline styles that could be exploited', () => {
@@ -249,7 +248,7 @@ describe('Header Security Tests - PR #14', () => {
     it('should only expose NEXT_PUBLIC_* variables to client', () => {
       // This is enforced by Next.js, but we validate usage
       render(<Header />);
-      const ctaLinks = screen.getAllByText('Vamos conversar?');
+      const ctaLinks = screen.getAllByText('Agende sua sessão');
       const whatsappLink = ctaLinks[0].closest('a');
 
       // Should use the phone number from NEXT_PUBLIC_WHATSAPP_NUMBER
@@ -258,7 +257,7 @@ describe('Header Security Tests - PR #14', () => {
 
     it('should validate phone number format from env', () => {
       render(<Header />);
-      const ctaLinks = screen.getAllByText('Vamos conversar?');
+      const ctaLinks = screen.getAllByText('Agende sua sessão');
       const whatsappLink = ctaLinks[0].closest('a');
       const href = whatsappLink?.getAttribute('href') || '';
 
@@ -331,7 +330,7 @@ describe('Header Security Tests - PR #14', () => {
   describe('Link Text Security', () => {
     it('should not have misleading link text', () => {
       render(<Header />);
-      const ctaLinks = screen.getAllByText('Vamos conversar?');
+      const ctaLinks = screen.getAllByText('Agende sua sessão');
       const whatsappLink = ctaLinks[0].closest('a');
       const href = whatsappLink?.getAttribute('href') || '';
 
@@ -347,8 +346,8 @@ describe('Header Security Tests - PR #14', () => {
         'Início',
         'Quem sou',
         'Serviços',
-        'Contato',
-        'Vamos conversar?',
+        'Como Funciona',
+        'Agende sua sessão',
       ];
 
       expectedLinks.forEach((linkText) => {

@@ -6,7 +6,7 @@ describe('Hero Responsive', () => {
     render(<Hero />);
 
     const headline = screen.getByRole('heading', { level: 1 });
-    expect(headline).toHaveClass('text-5xl', 'md:text-7xl');
+    expect(headline).toHaveClass('text-4xl', 'md:text-5xl', 'lg:text-6xl');
 
     const subtitle = screen.getByText(
       'Terapia online para mulheres em Brasília'
@@ -45,7 +45,7 @@ describe('Hero Responsive', () => {
       'Natasha Pereira, psicóloga especializada em terapia para mulheres'
     );
     const imageDiv = image.parentElement?.parentElement; // div.aspect > div.relative > img
-    expect(imageDiv).toHaveClass('w-full', 'md:w-1/2');
+    expect(imageDiv).toHaveClass('w-full', 'md:w-[45%]');
   });
 
   it('stacks vertically on mobile', () => {

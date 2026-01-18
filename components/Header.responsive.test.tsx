@@ -65,7 +65,7 @@ describe('Header Responsive Behavior - PR #14', () => {
       const desktopNav = screen.getByLabelText('Navegação principal');
 
       const links = desktopNav.querySelectorAll('a');
-      expect(links.length).toBe(5); // 4 nav links + 1 CTA button
+      expect(links.length).toBe(4); // 4 nav links
     });
 
     it('should have horizontal layout with gap-8', () => {
@@ -160,14 +160,6 @@ describe('Header Responsive Behavior - PR #14', () => {
     });
   });
 
-  describe('Logo Sizing', () => {
-    it('should have consistent logo size across breakpoints', () => {
-      render(<Header />);
-      const logo = screen.getByText('Natasha');
-      expect(logo.className).toContain('text-3xl');
-    });
-  });
-
   describe('Mobile Menu Positioning', () => {
     it('should position mobile menu below header', async () => {
       render(<Header />);
@@ -234,18 +226,6 @@ describe('Header Responsive Behavior - PR #14', () => {
       const inicioLinks = screen.getAllByText('Início');
       expect(inicioLinks[0]).toHaveClass('text-xs');
     });
-
-    it('should maintain tracking-widest on all viewports', () => {
-      render(<Header />);
-      const logo = screen.getByText('Natasha');
-      expect(logo.className).toContain('tracking-widest');
-    });
-
-    it('should maintain uppercase on all viewports', () => {
-      render(<Header />);
-      const logo = screen.getByText('Natasha');
-      expect(logo.className).toContain('uppercase');
-    });
   });
 
   describe('Menu Button Icons', () => {
@@ -277,8 +257,8 @@ describe('Header Responsive Behavior - PR #14', () => {
   describe('CTA Button Responsiveness', () => {
     it('should show CTA in desktop navigation', () => {
       render(<Header />);
-      const desktopNav = screen.getByLabelText('Navegação principal');
-      const ctaButton = desktopNav.querySelector('a[href*="wa.me"]');
+      const header = screen.getByRole('banner');
+      const ctaButton = header.querySelector('a[href*="wa.me"]');
       expect(ctaButton).toBeInTheDocument();
     });
 
@@ -295,11 +275,16 @@ describe('Header Responsive Behavior - PR #14', () => {
 
     it('should have consistent CTA styling across viewports', () => {
       render(<Header />);
-      const ctaLinks = screen.getAllByText('Vamos conversar?');
+      const ctaLinks = screen.getAllByText('Agende sua sessão');
 
       ctaLinks.forEach((cta) => {
         const button = cta.closest('a');
-        expect(button).toHaveClass('bg-primary', 'text-white', 'px-6', 'py-3');
+        expect(button).toHaveClass(
+          'bg-secondary',
+          'text-white',
+          'px-6',
+          'py-3'
+        );
       });
     });
   });
