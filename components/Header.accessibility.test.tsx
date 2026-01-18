@@ -209,10 +209,10 @@ describe('Header Accessibility - PR #14', () => {
       expect(logo.className).toContain('text-foreground');
     });
 
-    it('should use muted-foreground on nav links with contrast', () => {
+    it('should use foreground color on nav links with sufficient contrast', () => {
       const { getAllByText } = render(<Header />);
       const inicioLinks = getAllByText('Início');
-      expect(inicioLinks[0]).toHaveClass('text-muted-foreground');
+      expect(inicioLinks[0]).toHaveClass('text-foreground/80');
     });
 
     it('should use white text on primary background for CTA', () => {
