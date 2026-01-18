@@ -9,8 +9,8 @@ describe('AboutTherapist Image', () => {
       'Natasha Pereira, psicóloga especializada em terapia para mulheres'
     );
     expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('width', '692');
-    expect(image).toHaveAttribute('height', '1038');
+    expect(image).toHaveAttribute('width', '500');
+    expect(image).toHaveAttribute('height', '750');
     expect(image).toHaveClass(
       'rounded-tr-[100px]',
       'rounded-bl-[100px]',
@@ -35,7 +35,7 @@ describe('AboutTherapist Image', () => {
     );
     expect(image).toHaveAttribute(
       'src',
-      expect.stringContaining('_DSC9840.jpg')
+      expect.stringContaining('sou_natasha.png')
     );
   });
 });

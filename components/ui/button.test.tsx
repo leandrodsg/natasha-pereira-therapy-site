@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Button } from './button';
+import { Button, buttonVariants } from './button';
 
 describe('Button', () => {
   it('renders with default props', () => {
@@ -9,8 +9,12 @@ describe('Button', () => {
   });
 
   it('renders with different variants', () => {
-    const { rerender } = render(<Button variant="destructive">Delete</Button>);
-    let button = screen.getByRole('button', { name: /delete/i });
+    const { rerender } = render(<Button variant="default">Default</Button>);
+    let button = screen.getByRole('button', { name: /default/i });
+    expect(button).toHaveClass('bg-primary');
+
+    rerender(<Button variant="destructive">Delete</Button>);
+    button = screen.getByRole('button', { name: /delete/i });
     expect(button).toHaveClass('bg-destructive');
 
     rerender(<Button variant="outline">Outline</Button>);
@@ -86,5 +90,32 @@ describe('Button', () => {
     const link = screen.getByRole('link', { name: /link button/i });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute('href', '/test');
+  });
+
+  it('applies custom className', () => {
+    render(<Button className="custom-class">Custom</Button>);
+    const button = screen.getByRole('button', { name: /custom/i });
+    expect(button).toHaveClass('custom-class');
+  });
+
+  it('renders with default size when size prop is undefined', () => {
+    render(<Button size={undefined}>Default Size</Button>);
+    const button = screen.getByRole('button', { name: /default size/i });
+    expect(button).toHaveClass('h-9');
+  });
+
+  it('renders with default variant when variant prop is undefined', () => {
+    render(<Button variant={undefined}>Default Variant</Button>);
+    const button = screen.getByRole('button', { name: /default variant/i });
+    expect(button).toHaveClass('bg-primary');
+  });
+
+  it('exports buttonVariants function', () => {
+    expect(buttonVariants).toBeDefined();
+    expect(typeof buttonVariants).toBe('function');
+
+    const result = buttonVariants({ variant: 'destructive', size: 'lg' });
+    expect(result).toContain('bg-destructive');
+    expect(result).toContain('h-10');
   });
 });
