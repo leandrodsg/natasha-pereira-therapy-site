@@ -12,7 +12,9 @@ describe('Footer', () => {
     expect(
       screen.getByText('Psicóloga especializada em terapia para mulheres.')
     ).toBeInTheDocument();
-    expect(screen.getAllByText('Contato')).toHaveLength(2);
+    expect(
+      screen.getByRole('heading', { name: 'Contato' })
+    ).toBeInTheDocument();
     expect(screen.getByText('WhatsApp: +55 61 98144-8553')).toBeInTheDocument();
     expect(
       screen.getByText('Email: natashaa.pereira@hotmail.com')
@@ -22,9 +24,11 @@ describe('Footer', () => {
         'Endereço: SEPS 705/905 Bloco A - Centro Empresarial Santa Cruz - Sala 427, Asa Sul, Brasília 70390-055'
       )
     ).toBeInTheDocument();
-    expect(screen.getByText('Navegação')).toBeInTheDocument();
     expect(
-      screen.getByText('© 2025 Natasha Pereira | CRP 01/22302')
+      screen.getByRole('heading', { name: 'Navegação' })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('© 2026 Natasha Pereira | CRP 01/22302')
     ).toBeInTheDocument();
   });
 
@@ -64,6 +68,84 @@ describe('Footer', () => {
       'href',
       'mailto:natashaa.pereira@hotmail.com'
     );
+  });
+
+  it('renders with 3-column layout', () => {
+    render(<Footer />);
+
+    const gridContainer = screen.getByRole('contentinfo').firstElementChild;
+    expect(gridContainer).toHaveClass(
+      'grid',
+      'grid-cols-1',
+      'md:grid-cols-3',
+      'gap-12'
+    );
+  });
+
+  it('renders contact section in first column', () => {
+    render(<Footer />);
+
+    const contactHeading = screen.getByRole('heading', { name: 'Contato' });
+    expect(contactHeading).toBeInTheDocument();
+    expect(contactHeading.closest('div')).toHaveTextContent(
+      'WhatsApp: +55 61 98144-8553'
+    );
+  });
+
+  it('renders logo and description in center column', () => {
+    render(<Footer />);
+
+    const logo = screen.getByText('Natasha Pereira');
+    expect(logo).toBeInTheDocument();
+    expect(logo).toHaveClass('font-display', 'text-5xl');
+  });
+
+  it('renders navigation in third column', () => {
+    render(<Footer />);
+
+    const navigationHeading = screen.getByRole('heading', {
+      name: 'Navegação',
+    });
+    expect(navigationHeading).toBeInTheDocument();
+  });
+
+  it('renders social icons with SVG', () => {
+    render(<Footer />);
+
+    // Check for all social icons
+    const whatsappIcon = screen.getByLabelText('WhatsApp').querySelector('svg');
+    expect(whatsappIcon).toBeInTheDocument();
+
+    const instagramIcon = screen
+      .getByLabelText('Instagram')
+      .querySelector('svg');
+    expect(instagramIcon).toBeInTheDocument();
+
+    const tiktokIcon = screen.getByLabelText('TikTok').querySelector('svg');
+    expect(tiktokIcon).toBeInTheDocument();
+  });
+
+  it('renders address with map icon', () => {
+    render(<Footer />);
+
+    const addressLink = screen.getByRole('link', {
+      name: /endereço/i,
+    });
+    expect(addressLink).toBeInTheDocument();
+    expect(addressLink).toHaveAttribute(
+      'href',
+      expect.stringContaining('google.com/maps')
+    );
+
+    const mapIcon = addressLink.querySelector('svg');
+    expect(mapIcon).toBeInTheDocument();
+  });
+
+  it('has primary background color', () => {
+    render(<Footer />);
+
+    const footer = screen.getByRole('contentinfo');
+    expect(footer).toHaveClass('bg-primary', 'text-white');
   });
 
   it('has no accessibility violations', async () => {

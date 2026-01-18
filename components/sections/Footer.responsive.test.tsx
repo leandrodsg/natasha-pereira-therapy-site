@@ -2,49 +2,57 @@ import { render, screen } from '@testing-library/react';
 import Footer from './Footer';
 
 describe('Footer Responsive', () => {
-  it('renders with responsive grid layout', () => {
+  it('renders with responsive 3-column grid layout', () => {
     render(<Footer />);
 
-    const gridContainer = screen
-      .getByText('Natasha Pereira')
-      .closest('div').parentElement;
+    const gridContainer = screen.getByRole('contentinfo').firstElementChild;
     expect(gridContainer).toHaveClass(
       'grid',
       'grid-cols-1',
-      'md:grid-cols-2',
-      'gap-8'
+      'md:grid-cols-3',
+      'gap-12'
     );
   });
 
-  it('renders logo and description in first column', () => {
+  it('renders contact section in first column', () => {
     render(<Footer />);
 
-    const firstColumn = screen.getByText('Natasha Pereira').closest('div');
-    expect(firstColumn).toBeInTheDocument();
-    expect(firstColumn).toHaveTextContent(
+    const contactHeading = screen.getByRole('heading', { name: 'Contato' });
+    expect(contactHeading).toBeInTheDocument();
+  });
+
+  it('renders logo and description in center column', () => {
+    render(<Footer />);
+
+    const logo = screen.getByText('Natasha Pereira');
+    expect(logo).toBeInTheDocument();
+    expect(logo.closest('div')).toHaveTextContent(
       'Psicóloga especializada em terapia para mulheres.'
     );
   });
 
-  it('renders contact and navigation in second column on desktop', () => {
+  it('renders navigation in third column on desktop', () => {
     render(<Footer />);
 
-    const contactSection = screen.getByRole('heading', { name: 'Contato' });
-    const navigationSection = screen.getByRole('heading', {
+    const navigationHeading = screen.getByRole('heading', {
       name: 'Navegação',
     });
-
-    // On mobile, they stack; on desktop, they are in columns
-    expect(contactSection).toBeInTheDocument();
-    expect(navigationSection).toBeInTheDocument();
+    expect(navigationHeading).toBeInTheDocument();
   });
 
-  it('renders copyright at bottom', () => {
+  it('renders copyright at bottom spanning full width', () => {
     render(<Footer />);
 
     const copyrightDiv = screen.getByText(
-      '© 2025 Natasha Pereira | CRP 01/22302'
+      '© 2026 Natasha Pereira | CRP 01/22302'
     ).parentElement;
     expect(copyrightDiv).toHaveClass('col-span-full', 'text-center');
+  });
+
+  it('stacks columns vertically on mobile', () => {
+    render(<Footer />);
+
+    const gridContainer = screen.getByRole('contentinfo').firstElementChild;
+    expect(gridContainer).toHaveClass('grid-cols-1');
   });
 });

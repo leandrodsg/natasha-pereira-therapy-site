@@ -23,12 +23,28 @@ describe('Footer Links', () => {
     );
   });
 
+  it('CTA button has correct WhatsApp link', () => {
+    render(<Footer />);
+
+    const whatsappLink = screen.getByRole('link', { name: 'WhatsApp' });
+    expect(whatsappLink).toHaveAttribute('href', 'https://wa.me/5561981448553');
+    expect(whatsappLink).toHaveAttribute('target', '_blank');
+    expect(whatsappLink).toHaveAttribute('rel', 'noopener noreferrer');
+  });
+
   it('external links open in new tab', () => {
     render(<Footer />);
 
-    const instagramLink = screen.getByRole('link', { name: 'Instagram' });
-    expect(instagramLink).toHaveAttribute('target', '_blank');
-    expect(instagramLink).toHaveAttribute('rel', 'noopener noreferrer');
+    const socialLinks = [
+      screen.getByRole('link', { name: 'WhatsApp' }),
+      screen.getByRole('link', { name: 'Instagram' }),
+      screen.getByRole('link', { name: 'TikTok' }),
+    ];
+
+    socialLinks.forEach((link) => {
+      expect(link).toHaveAttribute('target', '_blank');
+      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+    });
   });
 
   it('contact links are properly formatted', () => {
@@ -46,5 +62,19 @@ describe('Footer Links', () => {
       'href',
       'mailto:natashaa.pereira@hotmail.com'
     );
+  });
+
+  it('address link opens Google Maps', () => {
+    render(<Footer />);
+
+    const addressLink = screen.getByRole('link', {
+      name: /endereço/i,
+    });
+    expect(addressLink).toHaveAttribute(
+      'href',
+      expect.stringContaining('google.com/maps')
+    );
+    expect(addressLink).toHaveAttribute('target', '_blank');
+    expect(addressLink).toHaveAttribute('rel', 'noopener noreferrer');
   });
 });

@@ -20,6 +20,16 @@ describe('Footer Integration', () => {
     expect(whatsappLink).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
+  it('renders CTA button with WhatsApp link', () => {
+    render(<Footer />);
+
+    const whatsappLink = screen.getByRole('link', { name: 'WhatsApp' });
+    expect(whatsappLink).toBeInTheDocument();
+    expect(whatsappLink).toHaveAttribute('href', 'https://wa.me/5561981448553');
+    expect(whatsappLink).toHaveAttribute('target', '_blank');
+    expect(whatsappLink).toHaveAttribute('rel', 'noopener noreferrer');
+  });
+
   it('renders email link correctly', () => {
     render(<Footer />);
 
@@ -46,10 +56,35 @@ describe('Footer Integration', () => {
     expect(instagramLink).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
+  it('renders TikTok link correctly', () => {
+    render(<Footer />);
+
+    const tiktokLink = screen.getByRole('link', { name: /tiktok/i });
+    expect(tiktokLink).toBeInTheDocument();
+    expect(tiktokLink).toHaveAttribute(
+      'href',
+      'https://www.tiktok.com/@natasha.pereira.p'
+    );
+    expect(tiktokLink).toHaveAttribute('target', '_blank');
+    expect(tiktokLink).toHaveAttribute('rel', 'noopener noreferrer');
+  });
+
   it('renders real address', () => {
     render(<Footer />);
 
     expect(screen.getByText(/SEPS 705\/905 Bloco A/)).toBeInTheDocument();
+  });
+
+  it('renders address with Google Maps link', () => {
+    render(<Footer />);
+
+    const addressLink = screen.getByRole('link', {
+      name: /endereço/i,
+    });
+    expect(addressLink).toHaveAttribute(
+      'href',
+      expect.stringContaining('google.com/maps')
+    );
   });
 
   it('renders navigation links', () => {
@@ -71,5 +106,13 @@ describe('Footer Integration', () => {
       'href',
       '#contato'
     );
+  });
+
+  it('renders updated copyright year', () => {
+    render(<Footer />);
+
+    expect(
+      screen.getByText('© 2026 Natasha Pereira | CRP 01/22302')
+    ).toBeInTheDocument();
   });
 });
