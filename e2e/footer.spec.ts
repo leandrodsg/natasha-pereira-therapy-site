@@ -17,7 +17,7 @@ test.describe('Footer Section', () => {
 
     // Check copyright
     await expect(
-      footer.locator('text=© 2025 Natasha Pereira | CRP 01/22302')
+      footer.locator('text=© 2026 Natasha Pereira | CRP 01/22302')
     ).toBeVisible();
   });
 
@@ -26,8 +26,8 @@ test.describe('Footer Section', () => {
 
     const footer = page.locator('footer#rodape');
 
-    // Check Instagram link
-    const instagramLink = footer.locator('a').filter({ hasText: 'Instagram' });
+    // Check Instagram link (icon with aria-label)
+    const instagramLink = footer.locator('a[aria-label="Instagram"]');
     await expect(instagramLink).toBeVisible();
     await expect(instagramLink).toHaveAttribute(
       'href',

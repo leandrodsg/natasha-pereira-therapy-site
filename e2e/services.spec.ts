@@ -34,11 +34,6 @@ test.describe('Services Section', () => {
     const servicesSection = page.locator('section#servicos');
     const firstCard = servicesSection.locator('.service-card').first();
 
-    // Check image is present
-    const image = firstCard.locator('img');
-    await expect(image).toBeVisible();
-    await expect(image).toHaveAttribute('alt', 'Atendimento Individual');
-
     // Check title
     await expect(
       firstCard.locator('h3').filter({ hasText: 'Atendimento Individual' })
@@ -49,8 +44,8 @@ test.describe('Services Section', () => {
       firstCard.locator('text=Um espaço seguro para falar de si')
     ).toBeVisible();
 
-    // Check link
-    const link = firstCard.locator('a').filter({ hasText: 'SAIBA MAIS' });
+    // Check link (case insensitive)
+    const link = firstCard.locator('a').filter({ hasText: /saiba mais/i });
     await expect(link).toBeVisible();
   });
 

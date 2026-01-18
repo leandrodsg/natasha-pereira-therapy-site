@@ -10,16 +10,15 @@ test.describe('CTA Section', () => {
     // Check heading
     await expect(
       ctaSection.locator('h2').filter({
-        hasText:
-          'Você não precisa continuar se anulando para dar conta de tudo.',
+        hasText: 'Pronta para abraçar a mudança?',
       })
     ).toBeVisible();
 
-    // Check description
+    // Check description (contains both parts of the CTA message)
     await expect(
       ctaSection.locator('p').filter({
         hasText:
-          'Agende sua sessão e comece a se ouvir com mais força e liberdade.',
+          'Você não precisa continuar se anulando para dar conta de tudo',
       })
     ).toBeVisible();
 
