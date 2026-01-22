@@ -1,5 +1,4 @@
 import { Hero } from '@/components/sections/Hero';
-import ProblemStatement from '@/components/sections/ProblemStatement';
 import SoundFamiliar from '@/components/sections/SoundFamiliar';
 import { AboutTherapist } from '@/components/sections/AboutTherapist';
 import Services from '@/components/sections/Services';
@@ -14,7 +13,6 @@ export default function Home() {
       <SkipLink />
       <main id="main-content" tabIndex={-1}>
         <Hero />
-        <ProblemStatement />
         <SoundFamiliar />
         <AboutTherapist />
         <Services />

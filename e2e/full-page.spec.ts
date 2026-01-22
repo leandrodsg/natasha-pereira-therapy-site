@@ -35,7 +35,9 @@ test.describe('Landing Page E2E', () => {
 
     // Sound Familiar section
     await expect(
-      page.locator('h2').filter({ hasText: 'Isso soa familiar?' })
+      page.locator('h2').filter({
+        hasText: 'Você está aqui porque encontrar paz é importante para você',
+      })
     ).toBeVisible();
     await expect(page.locator('text=sobrecarga emocional')).toBeVisible();
 

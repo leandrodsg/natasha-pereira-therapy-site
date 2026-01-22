@@ -5,21 +5,15 @@ describe('SoundFamiliar - Responsive', () => {
   it('renders with split layout on desktop', () => {
     render(<SoundFamiliar />);
 
-    const section = screen.getByRole('region', { name: /isso soa familiar/i });
-    expect(section).toHaveClass('md:flex-row');
-
     const contentContainer = screen.getByTestId('sound-familiar-content');
-    expect(contentContainer).toHaveClass('md:w-7/12');
+    expect(contentContainer).toHaveClass('lg:w-[62%]');
 
     const imageContainer = screen.getByTestId('sound-familiar-image');
-    expect(imageContainer).toHaveClass('md:w-5/12');
+    expect(imageContainer).toHaveClass('lg:w-[38%]');
   });
 
   it('stacks vertically on mobile', () => {
     render(<SoundFamiliar />);
-
-    const section = screen.getByRole('region', { name: /isso soa familiar/i });
-    expect(section).toHaveClass('flex-col');
 
     const contentContainer = screen.getByTestId('sound-familiar-content');
     expect(contentContainer).toHaveClass('w-full');
@@ -38,17 +32,15 @@ describe('SoundFamiliar - Responsive', () => {
     expect(listItems).toHaveLength(6);
   });
 
-  it('has responsive padding', () => {
-    render(<SoundFamiliar />);
-
-    const contentContainer = screen.getByTestId('sound-familiar-content');
-    expect(contentContainer).toHaveClass('p-12', 'md:p-20');
-  });
-
   it('has responsive title sizes', () => {
     render(<SoundFamiliar />);
 
     const title = screen.getByRole('heading', { level: 2 });
-    expect(title).toHaveClass('text-4xl', 'md:text-5xl');
+    expect(title).toHaveClass(
+      'text-2xl',
+      'sm:text-3xl',
+      'md:text-[2.25rem]',
+      'lg:text-[2.85rem]'
+    );
   });
 });

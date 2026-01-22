@@ -1,30 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Problem Statement & Sound Familiar Sections', () => {
-  test('should display problem statement content', async ({ page }) => {
-    await page.goto('/');
-
-    // Problem statement section uses aria-labelledby
-    const problemSection = page.locator(
-      'section[aria-labelledby="problem-statement-heading"]'
-    );
-    await expect(problemSection).toBeVisible();
-
-    // Check heading
-    await expect(
-      problemSection.locator('h2').filter({
-        hasText: 'Você está aqui porque',
-      })
-    ).toBeVisible();
-
-    // Check description
-    await expect(
-      problemSection.locator('p').filter({
-        hasText: 'Para mulheres que carregam histórias',
-      })
-    ).toBeVisible();
-  });
-
+test.describe('Sound Familiar Section', () => {
   test('should display sound familiar section with list items', async ({
     page,
   }) => {
@@ -38,9 +14,9 @@ test.describe('Problem Statement & Sound Familiar Sections', () => {
 
     // Check heading
     await expect(
-      soundFamiliarSection
-        .locator('h2')
-        .filter({ hasText: 'Isso soa familiar?' })
+      soundFamiliarSection.locator('h2').filter({
+        hasText: 'Você está aqui porque encontrar paz é importante para você',
+      })
     ).toBeVisible();
 
     // Check list items
@@ -68,28 +44,20 @@ test.describe('Problem Statement & Sound Familiar Sections', () => {
     ).toBeVisible();
   });
 
-  test('should display arrow icons for each list item', async ({ page }) => {
+  test('should display check icons for each list item', async ({ page }) => {
     await page.goto('/');
 
     const soundFamiliarSection = page.locator(
       'section[aria-labelledby="sound-familiar-heading"]'
     );
-    const arrowIcons = soundFamiliarSection.locator(
-      '[data-testid="arrow-icon"]'
+    const checkIcons = soundFamiliarSection.locator(
+      '[data-testid="check-icon"]'
     );
-    await expect(arrowIcons).toHaveCount(6);
+    await expect(checkIcons).toHaveCount(6);
   });
 
   test('should have proper accessibility attributes', async ({ page }) => {
     await page.goto('/');
-
-    const problemSection = page.locator(
-      'section[aria-labelledby="problem-statement-heading"]'
-    );
-    await expect(problemSection).toHaveAttribute(
-      'aria-labelledby',
-      'problem-statement-heading'
-    );
 
     const soundFamiliarSection = page.locator(
       'section[aria-labelledby="sound-familiar-heading"]'
