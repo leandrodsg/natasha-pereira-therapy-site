@@ -14,15 +14,15 @@ test.describe('About Therapist Section', () => {
       })
     ).toBeVisible();
 
-    // Check bio text presence
-    await expect(aboutSection.locator('text=Formada em 2019')).toBeVisible();
+    // Check bio text presence - new content
     await expect(
-      aboutSection.locator('text=Trabalhar com mulheres faz sentido')
+      aboutSection.locator('text=A busca constante por provar nosso valor')
     ).toBeVisible();
     await expect(
-      aboutSection.locator(
-        'text=Sou uma psicóloga que não tem dúvidas: crio espaços seguros'
-      )
+      aboutSection.locator('text=Como psicóloga, entendo que teoria')
+    ).toBeVisible();
+    await expect(
+      aboutSection.locator('text=O conjunto das dimensões sociais')
     ).toBeVisible();
   });
 
@@ -36,6 +36,7 @@ test.describe('About Therapist Section', () => {
       'alt',
       'Natasha Pereira, psicóloga especializada em terapia para mulheres'
     );
+    await expect(image).toHaveAttribute('src', /aboutme_new\.jpg/);
   });
 
   test('should have proper accessibility attributes', async ({ page }) => {

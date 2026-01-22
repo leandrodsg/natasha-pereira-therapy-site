@@ -4,12 +4,19 @@ export function AboutTherapist() {
   return (
     <section
       id="quem-sou"
-      className="py-24 px-6 md:px-12 bg-white"
+      className="w-full"
       aria-labelledby="about-heading"
+      style={{
+        backgroundImage: 'url(/images/sou_natasha-back.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
     >
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="about-content order-1 md:order-1">
+      {/* IMPORTANTE: padding dentro do max-w-7xl para alinhar com Hero e SoundFamiliar */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-14 pb-16">
+        <div className="flex flex-col md:flex-row gap-12 items-start md:items-center">
+          {/* Conteudo - ~55% (ESQUERDA) */}
+          <div className="w-full md:w-[55%] order-2 md:order-1">
             <span className="block text-xs font-bold tracking-widest uppercase text-muted-foreground mb-4">
               Olá, sou Natasha.
             </span>
@@ -22,48 +29,64 @@ export function AboutTherapist() {
             </h2>
             <div className="space-y-6 text-muted-foreground">
               <p>
-                Formada em 2019, minha trajetória profissional foi moldada pela
-                compreensão de uma dinâmica que, vivida na pele, percebo ser
-                comum a tantas mulheres: a busca constante por provar nosso
-                valor, a necessidade de aceitação e o medo de não ser útil o
-                suficiente.
+                A busca constante por provar nosso valor, a necessidade de
+                aceitação e o medo de não ser útil o suficiente, são questões
+                comuns a nós, mulheres, que observo há mais de 7 anos, quando
+                passei a exercer a psicologia.
               </p>
               <p>
-                Sempre fui movida por causas e acolhimento. Meus anos de
-                voluntariado e trabalho com equoterapia me ensinaram a escutar
-                para além das palavras. Mas foi na clínica que encontrei meu
-                lugar de realização: o espaço onde transformo essa sensibilidade
-                em um cuidado técnico e humano.
+                Como psicóloga, entendo que teoria e estudos acerca do contexto
+                social caminham juntos. Minha especialização em Gestalt Terapia
+                (2019) norteia meu olhar para o aqui e agora, compreendendo como
+                nossas relações acontecem no contato com o outro e com o mundo.
               </p>
               <p>
-                Lutar por causas diz sobre mim e sobre meu trabalho. Acredito
-                que a transformação estrutural da nossa sociedade acontece no
-                coletivo, mas é no campo individual que encontramos espaço e
-                sustentação para ela. No consultório, construímos uma relação de
-                confiança, clareza e não julgamento.
+                Como entusiasta da autonomia, procurei outra abordagem que
+                pudesse enriquecer o tratamento dos meus pacientes. O EMDR
+                (2020), uma linha que trabalha com traumas e comportamentos não
+                saudáveis. Pois entendo que para sermos livres, precisamos
+                desbloquear aquilo que nos prende.
               </p>
               <p>
-                Trabalhar com mulheres faz sentido porque a liberdade é o que me
-                guia. Aqui, não há o como deveria ser, mas espaço para se
-                enxergar, sentir o mundo do próprio jeito e desejar o que
-                quiser. Te acompanho na escolha que faz sentido para você.
+                A minha vivência e sensibilidade, somada aos estudos,
+                contribuíram para o desenvolvimento da leitura de uma
+                comunicação não verbal, me permitindo alcançar aquilo que muitas
+                vezes não conseguimos traduzir em palavras.
               </p>
               <p>
-                Sou uma psicóloga que não tem dúvidas: crio espaços seguros para
-                que mulheres possam se libertar e ocupar, enfim, o lugar que
-                merecem.
+                Sempre tive um cuidado com mulheres, por entender que a
+                estrutura da nossa sociedade nem sempre proporciona segurança
+                para externalizarmos nossas vozes e sentimentos reais, o que me
+                levou a uma Formação em Psicologia, voltada para a Saúde Mental
+                da Mulher (2024), que me possibilita compreender como e porquê
+                da dor de cada mulher.
+              </p>
+              <p>
+                O conjunto das dimensões sociais e dos meus estudos moveram o
+                meu ideal: abrir o meu próprio consultório, para criar um espaço
+                seguro e livre de qualquer julgamento, para que cada mulher
+                possa se enxergar, sentir o mundo do próprio jeito, desejar o
+                que quiser, e, claro, ser livre.
               </p>
             </div>
           </div>
-          <div className="about-image order-2 md:order-2">
-            <Image
-              src="/images/sou_natasha.png"
-              alt="Natasha Pereira, psicóloga especializada em terapia para mulheres"
-              width={500}
-              height={750}
-              className="w-full h-auto rounded-tr-[100px] rounded-bl-[100px] shadow-2xl"
-              loading="lazy"
-            />
+
+          {/* Imagem - ~45% (DIREITA) */}
+          <div className="w-full md:w-[45%] order-1 md:order-2 flex justify-center">
+            <div className="relative w-full max-w-sm md:max-w-md md:mt-6 md:ml-8">
+              <Image
+                src="/images/aboutme_new.jpg"
+                alt="Natasha Pereira, psicóloga especializada em terapia para mulheres"
+                width={400}
+                height={600}
+                className="relative z-10 w-full h-auto rounded-tr-[100px] rounded-bl-[100px] object-cover"
+                style={{
+                  boxShadow:
+                    '12px 12px 0px 0px #662B2D, 0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                }}
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </div>
