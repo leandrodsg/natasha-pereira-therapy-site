@@ -5,6 +5,20 @@ import { AboutTherapist } from './AboutTherapist';
 expect.extend(toHaveNoViolations);
 
 describe('AboutTherapist', () => {
+  it('renders with background image sou_natasha-back.png', () => {
+    render(<AboutTherapist />);
+
+    const section = screen.getByRole('region', {
+      name: 'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.',
+    });
+
+    expect(section).toHaveStyle({
+      backgroundImage: 'url(/images/sou_natasha-back.png)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    });
+  });
+
   it('renders the about therapist section with correct Portuguese text', () => {
     render(<AboutTherapist />);
 
@@ -42,62 +56,83 @@ describe('AboutTherapist', () => {
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute(
       'src',
-      expect.stringContaining('sou_natasha.png')
+      expect.stringContaining('aboutme_new.jpg')
     );
     expect(image).toHaveClass('rounded-tr-[100px]', 'rounded-bl-[100px]');
   });
 
-  it('renders concise bio paragraphs', () => {
+  it('renders all 6 new bio paragraphs', () => {
     render(<AboutTherapist />);
 
     expect(
       screen.getByText(
-        'Formada em 2019, minha trajetória profissional foi moldada pela compreensão de uma dinâmica que, vivida na pele, percebo ser comum a tantas mulheres: a busca constante por provar nosso valor, a necessidade de aceitação e o medo de não ser útil o suficiente.'
+        'A busca constante por provar nosso valor, a necessidade de aceitação e o medo de não ser útil o suficiente, são questões comuns a nós, mulheres, que observo há mais de 7 anos, quando passei a exercer a psicologia.'
       )
     ).toBeInTheDocument();
 
     expect(
       screen.getByText(
-        'Sempre fui movida por causas e acolhimento. Meus anos de voluntariado e trabalho com equoterapia me ensinaram a escutar para além das palavras. Mas foi na clínica que encontrei meu lugar de realização: o espaço onde transformo essa sensibilidade em um cuidado técnico e humano.'
+        'Como psicóloga, entendo que teoria e estudos acerca do contexto social caminham juntos. Minha especialização em Gestalt Terapia (2019) norteia meu olhar para o aqui e agora, compreendendo como nossas relações acontecem no contato com o outro e com o mundo.'
       )
     ).toBeInTheDocument();
 
     expect(
       screen.getByText(
-        'Lutar por causas diz sobre mim e sobre meu trabalho. Acredito que a transformação estrutural da nossa sociedade acontece no coletivo, mas é no campo individual que encontramos espaço e sustentação para ela. No consultório, construímos uma relação de confiança, clareza e não julgamento.'
+        'Como entusiasta da autonomia, procurei outra abordagem que pudesse enriquecer o tratamento dos meus pacientes. O EMDR (2020), uma linha que trabalha com traumas e comportamentos não saudáveis. Pois entendo que para sermos livres, precisamos desbloquear aquilo que nos prende.'
       )
     ).toBeInTheDocument();
 
     expect(
       screen.getByText(
-        'Trabalhar com mulheres faz sentido porque a liberdade é o que me guia. Aqui, não há o como deveria ser, mas espaço para se enxergar, sentir o mundo do próprio jeito e desejar o que quiser. Te acompanho na escolha que faz sentido para você.'
+        'A minha vivência e sensibilidade, somada aos estudos, contribuíram para o desenvolvimento da leitura de uma comunicação não verbal, me permitindo alcançar aquilo que muitas vezes não conseguimos traduzir em palavras.'
       )
     ).toBeInTheDocument();
 
     expect(
       screen.getByText(
-        'Sou uma psicóloga que não tem dúvidas: crio espaços seguros para que mulheres possam se libertar e ocupar, enfim, o lugar que merecem.'
+        'Sempre tive um cuidado com mulheres, por entender que a estrutura da nossa sociedade nem sempre proporciona segurança para externalizarmos nossas vozes e sentimentos reais, o que me levou a uma Formação em Psicologia, voltada para a Saúde Mental da Mulher (2024), que me possibilita compreender como e porquê da dor de cada mulher.'
+      )
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByText(
+        'O conjunto das dimensões sociais e dos meus estudos moveram o meu ideal: abrir o meu próprio consultório, para criar um espaço seguro e livre de qualquer julgamento, para que cada mulher possa se enxergar, sentir o mundo do próprio jeito, desejar o que quiser, e, claro, ser livre.'
       )
     ).toBeInTheDocument();
   });
 
-  it('renders with desktop layout (text left, image right)', () => {
+  it('renders with flex layout on desktop (text left, image right)', () => {
     render(<AboutTherapist />);
 
     const section = screen.getByRole('region', {
       name: 'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.',
     });
 
-    // Check grid layout
-    const gridContainer = section.querySelector('.grid');
-    expect(gridContainer).toHaveClass('md:grid-cols-2', 'gap-12');
+    // Check flex layout instead of grid
+    const flexContainer = section.querySelector('.flex');
+    expect(flexContainer).toHaveClass('flex-col', 'md:flex-row', 'gap-12');
 
-    // Check order classes
-    const contentDiv = section.querySelector('.about-content');
-    const imageDiv = section.querySelector('.about-image');
+    // Check proportions
+    const contentDiv = section.querySelector('div.w-full.md\\:w-\\[55\\%\\]');
+    const imageDiv = section.querySelector('div.w-full.md\\:w-\\[45\\%\\]');
 
-    expect(contentDiv).toHaveClass('order-1', 'md:order-1'); // text first on mobile, stays first on desktop
-    expect(imageDiv).toHaveClass('order-2', 'md:order-2'); // image second on mobile, moves to second on desktop
+    expect(contentDiv).toBeInTheDocument(); // text ~55%
+    expect(imageDiv).toBeInTheDocument(); // image ~45%
+  });
+
+  it('renders with correct mobile stack order (image first, text second)', () => {
+    render(<AboutTherapist />);
+
+    const contentDiv = screen.getByText('Olá, sou Natasha.').closest('div');
+    const imageDiv = screen
+      .getByAltText(
+        'Natasha Pereira, psicóloga especializada em terapia para mulheres'
+      )
+      .closest('div.w-full.md\\:w-\\[45\\%\\]');
+
+    // On mobile, image should be first (order-1), text second (order-2)
+    expect(contentDiv).toHaveClass('order-2', 'md:order-1');
+    expect(imageDiv).toHaveClass('order-1', 'md:order-2');
   });
 
   it('renders headline with italic emphasis', () => {
@@ -107,6 +142,20 @@ describe('AboutTherapist', () => {
     const italicSpan = headline.querySelector('span.italic');
     expect(italicSpan).toBeInTheDocument();
     expect(italicSpan).toHaveTextContent('refúgio seguro');
+  });
+
+  it('has correct padding alignment with Hero and SoundFamiliar', () => {
+    render(<AboutTherapist />);
+
+    const section = screen.getByRole('region', {
+      name: 'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.',
+    });
+
+    // Should have padding inside the max-w-7xl container, not on section
+    expect(section).not.toHaveClass('py-24', 'px-6', 'md:px-12');
+
+    const container = section.querySelector('.max-w-7xl');
+    expect(container).toHaveClass('px-6', 'md:px-12', 'pt-14', 'pb-16');
   });
 
   it('has no accessibility violations', async () => {

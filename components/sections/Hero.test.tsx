@@ -91,7 +91,7 @@ describe('Hero', () => {
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute(
       'src',
-      expect.stringContaining('hero-natasha.png')
+      expect.stringContaining('hero_new.png')
     );
 
     const imageContainer = image.closest('div');

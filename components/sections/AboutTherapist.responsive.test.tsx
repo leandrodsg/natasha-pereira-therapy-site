@@ -2,21 +2,45 @@ import { render, screen } from '@testing-library/react';
 import { AboutTherapist } from './AboutTherapist';
 
 describe('AboutTherapist Responsive', () => {
-  it('renders with responsive grid layout', () => {
+  it('renders with responsive flex layout', () => {
     render(<AboutTherapist />);
 
     const section = screen.getByRole('region', {
       name: 'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.',
     });
-    expect(section).toHaveClass('py-24', 'px-6', 'md:px-12', 'bg-white');
 
-    // Check the grid container
-    const gridContainer = section.querySelector('.grid');
-    expect(gridContainer).toHaveClass(
-      'md:grid-cols-2',
+    // Section should not have padding classes (moved to container)
+    expect(section).not.toHaveClass('py-24', 'px-6', 'md:px-12', 'bg-white');
+
+    // Check the flex container
+    const flexContainer = section.querySelector('.flex');
+    expect(flexContainer).toHaveClass(
+      'flex-col',
+      'md:flex-row',
       'gap-12',
-      'items-center'
+      'items-start',
+      'md:items-center'
     );
+  });
+
+  it('renders with correct proportions (55% text / 45% image)', () => {
+    render(<AboutTherapist />);
+
+    const section = screen.getByRole('region', {
+      name: 'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.',
+    });
+
+    // Check text container (55%)
+    const textContainer = section.querySelector(
+      'div.w-full.md\\:w-\\[55\\%\\]'
+    );
+    expect(textContainer).toBeInTheDocument();
+
+    // Check image container (45%)
+    const imageContainer = section.querySelector(
+      'div.w-full.md\\:w-\\[45\\%\\]'
+    );
+    expect(imageContainer).toBeInTheDocument();
   });
 
   it('renders image with asymmetric corners and shadow', () => {
@@ -26,12 +50,18 @@ describe('AboutTherapist Responsive', () => {
       'Natasha Pereira, psicóloga especializada em terapia para mulheres'
     );
     expect(image).toHaveClass(
+      'relative',
+      'z-10',
       'w-full',
       'h-auto',
       'rounded-tr-[100px]',
       'rounded-bl-[100px]',
-      'shadow-2xl'
+      'object-cover'
     );
+    expect(image).toHaveStyle({
+      boxShadow:
+        '12px 12px 0px 0px #662B2D, 0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+    });
   });
 
   it('renders content with responsive text sizes', () => {
@@ -59,20 +89,44 @@ describe('AboutTherapist Responsive', () => {
     );
   });
 
-  it('renders with correct column order on desktop', () => {
+  it('renders with correct mobile stack order (image first, text second)', () => {
     render(<AboutTherapist />);
 
-    const contentDiv = screen
-      .getByText('Olá, sou Natasha.')
-      .closest('.about-content');
+    const contentDiv = screen.getByText('Olá, sou Natasha.').closest('div');
     const imageDiv = screen
       .getByAltText(
         'Natasha Pereira, psicóloga especializada em terapia para mulheres'
       )
-      .closest('.about-image');
+      .closest('div.w-full.md\\:w-\\[45\\%\\]');
 
-    // On desktop, content should be first, image second
-    expect(contentDiv).toHaveClass('order-1', 'md:order-1');
-    expect(imageDiv).toHaveClass('order-2', 'md:order-2');
+    // On mobile, image should be first (order-1), text second (order-2)
+    expect(contentDiv).toHaveClass('order-2', 'md:order-1');
+    expect(imageDiv).toHaveClass('order-1', 'md:order-2');
+  });
+
+  it('renders with correct desktop layout (text left, image right)', () => {
+    render(<AboutTherapist />);
+
+    const contentDiv = screen.getByText('Olá, sou Natasha.').closest('div');
+    const imageDiv = screen
+      .getByAltText(
+        'Natasha Pereira, psicóloga especializada em terapia para mulheres'
+      )
+      .closest('div.w-full.md\\:w-\\[45\\%\\]');
+
+    // On desktop, content should be first (order-1), image second (order-2)
+    expect(contentDiv).toHaveClass('order-2', 'md:order-1');
+    expect(imageDiv).toHaveClass('order-1', 'md:order-2');
+  });
+
+  it('has correct padding alignment with Hero and SoundFamiliar', () => {
+    render(<AboutTherapist />);
+
+    const section = screen.getByRole('region', {
+      name: 'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.',
+    });
+
+    const container = section.querySelector('.max-w-7xl');
+    expect(container).toHaveClass('px-6', 'md:px-12', 'pt-14', 'pb-16');
   });
 });
