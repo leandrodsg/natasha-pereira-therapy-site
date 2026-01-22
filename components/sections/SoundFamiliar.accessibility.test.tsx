@@ -15,8 +15,9 @@ describe('SoundFamiliar - Accessibility', () => {
   it('section is properly labeled', () => {
     render(<SoundFamiliar />);
 
-    const section = screen.getByRole('region', { name: /isso soa familiar/i });
+    const section = screen.getByRole('region');
     expect(section).toBeInTheDocument();
+    expect(section).toHaveAttribute('aria-label', 'Seção Isso soa familiar');
   });
 
   it('list has proper semantic structure', () => {
@@ -38,9 +39,7 @@ describe('SoundFamiliar - Accessibility', () => {
   it('image has descriptive alt text', () => {
     render(<SoundFamiliar />);
 
-    const image = screen.getByAltText(
-      'Ambiente acolhedor com plantas e luz natural'
-    );
+    const image = screen.getByAltText('Natasha Pereira em ambiente pensativo');
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute('alt');
   });

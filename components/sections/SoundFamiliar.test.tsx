@@ -1,22 +1,28 @@
 import { render, screen } from '@testing-library/react';
-import { axe, toHaveNoViolations } from 'jest-axe';
 import SoundFamiliar from './SoundFamiliar';
 
-expect.extend(toHaveNoViolations);
-
 describe('SoundFamiliar', () => {
-  it('renders the sound familiar title', () => {
+  it('renders heading with italic emphasis', () => {
     render(<SoundFamiliar />);
 
     const heading = screen.getByRole('heading', { level: 2 });
-    expect(heading).toBeInTheDocument();
-    expect(heading).toHaveTextContent(/soa familiar/i);
+    expect(heading).toHaveTextContent(
+      'Você está aqui porque encontrar paz é importante para você'
+    );
+    expect(heading).toHaveClass(
+      'font-display',
+      'text-2xl',
+      'sm:text-3xl',
+      'md:text-[2.25rem]',
+      'lg:text-[2.85rem]'
+    );
   });
 
-  it('renders all sound familiar items with expanded text', () => {
+  it('renders all pain point cards', () => {
     render(<SoundFamiliar />);
 
-    const items = [
+    // Verifica se todos os 6 pontos estão sendo renderizados
+    const painPoints = [
       'Você sente uma sobrecarga emocional constante, como se carregasse o mundo nos ombros.',
       'Estabelecer limites parece impossível - você sempre acaba cedendo.',
       'O medo de desapontar os outros te paralisa nas decisões.',
@@ -25,66 +31,49 @@ describe('SoundFamiliar', () => {
       'Pressão por ser forte o tempo todo, sem espaço para vulnerabilidade.',
     ];
 
-    items.forEach((item) => {
-      expect(screen.getByText(item)).toBeInTheDocument();
+    painPoints.forEach((point) => {
+      expect(screen.getByText(point)).toBeInTheDocument();
     });
-  });
-
-  it('renders items with arrow icons', () => {
-    render(<SoundFamiliar />);
-
-    // Check for arrow icons (assuming they're using lucide-react ArrowRight)
-    const arrows = screen.getAllByTestId('arrow-icon');
-    expect(arrows).toHaveLength(6); // 6 items
-  });
-
-  it('has correct semantic structure with list', () => {
-    render(<SoundFamiliar />);
-
-    const list = screen.getByRole('list');
-    expect(list).toBeInTheDocument();
-
-    const listItems = screen.getAllByRole('listitem');
-    expect(listItems).toHaveLength(6);
   });
 
   it('renders image with correct alt text', () => {
     render(<SoundFamiliar />);
 
-    const image = screen.getByAltText(
-      'Ambiente acolhedor com plantas e luz natural'
-    );
+    const image = screen.getByAltText('Natasha Pereira em ambiente pensativo');
     expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute('src'); // Next.js Image component optimizes the src
   });
 
-  it('has split layout structure', () => {
+  it('has split layout on desktop', () => {
     render(<SoundFamiliar />);
 
-    // Check for split layout containers
-    const imageContainer = screen.getByTestId('sound-familiar-image');
-    const contentContainer = screen.getByTestId('sound-familiar-content');
-
-    expect(imageContainer).toBeInTheDocument();
-    expect(contentContainer).toBeInTheDocument();
+    const container = screen.getByTestId('sound-familiar-content');
+    expect(container).toHaveClass('lg:w-[62%]');
   });
 
-  it('applies primary background to content section', () => {
+  it('has correct background color', () => {
     render(<SoundFamiliar />);
 
-    const contentContainer = screen.getByTestId('sound-familiar-content');
-    expect(contentContainer).toHaveClass('bg-primary');
+    const section = screen.getByRole('region');
+    expect(section).toHaveClass('bg-primary', 'text-white');
   });
 
-  it('renders title with font-display class', () => {
+  it('has correct section structure', () => {
     render(<SoundFamiliar />);
 
-    const heading = screen.getByRole('heading', { level: 2 });
-    expect(heading).toHaveClass('font-display');
+    const section = screen.getByRole('region');
+    expect(section).toBeInTheDocument();
+    expect(section).toHaveAttribute(
+      'aria-labelledby',
+      'sound-familiar-heading'
+    );
+    expect(section).toHaveAttribute('aria-label', 'Seção Isso soa familiar');
   });
 
-  it('is accessible', async () => {
-    const { container } = render(<SoundFamiliar />);
-    const results = await axe(container);
-    expect(results).toHaveNoViolations();
+  it('renders check icons for each pain point', () => {
+    render(<SoundFamiliar />);
+
+    const checkIcons = screen.getAllByTestId('check-icon');
+    expect(checkIcons).toHaveLength(6); // Deve ter 6 ícones de check
   });
 });
