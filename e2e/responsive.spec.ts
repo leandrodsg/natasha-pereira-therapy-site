@@ -33,7 +33,7 @@ test.describe('Responsive Design', () => {
 
       // Check services grid (should adapt to viewport)
       const serviceCards = page.locator('.service-card');
-      await expect(serviceCards).toHaveCount(3);
+      await expect(serviceCards).toHaveCount(4);
 
       // Check footer layout
       const footer = page.locator('footer#rodape');
