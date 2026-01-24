@@ -33,8 +33,7 @@ export default function Services() {
   return (
     <section
       id="servicos"
-      className="services min-h-screen flex items-center bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: 'url(/images/white-background.png)' }}
+      className="services min-h-screen flex items-center bg-[#f4eee5]"
       aria-labelledby="services-title"
     >
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 py-16">
@@ -48,8 +47,8 @@ export default function Services() {
             jornada
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Cada atendimento é pensado para te ajudar a se sentir mais segura,
-            compreendida e fortalecida — no seu tempo, do seu jeito.
+            Atendimento online focado em você: suas necessidades, seu tempo, sua
+            forma de ser.
           </p>
         </div>
 

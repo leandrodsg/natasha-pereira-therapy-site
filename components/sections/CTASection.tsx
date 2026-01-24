@@ -35,7 +35,7 @@ export function CTASection() {
 
       {/* Content */}
       <div
-        className="relative z-10 text-center max-w-4xl mx-auto px-4 py-16 md:py-24"
+        className="relative z-10 text-center max-w-4xl mx-auto px-4 py-16"
         data-testid="cta-content"
       >
         <h2

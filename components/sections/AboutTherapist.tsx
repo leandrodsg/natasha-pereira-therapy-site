@@ -4,30 +4,25 @@ export function AboutTherapist() {
   return (
     <section
       id="quem-sou"
-      className="w-full"
+      className="w-full bg-[#f4eee5]"
       aria-labelledby="about-heading"
-      style={{
-        backgroundImage: 'url(/images/sou_natasha-back.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
     >
       {/* IMPORTANTE: padding dentro do max-w-7xl para alinhar com Hero e SoundFamiliar */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-14 pb-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
         <div className="flex flex-col md:flex-row gap-12 items-start md:items-center">
           {/* Conteudo - ~55% (ESQUERDA) */}
           <div className="w-full md:w-[55%] order-2 md:order-1">
-            <span className="block text-xs font-bold tracking-widest uppercase text-muted-foreground mb-4">
+            <span className="block text-xs tracking-widest text-[#662B2D] mb-4">
               Olá, sou Natasha.
             </span>
             <h2
               id="about-heading"
-              className="font-display text-4xl md:text-5xl text-foreground font-light mb-8"
+              className="font-display text-4xl md:text-5xl text-[#662B2D] font-light mb-8"
             >
               Acredito que você tem o poder de criar um{' '}
               <span className="italic">refúgio seguro</span> dentro de si mesma.
             </h2>
-            <div className="space-y-6 text-muted-foreground">
+            <div className="space-y-6 text-[#662B2D]/80">
               <p>
                 A busca constante por provar nosso valor, a necessidade de
                 aceitação e o medo de não ser útil o suficiente, são questões
