@@ -41,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${sortsMillGoudy.variable} ${lora.variable} ${inter.variable} ${allura.variable} antialiased`}
+        className={`${sortsMillGoudy.variable} ${lora.variable} ${inter.variable} ${allura.variable} antialiased bg-background`}
       >
         <Header />
         {children}

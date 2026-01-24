@@ -35,8 +35,8 @@ export function Header() {
 
   return (
     <header
-      className={`w-full py-6 px-6 md:px-12 flex justify-between items-center fixed top-0 z-50
-                  bg-background/95 backdrop-blur-sm border-b border-transparent
+      className={`w-full py-3 px-6 md:px-12 flex justify-between items-center fixed top-0 z-50
+                  bg-[#f4eee5]/95 backdrop-blur-sm border-b border-transparent
                   transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}
       role="banner"
     >
@@ -49,7 +49,7 @@ export function Header() {
           alt="Flor decorativa"
           width={40}
           height={40}
-          className="h-14 md:h-16 w-auto"
+          className="h-10 md:h-12 w-auto"
           priority
         />
         <Image
@@ -57,7 +57,7 @@ export function Header() {
           alt="Natasha Pereira - Psicóloga"
           width={280}
           height={60}
-          className="h-12 md:h-14 w-auto"
+          className="h-9 md:h-11 w-auto"
           priority
         />
       </Link>
@@ -72,7 +72,7 @@ export function Header() {
           <a
             key={link.href}
             href={link.href}
-            className="text-xs font-semibold uppercase tracking-widest text-foreground/80 hover:text-primary transition-colors"
+            className="text-xs font-semibold uppercase tracking-widest text-[#662B2D] hover:text-[#662B2D]/70 transition-colors"
           >
             {link.label}
           </a>
@@ -82,7 +82,7 @@ export function Header() {
       {/* Desktop Button */}
       <Button
         asChild
-        className="hidden md:flex items-center justify-center bg-secondary text-white text-xs font-bold uppercase px-6 py-3 rounded"
+        className="hidden md:flex items-center justify-center bg-[#662B2D] text-white text-xs font-bold uppercase px-6 py-3 rounded hover:bg-[#662B2D]/90"
       >
         <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
           Agende sua sessão
@@ -91,7 +91,7 @@ export function Header() {
 
       {/* Mobile Menu Button */}
       <button
-        className="md:hidden text-foreground"
+        className="md:hidden text-[#662B2D]"
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
         aria-expanded={mobileMenuOpen}
@@ -105,7 +105,7 @@ export function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-background border-b border-border md:hidden">
+        <div className="absolute top-full left-0 right-0 bg-[#f4eee5] border-b border-[#662B2D]/10 md:hidden">
           <nav
             className="flex flex-col gap-4 p-6"
             role="navigation"
@@ -115,7 +115,7 @@ export function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-xs font-semibold uppercase tracking-widest text-foreground/80 hover:text-primary transition-colors"
+                className="text-xs font-semibold uppercase tracking-widest text-[#662B2D] hover:text-[#662B2D]/70 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}
@@ -123,7 +123,7 @@ export function Header() {
             ))}
             <Button
               asChild
-              className="bg-secondary text-white text-xs font-bold uppercase px-6 py-3 rounded"
+              className="bg-[#662B2D] text-white text-xs font-bold uppercase px-6 py-3 rounded hover:bg-[#662B2D]/90"
             >
               <a
                 href={whatsappLink}

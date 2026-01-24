@@ -207,14 +207,14 @@ describe('Header Accessibility - PR #14', () => {
     it('should use foreground color on nav links with sufficient contrast', () => {
       const { getAllByText } = render(<Header />);
       const inicioLinks = getAllByText('Início');
-      expect(inicioLinks[0]).toHaveClass('text-foreground/80');
+      expect(inicioLinks[0]).toHaveClass('text-[#662B2D]');
     });
 
     it('should use white text on secondary background for CTA', () => {
       const { getAllByText } = render(<Header />);
       const ctaLinks = getAllByText('Agende sua sessão');
       const ctaButton = ctaLinks[0].closest('a');
-      expect(ctaButton).toHaveClass('bg-secondary', 'text-white');
+      expect(ctaButton).toHaveClass('bg-[#662B2D]', 'text-white');
     });
   });
 
