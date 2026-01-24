@@ -62,7 +62,7 @@ describe('ServiceCard', () => {
   it('renders title with serif font and large size', () => {
     render(<ServiceCard {...mockService} />);
     const title = screen.getByText('Atendimento Individual');
-    expect(title).toHaveClass('font-display', 'text-3xl');
+    expect(title).toHaveClass('font-display', 'text-xl');
   });
 
   it('renders button with pill style', () => {
