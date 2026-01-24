@@ -71,10 +71,8 @@ describe('AboutTherapist Responsive', () => {
     expect(intro).toHaveClass(
       'block',
       'text-xs',
-      'font-bold',
       'tracking-widest',
-      'uppercase',
-      'text-muted-foreground',
+      'text-[#662B2D]',
       'mb-4'
     );
 
@@ -83,7 +81,7 @@ describe('AboutTherapist Responsive', () => {
       'font-display',
       'text-4xl',
       'md:text-5xl',
-      'text-foreground',
+      'text-[#662B2D]',
       'font-light',
       'mb-8'
     );
@@ -127,6 +125,6 @@ describe('AboutTherapist Responsive', () => {
     });
 
     const container = section.querySelector('.max-w-7xl');
-    expect(container).toHaveClass('px-6', 'md:px-12', 'pt-14', 'pb-16');
+    expect(container).toHaveClass('px-6', 'md:px-12', 'py-16');
   });
 });

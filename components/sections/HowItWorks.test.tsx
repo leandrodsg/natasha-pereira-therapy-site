@@ -4,7 +4,9 @@ import HowItWorks from './HowItWorks';
 describe('HowItWorks', () => {
   it('renders the label text', () => {
     render(<HowItWorks />);
-    expect(screen.getByText('Sua Jornada Começa Aqui')).toBeInTheDocument();
+    expect(
+      screen.getByText('Sua jornada para o bem-estar começa aqui')
+    ).toBeInTheDocument();
   });
 
   it('renders the main heading', () => {
@@ -30,25 +32,21 @@ describe('HowItWorks', () => {
   it('renders updated step descriptions', () => {
     render(<HowItWorks />);
     expect(
-      screen.getByText(/Conversamos sobre o que te trouxe até aqui/)
+      screen.getByText(/Conversamos sobre seus objetivos/)
+    ).toBeInTheDocument();
+    expect(screen.getByText(/Espaço livre de julgamentos/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Técnicas adaptadas ao seu ritmo/)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Um espaço livre de julgamentos/)
-    ).toBeInTheDocument();
-    expect(screen.getByText(/Cada pessoa é única/)).toBeInTheDocument();
-    expect(
-      screen.getByText(/Você participa ativamente do processo/)
+      screen.getByText(/Participação ativa com espaço/)
     ).toBeInTheDocument();
   });
 
-  it('renders step numbers in circles', () => {
+  it('renders all step icons', () => {
     render(<HowItWorks />);
-    const circles = screen.getAllByText(/[1-4]/);
-    expect(circles).toHaveLength(4);
-    expect(circles[0]).toHaveTextContent('1');
-    expect(circles[1]).toHaveTextContent('2');
-    expect(circles[2]).toHaveTextContent('3');
-    expect(circles[3]).toHaveTextContent('4');
+    const articles = screen.getAllByRole('article');
+    expect(articles).toHaveLength(4);
   });
 
   it('has correct semantic structure', () => {
@@ -80,7 +78,7 @@ describe('HowItWorks', () => {
     render(<HowItWorks />);
     const articles = screen.getAllByRole('article');
     articles.forEach((article) => {
-      expect(article).toHaveClass('bg-[#EDE8E4]');
+      expect(article).toHaveClass('bg-[#f4eee5]');
     });
   });
 

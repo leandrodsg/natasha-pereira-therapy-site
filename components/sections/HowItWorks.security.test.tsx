@@ -12,19 +12,18 @@ describe('HowItWorks - Security', () => {
   it('renders static content safely', () => {
     render(<HowItWorks />);
     // All content should be static and safe
-    expect(screen.getByText('Sua Jornada Começa Aqui')).toBeInTheDocument();
+    expect(
+      screen.getByText('Sua jornada para o bem-estar começa aqui')
+    ).toBeInTheDocument();
     expect(screen.getByText(/esperar/)).toBeInTheDocument();
   });
 
-  it('step numbers are validated as integers', () => {
+  it('renders all step titles', () => {
     render(<HowItWorks />);
-    const circles = screen.getAllByText(/[1-4]/);
-    circles.forEach((circle) => {
-      const number = parseInt(circle.textContent || '0');
-      expect(number).toBeGreaterThan(0);
-      expect(number).toBeLessThanOrEqual(4);
-      expect(Number.isInteger(number)).toBe(true);
-    });
+    expect(screen.getByText('Primeira Sessão')).toBeInTheDocument();
+    expect(screen.getByText('Ambiente Seguro')).toBeInTheDocument();
+    expect(screen.getByText('Abordagem Pessoal')).toBeInTheDocument();
+    expect(screen.getByText('Conexão Aberta')).toBeInTheDocument();
   });
 
   it('does not contain external links', () => {

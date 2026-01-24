@@ -20,7 +20,8 @@ describe('Hero Responsive', () => {
     const section = screen.getByRole('region', {
       name: 'Um espaço onde você finalmente pode existir sem medo.',
     });
-    expect(section).toHaveClass(
+    const container = section.querySelector('div');
+    expect(container).toHaveClass(
       'flex',
       'flex-col',
       'md:flex-row',
@@ -54,7 +55,8 @@ describe('Hero Responsive', () => {
     const section = screen.getByRole('region', {
       name: 'Um espaço onde você finalmente pode existir sem medo.',
     });
-    expect(section).toHaveClass('flex-col'); // Mobile first
-    expect(section).toHaveClass('md:flex-row'); // Desktop split
+    const container = section.querySelector('div');
+    expect(container).toHaveClass('flex-col'); // Mobile first
+    expect(container).toHaveClass('md:flex-row'); // Desktop split
   });
 });

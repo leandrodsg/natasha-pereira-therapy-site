@@ -110,8 +110,8 @@ describe('Design Tokens - PR #13', () => {
 
   describe('CSS Custom Properties - Natasha Palette', () => {
     it('should define --background variable with cream color', () => {
-      expect(cssContent).toContain('--background: 30 47% 91%');
-      expect(cssContent).toMatch(/--background:.*#F6E8D9/i);
+      expect(cssContent).toContain('--background: 39 47% 94%');
+      expect(cssContent).toMatch(/--background:.*#f4eee5/i);
     });
 
     it('should define --foreground variable with dark gray', () => {
@@ -178,10 +178,10 @@ describe('Design Tokens - PR #13', () => {
   describe('Color Contrast Validation (WCAG AA)', () => {
     // Basic validation of color values
     it('should use colors that provide sufficient contrast', () => {
-      // Background (cream): 30 47% 91% - very light
+      // Background (cream): 39 47% 94% - very light
       // Foreground (dark gray): 0 0% 20% - very dark
       // This combination should provide excellent contrast (> 4.5:1)
-      expect(cssContent).toContain('--background: 30 47% 91%');
+      expect(cssContent).toContain('--background: 39 47% 94%');
       expect(cssContent).toContain('--foreground: 0 0% 20%');
     });
 

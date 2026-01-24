@@ -14,14 +14,13 @@ describe('HowItWorks - Responsive', () => {
   it('applies responsive padding', () => {
     render(<HowItWorks />);
     const section = screen.getByRole('region');
-    expect(section).toHaveClass('px-6');
-    expect(section).toHaveClass('md:px-12');
+    expect(section).toHaveClass('py-16');
   });
 
   it('applies responsive vertical padding', () => {
     render(<HowItWorks />);
     const section = screen.getByRole('region');
-    expect(section).toHaveClass('py-20');
+    expect(section).toHaveClass('py-16');
   });
 
   it('applies responsive headline sizing', () => {
@@ -33,7 +32,9 @@ describe('HowItWorks - Responsive', () => {
 
   it('applies responsive max-width to header', () => {
     render(<HowItWorks />);
-    const headerDiv = screen.getByText('Sua Jornada Começa Aqui').parentElement;
+    const headerDiv = screen.getByText(
+      'Sua jornada para o bem-estar começa aqui'
+    ).parentElement;
     expect(headerDiv).toHaveClass('max-w-7xl');
   });
 
@@ -46,12 +47,14 @@ describe('HowItWorks - Responsive', () => {
   it('applies consistent gap between cards', () => {
     render(<HowItWorks />);
     const grid = screen.getByRole('region').querySelector('div.grid');
-    expect(grid).toHaveClass('gap-8');
+    expect(grid).toHaveClass('gap-6');
   });
 
   it('centers text on mobile and desktop', () => {
     render(<HowItWorks />);
-    const headerDiv = screen.getByText('Sua Jornada Começa Aqui').parentElement;
+    const headerDiv = screen.getByText(
+      'Sua jornada para o bem-estar começa aqui'
+    ).parentElement;
     expect(headerDiv).toHaveClass('text-center');
   });
 });

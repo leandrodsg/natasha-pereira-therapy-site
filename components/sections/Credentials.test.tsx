@@ -71,11 +71,11 @@ describe('Credentials', () => {
 
     const card = screen.getByText('7 anos de prática clínica').closest('div');
     expect(card).toHaveClass(
-      'bg-white/10',
+      'bg-[#C58C77]/35',
       'backdrop-blur-sm',
       'rounded-2xl',
       'border',
-      'border-white/20'
+      'border-[#C58C77]/20'
     );
   });
 
@@ -95,7 +95,7 @@ describe('Credentials', () => {
     });
     const container = section.querySelector('.max-w-7xl');
 
-    expect(container).toHaveClass('px-6', 'md:px-12', 'py-12', 'md:py-16');
+    expect(container).toHaveClass('px-6', 'md:px-12', 'py-16');
   });
 
   it('has no accessibility violations', async () => {
