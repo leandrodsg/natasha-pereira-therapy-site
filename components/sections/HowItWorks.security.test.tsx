@@ -12,18 +12,17 @@ describe('HowItWorks - Security', () => {
   it('renders static content safely', () => {
     render(<HowItWorks />);
     // All content should be static and safe
-    expect(screen.getByText('Como Funciona')).toBeInTheDocument();
-    expect(screen.getByText(/facilidade/)).toBeInTheDocument();
-    expect(screen.getByText(/simplificar/)).toBeInTheDocument();
+    expect(screen.getByText('Sua Jornada Começa Aqui')).toBeInTheDocument();
+    expect(screen.getByText(/esperar/)).toBeInTheDocument();
   });
 
   it('step numbers are validated as integers', () => {
     render(<HowItWorks />);
-    const circles = screen.getAllByText(/[1-3]/);
+    const circles = screen.getAllByText(/[1-4]/);
     circles.forEach((circle) => {
       const number = parseInt(circle.textContent || '0');
       expect(number).toBeGreaterThan(0);
-      expect(number).toBeLessThanOrEqual(3);
+      expect(number).toBeLessThanOrEqual(4);
       expect(Number.isInteger(number)).toBe(true);
     });
   });

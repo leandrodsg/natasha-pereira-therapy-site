@@ -7,21 +7,27 @@ interface ProcessStep {
 const processSteps: ProcessStep[] = [
   {
     number: 1,
-    title: 'Entre em contato.',
+    title: 'Primeira Sessão',
     description:
-      'Agende uma conversa inicial gratuita via WhatsApp para falarmos sobre suas necessidades e objetivos.',
+      'Conversamos sobre o que te trouxe até aqui, seus objetivos e como posso te acompanhar nessa jornada. Sem pressa, sem pressão.',
   },
   {
     number: 2,
-    title: 'Inicie sua jornada.',
+    title: 'Ambiente Seguro',
     description:
-      'Nas primeiras sessões, nos conhecemos e definimos os objetivos a serem alcançados na terapia.',
+      'Um espaço livre de julgamentos, onde você pode ser você mesma. Sigilo e acolhimento são a base de tudo.',
   },
   {
     number: 3,
-    title: 'Transforme sua vida.',
+    title: 'Abordagem Pessoal',
     description:
-      'Com sessões semanais de 50 minutos, desenvolvemos estratégias práticas para seu bem-estar.',
+      'Cada pessoa é única. Adapto as técnicas ao que faz sentido para você, respeitando seu ritmo e suas necessidades.',
+  },
+  {
+    number: 4,
+    title: 'Conexão Aberta',
+    description:
+      'Você participa ativamente do processo. Dúvidas, desconfortos, descobertas — tudo tem espaço aqui.',
   },
 ];
 
@@ -29,27 +35,25 @@ export default function HowItWorks() {
   return (
     <section
       id="como-funciona"
-      className="py-24 px-6 md:px-12 bg-background"
+      className="py-20 px-6 md:px-12 bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: 'url(/images/green-background.png)' }}
       aria-labelledby="how-it-works-heading"
     >
       {/* Header */}
-      <div className="max-w-6xl mx-auto text-center mb-20">
-        <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4">
-          Como Funciona
+      <div className="max-w-7xl mx-auto text-center mb-12">
+        <p className="text-sm uppercase tracking-widest text-cream/80 mb-4">
+          Sua Jornada Começa Aqui
         </p>
         <h2
           id="how-it-works-heading"
-          className="font-display text-4xl md:text-5xl text-foreground font-light max-w-3xl mx-auto leading-tight"
+          className="font-display text-4xl md:text-5xl text-cream font-light max-w-3xl mx-auto leading-tight"
         >
-          O que você precisa agora é de{' '}
-          <span className="italic">facilidade</span>. Estou aqui para te ajudar
-          a <span className="italic">simplificar</span> o processo enquanto você
-          começa sua jornada.
+          O que <span className="italic">esperar</span> durante as sessões
         </h2>
       </div>
 
       {/* Steps */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {processSteps.map((step) => (
           <article
             key={step.number}
