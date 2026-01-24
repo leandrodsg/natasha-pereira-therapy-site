@@ -54,19 +54,19 @@ test.describe('Landing Page E2E', () => {
     ).toBeVisible();
     await expect(page.locator('text=Atendimento Individual')).toBeVisible();
 
-    // CTA Section
+    // FAQ Section
     await expect(
       page.locator('h2').filter({
-        hasText: 'Pronta para abraçar a mudança?',
+        hasText: 'Perguntas Frequentes',
       })
     ).toBeVisible();
     await expect(
-      page.locator(
-        'text=Você não precisa continuar se anulando para dar conta de tudo'
-      )
+      page.locator('text=Respostas para as dúvidas mais comuns')
     ).toBeVisible();
     await expect(
-      page.locator('section#contato a').filter({ hasText: 'Agende sua sessão' })
+      page
+        .locator('section#faq a')
+        .filter({ hasText: 'Ainda tem dúvidas? Fale comigo' })
     ).toBeVisible();
 
     // Footer
@@ -117,12 +117,14 @@ test.describe('Landing Page E2E', () => {
       page.locator('section#inicio a').filter({ hasText: 'Vamos conversar?' })
     ).toBeVisible();
 
-    // Check CTA section on mobile
+    // Check FAQ section on mobile
     await expect(
-      page.locator('h2').filter({ hasText: 'Pronta para abraçar a mudança?' })
+      page.locator('h2').filter({ hasText: 'Perguntas Frequentes' })
     ).toBeVisible();
     await expect(
-      page.locator('section#contato a').filter({ hasText: 'Agende sua sessão' })
+      page
+        .locator('section#faq a')
+        .filter({ hasText: 'Ainda tem dúvidas? Fale comigo' })
     ).toBeVisible();
   });
 
