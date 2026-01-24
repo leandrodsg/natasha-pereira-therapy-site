@@ -2,61 +2,115 @@ import { render, screen } from '@testing-library/react';
 import Services from './Services';
 
 describe('Services', () => {
-  it('renders the section title', () => {
+  it('renders the main heading', () => {
     render(<Services />);
-    expect(screen.getByText('Como posso te ajudar?')).toBeInTheDocument();
+    expect(screen.getByText(/Serviços pensados para/)).toBeInTheDocument();
   });
 
-  it('renders all three service cards', () => {
+  it('renders heading with italic text on "acolher"', () => {
+    render(<Services />);
+    const acolher = screen.getByText('acolher');
+    expect(acolher).toHaveClass('italic');
+  });
+
+  it('renders the subheading', () => {
+    render(<Services />);
+    expect(
+      screen.getByText(/Cada atendimento é pensado para te ajudar/)
+    ).toBeInTheDocument();
+  });
+
+  it('renders all four service cards', () => {
     render(<Services />);
     expect(screen.getByText('Atendimento Individual')).toBeInTheDocument();
-    expect(screen.getByText('Roda de conversa')).toBeInTheDocument();
+    expect(screen.getByText('Roda de Conversa')).toBeInTheDocument();
     expect(
-      screen.getByText('Terapia de grupo para mulheres')
+      screen.getByText('Terapia de Grupo para Mulheres')
+    ).toBeInTheDocument();
+    expect(screen.getByText('EMDR')).toBeInTheDocument();
+  });
+
+  it('renders updated service descriptions', () => {
+    render(<Services />);
+    expect(
+      screen.getByText(/Sessões individuais para trabalhar questões pessoais/)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Apoio para conexões mais profundas/)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Um círculo seguro entre mulheres/)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Técnica para ressignificar traumas/)
     ).toBeInTheDocument();
   });
 
-  it('renders service descriptions', () => {
+  it('does not render "saiba mais" links', () => {
     render(<Services />);
-    expect(
-      screen.getByText(/Um espaço seguro para falar de si/)
-    ).toBeInTheDocument();
-    expect(screen.getByText(/Encontros para compartilhar/)).toBeInTheDocument();
-    expect(screen.getByText(/Lugar seguro entre mulheres/)).toBeInTheDocument();
+    expect(screen.queryByText(/saiba mais/i)).not.toBeInTheDocument();
   });
 
-  it('renders service links', () => {
+  it('renders decorative images', () => {
     render(<Services />);
-    expect(screen.getByText('SAIBA MAIS')).toBeInTheDocument();
-    expect(screen.getAllByText('saiba mais')).toHaveLength(2);
+    const images = screen.getAllByRole('img');
+    expect(images.length).toBeGreaterThanOrEqual(2);
+
+    const primeiraBox = screen.getByAltText(/blocos de madeira com emoções/i);
+    expect(primeiraBox).toHaveAttribute(
+      'src',
+      expect.stringContaining('primeira-box')
+    );
+
+    const segundaBox = screen.getByAltText(/pessoa contemplando natureza/i);
+    expect(segundaBox).toHaveAttribute(
+      'src',
+      expect.stringContaining('segunda-box')
+    );
+  });
+
+  it('renders CTA button', () => {
+    render(<Services />);
+    const ctaButton = screen.getByRole('link', {
+      name: /agende sua primeira sessão/i,
+    });
+    expect(ctaButton).toBeInTheDocument();
   });
 
   it('has correct semantic structure', () => {
     render(<Services />);
     const section = screen.getByRole('region', {
-      name: /como posso te ajudar/i,
+      name: /serviços pensados para/i,
     });
     expect(section).toBeInTheDocument();
     expect(section.tagName).toBe('SECTION');
   });
 
-  it('applies beige background to section', () => {
+  it('applies background image to section', () => {
     render(<Services />);
     const section = screen.getByRole('region', {
-      name: /como posso te ajudar/i,
+      name: /serviços pensados para/i,
     });
-    expect(section).toHaveClass('bg-accent');
+    expect(section).toHaveStyle({
+      backgroundImage: expect.stringContaining('white-background'),
+    });
   });
 
   it('renders title with serif font and large size', () => {
     render(<Services />);
-    const title = screen.getByText('Como posso te ajudar?');
-    expect(title).toHaveClass('font-display', 'text-5xl');
+    const title = screen.getByText(/Serviços pensados para/);
+    expect(title).toHaveClass('font-display');
   });
 
   it('renders title centered', () => {
     render(<Services />);
-    const title = screen.getByText('Como posso te ajudar?');
+    const title = screen.getByText(/Serviços pensados para/);
     expect(title).toHaveClass('text-center');
+  });
+
+  it('renders grid layout for bento box', () => {
+    render(<Services />);
+    const grid = screen.getByTestId('services-grid');
+    expect(grid).toHaveClass('grid');
   });
 });

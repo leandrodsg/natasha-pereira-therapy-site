@@ -21,7 +21,7 @@ describe('HowItWorks - Accessibility', () => {
   it('section has proper aria-labelledby', () => {
     render(<HowItWorks />);
     const section = screen.getByRole('region', {
-      name: /o que você precisa agora é de/i,
+      name: /o que esperar durante as sessões/i,
     });
     expect(section).toHaveAttribute('aria-labelledby', 'how-it-works-heading');
   });
@@ -29,7 +29,7 @@ describe('HowItWorks - Accessibility', () => {
   it('step cards are properly structured as articles', () => {
     render(<HowItWorks />);
     const articles = screen.getAllByRole('article');
-    expect(articles).toHaveLength(3);
+    expect(articles).toHaveLength(4);
   });
 
   it('number circles are decorative (aria-hidden)', () => {
@@ -38,13 +38,13 @@ describe('HowItWorks - Accessibility', () => {
     const decorativeElements = document.querySelectorAll(
       '[aria-hidden="true"]'
     );
-    expect(decorativeElements).toHaveLength(3);
+    expect(decorativeElements).toHaveLength(4);
 
-    // Verify they contain the numbers 1, 2, 3
+    // Verify they contain the numbers 1, 2, 3, 4
     const numbers = Array.from(decorativeElements).map((el) =>
       el.textContent?.trim()
     );
-    expect(numbers).toEqual(['1', '2', '3']);
+    expect(numbers).toEqual(['1', '2', '3', '4']);
   });
 
   it('keyboard navigation works', async () => {

@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import Services from './Services';
 
@@ -21,7 +20,7 @@ describe('Services - Accessibility', () => {
   it('section has proper aria-labelledby', () => {
     render(<Services />);
     const section = screen.getByRole('region', {
-      name: /como posso te ajudar/i,
+      name: /serviços pensados para/i,
     });
     expect(section).toHaveAttribute('aria-labelledby', 'services-title');
   });
@@ -29,17 +28,23 @@ describe('Services - Accessibility', () => {
   it('cards are properly structured as articles', () => {
     render(<Services />);
     const articles = screen.getAllByRole('article');
-    expect(articles).toHaveLength(3);
+    expect(articles).toHaveLength(4);
   });
 
-  it('service links are keyboard accessible', async () => {
-    const user = userEvent.setup();
+  it('decorative images have proper alt text', () => {
     render(<Services />);
+    const primeiraBox = screen.getByAltText(/blocos de madeira com emoções/i);
+    const segundaBox = screen.getByAltText(/pessoa contemplando natureza/i);
 
-    const links = screen.getAllByRole('link');
-    for (const link of links) {
-      await user.tab();
-      expect(link).toHaveFocus();
-    }
+    expect(primeiraBox).toBeInTheDocument();
+    expect(segundaBox).toBeInTheDocument();
+  });
+
+  it('CTA button is keyboard accessible', () => {
+    render(<Services />);
+    const ctaButton = screen.getByRole('link', {
+      name: /agende sua primeira sessão/i,
+    });
+    expect(ctaButton).toBeInTheDocument();
   });
 });

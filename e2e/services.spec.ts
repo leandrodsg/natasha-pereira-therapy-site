@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Services Section', () => {
-  test('should display all three service cards', async ({ page }) => {
+  test('should display all four service cards', async ({ page }) => {
     await page.goto('/');
 
     const servicesSection = page.locator('section#servicos');
@@ -9,23 +9,26 @@ test.describe('Services Section', () => {
 
     // Check title
     await expect(
-      servicesSection.locator('h2').filter({ hasText: 'Como posso te ajudar?' })
+      servicesSection
+        .locator('h2')
+        .filter({ hasText: 'Serviços pensados para' })
     ).toBeVisible();
 
-    // Check all three service cards
+    // Check all four service cards
     const serviceCards = servicesSection.locator('.service-card');
-    await expect(serviceCards).toHaveCount(3);
+    await expect(serviceCards).toHaveCount(4);
 
     // Check service titles
     await expect(
       servicesSection.locator('text=Atendimento Individual')
     ).toBeVisible();
     await expect(
-      servicesSection.locator('text=Roda de conversa')
+      servicesSection.locator('text=Roda de Conversa')
     ).toBeVisible();
     await expect(
-      servicesSection.locator('text=Terapia de grupo para mulheres')
+      servicesSection.locator('text=Terapia de Grupo para Mulheres')
     ).toBeVisible();
+    await expect(servicesSection.locator('text=EMDR')).toBeVisible();
   });
 
   test('should display service card content correctly', async ({ page }) => {
@@ -41,12 +44,10 @@ test.describe('Services Section', () => {
 
     // Check description
     await expect(
-      firstCard.locator('text=Um espaço seguro para falar de si')
+      firstCard.locator(
+        'text=Sessões individuais para trabalhar questões pessoais'
+      )
     ).toBeVisible();
-
-    // Check link (case insensitive)
-    const link = firstCard.locator('a').filter({ hasText: /saiba mais/i });
-    await expect(link).toBeVisible();
   });
 
   test('should have proper accessibility attributes', async ({ page }) => {
