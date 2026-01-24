@@ -4,7 +4,7 @@ import { AboutTherapist } from '@/components/sections/AboutTherapist';
 import { Credentials } from '@/components/sections/Credentials';
 import Services from '@/components/sections/Services';
 import HowItWorks from '@/components/sections/HowItWorks';
-import { CTASection } from '@/components/sections/CTASection';
+import { FAQSection } from '@/components/sections/FAQSection';
 import Footer from '@/components/sections/Footer';
 import { SkipLink } from '@/components/SkipLink';
 
@@ -19,7 +19,7 @@ export default function Home() {
         <Credentials />
         <Services />
         <HowItWorks />
-        <CTASection />
+        <FAQSection />
       </main>
       <Footer />
     </>
