@@ -9,7 +9,7 @@ describe('SoundFamiliar - Image', () => {
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute(
       'src',
-      expect.stringContaining('ProblemStatement.jpg')
+      expect.stringContaining('encontrar-paz.png')
     );
   });
 
@@ -23,18 +23,19 @@ describe('SoundFamiliar - Image', () => {
     );
   });
 
-  it('image container fills available height', () => {
+  it('image container has aspect ratio', () => {
     render(<SoundFamiliar />);
 
     const imageContainer = screen.getByTestId('sound-familiar-image-container');
-    expect(imageContainer).toHaveClass('h-full');
+    expect(imageContainer).toHaveClass('aspect-[3/4]');
   });
 
   it('image has shadow styling', () => {
     render(<SoundFamiliar />);
 
     const imageContainer = screen.getByTestId('sound-familiar-image-container');
-    expect(imageContainer).toHaveClass('shadow-2xl');
+    const style = imageContainer.getAttribute('style');
+    expect(style).toContain('box-shadow');
   });
 
   it('image uses Next.js Image component', () => {

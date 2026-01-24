@@ -16,7 +16,7 @@ describe('Services', () => {
   it('renders the subheading', () => {
     render(<Services />);
     expect(
-      screen.getByText(/Cada atendimento é pensado para te ajudar/)
+      screen.getByText(/Atendimento online focado em você/)
     ).toBeInTheDocument();
   });
 

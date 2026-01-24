@@ -52,12 +52,13 @@
 :root {
   --radius: 0.625rem;
   scroll-behavior: smooth;
-  /* Paleta Natasha */
-  --background: 30 47% 91%; /* #F6E8D9 bege claro */
+  /* Paleta Natasha - Identidade Visual Atualizada */
+  --background: 39 47% 94%; /* #f4eee5 bege muito claro */
   --foreground: 0 0% 20%; /* #333 cinza escuro */
   --primary: 72 14% 32%; /* #4F5543 verde oliva escuro */
   --secondary: 16 38% 62%; /* #C58C77 rosé/salmão */
   --accent: 72 14% 48%; /* #868B6C verde oliva claro */
+  --marsala: 357 44% 29%; /* #662B2D marsala */
   --muted-foreground: 0 0% 50%;
   --card: 1 0 0;
   --card-foreground: 0.145 0 0;

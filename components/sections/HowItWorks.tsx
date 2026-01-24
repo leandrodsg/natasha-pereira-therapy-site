@@ -1,7 +1,10 @@
+import { MessageSquareHeart, Heart, HandHeart, Venus } from 'lucide-react';
+
 interface ProcessStep {
   number: number;
   title: string;
   description: string;
+  icon: React.ElementType;
 }
 
 const processSteps: ProcessStep[] = [
@@ -9,25 +12,26 @@ const processSteps: ProcessStep[] = [
     number: 1,
     title: 'Primeira Sessão',
     description:
-      'Conversamos sobre o que te trouxe até aqui, seus objetivos e como posso te acompanhar nessa jornada. Sem pressa, sem pressão.',
+      'Conversamos sobre seus objetivos e como posso acompanhar sua jornada.',
+    icon: MessageSquareHeart,
   },
   {
     number: 2,
     title: 'Ambiente Seguro',
-    description:
-      'Um espaço livre de julgamentos, onde você pode ser você mesma. Sigilo e acolhimento são a base de tudo.',
+    description: 'Espaço livre de julgamentos com sigilo e acolhimento.',
+    icon: Heart,
   },
   {
     number: 3,
     title: 'Abordagem Pessoal',
-    description:
-      'Cada pessoa é única. Adapto as técnicas ao que faz sentido para você, respeitando seu ritmo e suas necessidades.',
+    description: 'Técnicas adaptadas ao seu ritmo e necessidades únicas.',
+    icon: HandHeart,
   },
   {
     number: 4,
     title: 'Conexão Aberta',
-    description:
-      'Você participa ativamente do processo. Dúvidas, desconfortos, descobertas — tudo tem espaço aqui.',
+    description: 'Participação ativa com espaço para dúvidas e descobertas.',
+    icon: Venus,
   },
 ];
 
@@ -35,45 +39,47 @@ export default function HowItWorks() {
   return (
     <section
       id="como-funciona"
-      className="py-20 px-6 md:px-12 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: 'url(/images/green-background.png)' }}
+      className="py-16 bg-[#4F5543]"
       aria-labelledby="how-it-works-heading"
     >
       {/* Header */}
-      <div className="max-w-7xl mx-auto text-center mb-12">
-        <p className="text-sm uppercase tracking-widest text-cream/80 mb-4">
-          Sua Jornada Começa Aqui
-        </p>
+      <div className="max-w-7xl mx-auto text-center mb-18 px-6 md:px-12">
+        <span className="block text-sm tracking-widest text-white mb-4">
+          Sua jornada para o bem-estar começa aqui
+        </span>
         <h2
           id="how-it-works-heading"
-          className="font-display text-4xl md:text-5xl text-cream font-light max-w-3xl mx-auto leading-tight"
+          className="font-display text-4xl md:text-5xl text-white font-light max-w-3xl mx-auto leading-tight"
         >
           O que <span className="italic">esperar</span> durante as sessões
         </h2>
       </div>
 
       {/* Steps */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {processSteps.map((step) => (
-          <article
-            key={step.number}
-            className="relative bg-[#EDE8E4] rounded-[2rem] p-10 pt-16 flex flex-col items-center text-center hover:shadow-xl transition-shadow"
-          >
-            {/* Number circle */}
-            <div
-              className="absolute -top-8 w-16 h-16 bg-secondary text-white rounded-full flex items-center justify-center font-display text-2xl shadow-lg border-4 border-background"
-              aria-hidden="true"
+      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {processSteps.map((step) => {
+          const Icon = step.icon;
+          return (
+            <article
+              key={step.number}
+              className="relative bg-[#f4eee5] rounded-[2rem] px-5 py-6 pt-12 flex flex-col items-center text-center hover:shadow-xl transition-shadow w-full"
             >
-              {step.number}
-            </div>
-            <h3 className="font-display text-3xl mb-4 text-secondary font-light">
-              {step.title}
-            </h3>
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              {step.description}
-            </p>
-          </article>
-        ))}
+              {/* Icon circle */}
+              <div
+                className="absolute -top-7 w-14 h-14 bg-[#C58C77] text-white rounded-full flex items-center justify-center shadow-lg border-4 border-[#f4eee5]"
+                aria-hidden="true"
+              >
+                <Icon className="w-7 h-7" strokeWidth={1.5} />
+              </div>
+              <h3 className="font-display text-xl mb-2 text-[#8B5541] font-light">
+                {step.title}
+              </h3>
+              <p className="text-sm text-[#3D4235] leading-relaxed">
+                {step.description}
+              </p>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

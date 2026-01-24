@@ -316,8 +316,8 @@ describe('Header Component - PR #14', () => {
     it('should have display font styling', () => {
       render(<Header />);
       const logo = screen.getByAltText('Natasha Pereira - Psicóloga');
-      expect(logo.className).toContain('h-12');
-      expect(logo.className).toContain('md:h-14');
+      expect(logo.className).toContain('h-9');
+      expect(logo.className).toContain('md:h-11');
       expect(logo.className).toContain('w-auto');
     });
   });

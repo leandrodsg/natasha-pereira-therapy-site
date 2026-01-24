@@ -32,19 +32,13 @@ describe('HowItWorks - Accessibility', () => {
     expect(articles).toHaveLength(4);
   });
 
-  it('number circles are decorative (aria-hidden)', () => {
+  it('icon circles are decorative (aria-hidden)', () => {
     render(<HowItWorks />);
-    // Find elements with aria-hidden="true"
+    // Find elements with aria-hidden="true" - deve ter 4 circles + 4 icons
     const decorativeElements = document.querySelectorAll(
-      '[aria-hidden="true"]'
+      'div[aria-hidden="true"]'
     );
     expect(decorativeElements).toHaveLength(4);
-
-    // Verify they contain the numbers 1, 2, 3, 4
-    const numbers = Array.from(decorativeElements).map((el) =>
-      el.textContent?.trim()
-    );
-    expect(numbers).toEqual(['1', '2', '3', '4']);
   });
 
   it('keyboard navigation works', async () => {

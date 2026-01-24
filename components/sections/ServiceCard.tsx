@@ -16,7 +16,7 @@ export default function ServiceCard({
   linkHref,
 }: ServiceCardProps) {
   return (
-    <article className="service-card bg-white rounded-2xl p-5 h-full flex flex-col overflow-hidden border border-[#662B2D]/10 hover:-translate-y-2 hover:shadow-xl transition-transform duration-300">
+    <article className="service-card bg-[#F6E8D9] rounded-2xl p-5 h-full flex flex-col overflow-hidden border border-[#662B2D]/10 hover:-translate-y-2 hover:shadow-xl transition-transform duration-300">
       {/* Ícone e título na mesma linha */}
       <div className="flex items-center gap-3 mb-3">
         <div className="w-9 h-9 bg-[#662B2D]/10 rounded-lg flex items-center justify-center flex-shrink-0">

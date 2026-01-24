@@ -11,10 +11,10 @@ describe('SoundFamiliar', () => {
     );
     expect(heading).toHaveClass(
       'font-display',
-      'text-2xl',
-      'sm:text-3xl',
-      'md:text-[2.25rem]',
-      'lg:text-[2.85rem]'
+      'text-[2rem]',
+      'md:text-[2.375rem]',
+      'font-light',
+      'leading-tight'
     );
   });
 
@@ -55,7 +55,7 @@ describe('SoundFamiliar', () => {
     render(<SoundFamiliar />);
 
     const section = screen.getByRole('region');
-    expect(section).toHaveClass('bg-primary', 'text-white');
+    expect(section).toHaveClass('bg-[#4F5543]', 'text-white');
   });
 
   it('has correct section structure', () => {

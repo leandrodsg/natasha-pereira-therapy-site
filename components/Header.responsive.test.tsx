@@ -156,7 +156,7 @@ describe('Header Responsive Behavior - PR #14', () => {
     it('should have consistent vertical padding', () => {
       render(<Header />);
       const header = screen.getByRole('banner');
-      expect(header).toHaveClass('py-6');
+      expect(header).toHaveClass('py-3');
     });
   });
 
@@ -195,7 +195,7 @@ describe('Header Responsive Behavior - PR #14', () => {
 
       const mobileMenuContainer =
         screen.getByLabelText('Menu mobile').parentElement;
-      expect(mobileMenuContainer).toHaveClass('bg-background');
+      expect(mobileMenuContainer).toHaveClass('bg-[#f4eee5]');
     });
 
     it('should have border on mobile menu', () => {
@@ -206,7 +206,10 @@ describe('Header Responsive Behavior - PR #14', () => {
 
       const mobileMenuContainer =
         screen.getByLabelText('Menu mobile').parentElement;
-      expect(mobileMenuContainer).toHaveClass('border-b', 'border-border');
+      expect(mobileMenuContainer).toHaveClass(
+        'border-b',
+        'border-[#662B2D]/10'
+      );
     });
 
     it('should have padding in mobile menu', () => {
@@ -250,7 +253,7 @@ describe('Header Responsive Behavior - PR #14', () => {
     it('should use text-foreground color for icons', () => {
       render(<Header />);
       const menuButton = screen.getByLabelText('Abrir menu');
-      expect(menuButton).toHaveClass('text-foreground');
+      expect(menuButton).toHaveClass('text-[#662B2D]');
     });
   });
 
@@ -280,7 +283,7 @@ describe('Header Responsive Behavior - PR #14', () => {
       ctaLinks.forEach((cta) => {
         const button = cta.closest('a');
         expect(button).toHaveClass(
-          'bg-secondary',
+          'bg-[#662B2D]',
           'text-white',
           'px-6',
           'py-3'

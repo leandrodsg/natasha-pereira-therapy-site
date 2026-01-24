@@ -5,20 +5,6 @@ import { AboutTherapist } from './AboutTherapist';
 expect.extend(toHaveNoViolations);
 
 describe('AboutTherapist', () => {
-  it('renders with background image sou_natasha-back.png', () => {
-    render(<AboutTherapist />);
-
-    const section = screen.getByRole('region', {
-      name: 'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.',
-    });
-
-    expect(section).toHaveStyle({
-      backgroundImage: 'url(/images/sou_natasha-back.png)',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-    });
-  });
-
   it('renders the about therapist section with correct Portuguese text', () => {
     render(<AboutTherapist />);
 
@@ -39,10 +25,8 @@ describe('AboutTherapist', () => {
     expect(intro).toHaveClass(
       'block',
       'text-xs',
-      'font-bold',
       'tracking-widest',
-      'uppercase',
-      'text-muted-foreground',
+      'text-[#662B2D]',
       'mb-4'
     );
   });
@@ -155,7 +139,7 @@ describe('AboutTherapist', () => {
     expect(section).not.toHaveClass('py-24', 'px-6', 'md:px-12');
 
     const container = section.querySelector('.max-w-7xl');
-    expect(container).toHaveClass('px-6', 'md:px-12', 'pt-14', 'pb-16');
+    expect(container).toHaveClass('px-6', 'md:px-12', 'py-16');
   });
 
   it('has no accessibility violations', async () => {

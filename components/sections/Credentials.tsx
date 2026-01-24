@@ -33,22 +33,22 @@ export function Credentials() {
       className="w-full bg-[#662B2D]"
       aria-label="Credenciais e experiência"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {items.map((item, index) => {
             const Icon = item.icon;
             return (
               <div
                 key={index}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-colors"
+                className="bg-[#C58C77]/35 backdrop-blur-sm rounded-2xl p-6 border border-[#C58C77]/20 hover:bg-[#C58C77]/50 transition-colors"
               >
                 <div className="mb-4">
-                  <Icon className="w-8 h-8 text-white/90" strokeWidth={1.5} />
+                  <Icon className="w-8 h-8 text-[#f4eee5]" strokeWidth={1.5} />
                 </div>
-                <h3 className="font-display text-lg md:text-xl text-white font-medium mb-3">
+                <h3 className="font-display text-lg md:text-xl text-[#f4eee5] font-medium mb-3">
                   {item.title}
                 </h3>
-                <p className="text-white/70 text-sm leading-relaxed">
+                <p className="text-[#f4eee5]/90 text-sm leading-relaxed">
                   {item.description}
                 </p>
               </div>

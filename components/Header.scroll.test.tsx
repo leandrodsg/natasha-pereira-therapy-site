@@ -409,7 +409,7 @@ describe('Header Scroll Behavior - PR #14', () => {
       render(<Header />);
       const header = screen.getByRole('banner');
 
-      expect(header).toHaveClass('bg-background/95');
+      expect(header).toHaveClass('bg-[#f4eee5]/95');
     });
 
     it('should maintain border during scroll', () => {

@@ -11,13 +11,13 @@ describe('SoundFamiliar - Animation', () => {
 
     for (const item of listItems) {
       // Check initial state - should have base background
-      expect(item).toHaveClass('bg-white/10');
+      expect(item).toHaveClass('bg-[#868B6C]/35');
 
       // Hover over the list item
       await user.hover(item);
 
       // After hover, should still have the hover class (CSS hover effect)
-      expect(item).toHaveClass('hover:bg-white/15');
+      expect(item).toHaveClass('hover:bg-[#868B6C]/50');
 
       // Unhover
       await user.unhover(item);

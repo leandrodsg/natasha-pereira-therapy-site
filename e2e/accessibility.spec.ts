@@ -19,12 +19,6 @@ test('color contrast violations are tracked', async ({ page }) => {
     .withRules(['color-contrast'])
     .analyze();
 
-  // Track known contrast issues (to be fixed in design update)
-  // This test documents but doesn't fail for contrast issues
-  if (accessibilityScanResults.violations.length > 0) {
-    console.log(
-      'Color contrast issues found:',
-      accessibilityScanResults.violations.length
-    );
-  }
+  // All contrast issues should now be fixed
+  expect(accessibilityScanResults.violations).toEqual([]);
 });

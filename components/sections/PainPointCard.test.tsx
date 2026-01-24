@@ -23,14 +23,14 @@ describe('PainPointCard', () => {
     render(<PainPointCard text={testText} />);
 
     const card = screen.getByRole('listitem');
-    expect(card).toHaveClass('bg-white/10', 'rounded-2xl', 'px-6', 'py-5');
+    expect(card).toHaveClass('bg-[#868B6C]/35', 'rounded-2xl', 'px-6', 'py-5');
   });
 
   it('has hover state', () => {
     render(<PainPointCard text={testText} />);
 
     const card = screen.getByRole('listitem');
-    expect(card).toHaveClass('hover:bg-white/15', 'transition-all');
+    expect(card).toHaveClass('hover:bg-[#868B6C]/50', 'transition-all');
   });
 
   it('renders as list item', () => {

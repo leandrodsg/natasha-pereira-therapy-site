@@ -51,10 +51,8 @@ describe('Hero', () => {
     );
     expect(subtitle).toHaveClass(
       'text-xs',
-      'font-bold',
       'tracking-[0.2em]',
-      'uppercase',
-      'text-muted-foreground'
+      'text-[#4F5543]'
     );
   });
 
@@ -64,7 +62,8 @@ describe('Hero', () => {
     const section = screen.getByRole('region', {
       name: 'Um espaço onde você finalmente pode existir sem medo.',
     });
-    expect(section).toHaveClass(
+    const container = section.querySelector('div');
+    expect(container).toHaveClass(
       'flex',
       'flex-col',
       'md:flex-row',
@@ -112,7 +111,7 @@ describe('Hero', () => {
 
     const button = screen.getByRole('link', { name: 'Vamos conversar?' });
     expect(button).toHaveClass(
-      'bg-secondary',
+      'bg-[#4F5543]',
       'text-white',
       'text-xs',
       'font-bold',

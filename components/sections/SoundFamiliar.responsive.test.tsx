@@ -36,11 +36,6 @@ describe('SoundFamiliar - Responsive', () => {
     render(<SoundFamiliar />);
 
     const title = screen.getByRole('heading', { level: 2 });
-    expect(title).toHaveClass(
-      'text-2xl',
-      'sm:text-3xl',
-      'md:text-[2.25rem]',
-      'lg:text-[2.85rem]'
-    );
+    expect(title).toHaveClass('text-[2rem]', 'md:text-[2.375rem]');
   });
 });

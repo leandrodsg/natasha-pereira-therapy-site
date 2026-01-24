@@ -44,7 +44,7 @@ describe('ServiceCard', () => {
   it('applies white background to card', () => {
     render(<ServiceCard {...mockService} />);
     const article = screen.getByRole('article');
-    expect(article).toHaveClass('bg-white');
+    expect(article).toHaveClass('bg-[#F6E8D9]');
   });
 
   it('applies hover lift effect', () => {
