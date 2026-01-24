@@ -19,12 +19,12 @@ test.describe('CTA Integration', () => {
     await expect(heroCta).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
-  test('CTA Section button links to WhatsApp', async ({ page }) => {
+  test('FAQ Section button links to WhatsApp', async ({ page }) => {
     await page.goto('/');
 
     const ctaButton = page
-      .locator('section#contato a')
-      .filter({ hasText: 'Agende sua sessão' });
+      .locator('section#faq a')
+      .filter({ hasText: 'Ainda tem dúvidas? Fale comigo' });
     await expect(ctaButton).toBeVisible();
 
     // Check that it has the correct WhatsApp link

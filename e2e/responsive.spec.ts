@@ -23,7 +23,6 @@ test.describe('Responsive Design', () => {
       await expect(page.locator('section#inicio')).toBeVisible();
       await expect(page.locator('section#quem-sou')).toBeVisible();
       await expect(page.locator('section#servicos')).toBeVisible();
-      await expect(page.locator('section#contato')).toBeVisible();
       await expect(page.locator('footer#rodape')).toBeVisible();
 
       // Check hero content

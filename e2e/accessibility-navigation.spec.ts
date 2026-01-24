@@ -32,13 +32,4 @@ test('CTAs have aria-describedby', async ({ page }) => {
     'aria-describedby',
     'hero-description'
   );
-
-  // CTA Section button (inside #contato section)
-  const ctaButton = page.locator(
-    'section#contato a[aria-describedby="cta-description"]'
-  );
-  await expect(ctaButton).toHaveAttribute(
-    'aria-describedby',
-    'cta-description'
-  );
 });
