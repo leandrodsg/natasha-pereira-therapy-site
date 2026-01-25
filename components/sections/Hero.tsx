@@ -6,7 +6,7 @@ import { HERO_CONTENT } from '@/lib/hero-content';
 
 const SECTION_STYLES = 'relative w-full bg-[#f4eee5]';
 const CONTAINER_STYLES =
-  'pt-28 pb-32 px-6 md:px-12 max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-start items-center gap-12';
+  'pt-20 md:pt-28 pb-32 px-6 md:px-12 max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-start items-center gap-12';
 const TEXT_CONTAINER_STYLES = 'w-full md:w-1/2 space-y-8';
 const SUBTITLE_STYLES = 'block text-xs tracking-[0.2em] text-[#4F5543]';
 const HEADING_STYLES =

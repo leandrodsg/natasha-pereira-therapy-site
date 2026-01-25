@@ -16,7 +16,7 @@ const ICON_CONTAINER_STYLES =
 const ICON_STYLES = 'text-[#662B2D] w-5 h-5';
 const TITLE_STYLES = 'font-display text-xl text-[#662B2D] font-medium';
 const DESCRIPTION_STYLES =
-  'text-sm text-muted-foreground leading-relaxed line-clamp-3 mb-4';
+  'text-sm text-muted-foreground leading-relaxed line-clamp-3 md:line-clamp-3 mb-4';
 const LINK_STYLES =
   'mt-auto rounded-full bg-secondary px-6 py-2 text-sm font-medium uppercase tracking-widest text-white transition-colors hover:bg-secondary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary';
 
