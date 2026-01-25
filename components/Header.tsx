@@ -16,10 +16,10 @@ export function Header() {
   const whatsappLink = getWhatsAppLink(env.NEXT_PUBLIC_WHATSAPP_NUMBER);
 
   const navLinks = [
-    { label: 'Início', href: '#inicio' },
-    { label: 'Quem sou', href: '#quem-sou' },
+    { label: 'Sobre', href: '#quem-sou' },
     { label: 'Serviços', href: '#servicos' },
     { label: 'Como Funciona', href: '#como-funciona' },
+    { label: 'Dúvidas', href: '#faq' },
   ];
 
   useEffect(() => {
@@ -41,7 +41,11 @@ export function Header() {
       role="banner"
     >
       <Link
-        href="/"
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
         className="ml-4 md:ml-6 hover:opacity-80 transition-opacity flex items-center gap-0.5 md:gap-1"
       >
         <Image

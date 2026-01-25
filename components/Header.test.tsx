@@ -20,12 +20,14 @@ jest.mock('next/link', () => {
     children,
     href,
     className,
+    onClick,
   }: {
     children: React.ReactNode;
     href: string;
     className?: string;
+    onClick?: (e: React.MouseEvent) => void;
   }) => (
-    <a href={href} className={className}>
+    <a href={href} className={className} onClick={onClick}>
       {children}
     </a>
   );
@@ -65,15 +67,15 @@ describe('Header Component - PR #14', () => {
       const logoLink = logo.closest('a');
       expect(logo).toBeInTheDocument();
       expect(logoLink?.tagName).toBe('A');
-      expect(logoLink).toHaveAttribute('href', '/');
+      expect(logoLink).toHaveAttribute('href', '#');
     });
 
     it('should render all navigation links', () => {
       render(<Header />);
-      expect(screen.getByText('Início')).toBeInTheDocument();
-      expect(screen.getByText('Quem sou')).toBeInTheDocument();
+      expect(screen.getByText('Sobre')).toBeInTheDocument();
       expect(screen.getByText('Serviços')).toBeInTheDocument();
       expect(screen.getByText('Como Funciona')).toBeInTheDocument();
+      expect(screen.getByText('Dúvidas')).toBeInTheDocument();
     });
 
     it('should render WhatsApp CTA button', () => {
@@ -99,11 +101,8 @@ describe('Header Component - PR #14', () => {
     it('should have correct href for all navigation links', () => {
       render(<Header />);
 
-      const inicioLinks = screen.getAllByText('Início');
-      expect(inicioLinks[0].closest('a')).toHaveAttribute('href', '#inicio');
-
-      const quemSouLinks = screen.getAllByText('Quem sou');
-      expect(quemSouLinks[0].closest('a')).toHaveAttribute('href', '#quem-sou');
+      const sobreLinks = screen.getAllByText('Sobre');
+      expect(sobreLinks[0].closest('a')).toHaveAttribute('href', '#quem-sou');
 
       const servicosLinks = screen.getAllByText('Serviços');
       expect(servicosLinks[0].closest('a')).toHaveAttribute(
@@ -116,6 +115,9 @@ describe('Header Component - PR #14', () => {
         'href',
         '#como-funciona'
       );
+
+      const duvidasLinks = screen.getAllByText('Dúvidas');
+      expect(duvidasLinks[0].closest('a')).toHaveAttribute('href', '#faq');
     });
 
     it('should have aria-label on desktop navigation', () => {
@@ -207,11 +209,11 @@ describe('Header Component - PR #14', () => {
 
       await waitFor(async () => {
         const mobileNav = screen.getByLabelText('Menu mobile');
-        const inicioLink = mobileNav.querySelector('a[href="#inicio"]');
+        const sobreLink = mobileNav.querySelector('a[href="#quem-sou"]');
 
-        expect(inicioLink).toBeInTheDocument();
+        expect(sobreLink).toBeInTheDocument();
         await act(async () => {
-          fireEvent.click(inicioLink!);
+          fireEvent.click(sobreLink!);
         });
       });
 
@@ -285,8 +287,8 @@ describe('Header Component - PR #14', () => {
 
     it('should have uppercase transformation on nav links', () => {
       render(<Header />);
-      const inicioLinks = screen.getAllByText('Início');
-      expect(inicioLinks[0]).toHaveClass('uppercase');
+      const sobreLinks = screen.getAllByText('Sobre');
+      expect(sobreLinks[0]).toHaveClass('uppercase');
     });
 
     it('should have hover styles on logo', () => {
@@ -299,18 +301,35 @@ describe('Header Component - PR #14', () => {
 
     it('should have transition effects on nav links', () => {
       render(<Header />);
-      const inicioLinks = screen.getAllByText('Início');
-      expect(inicioLinks[0]).toHaveClass('transition-colors');
+      const sobreLinks = screen.getAllByText('Sobre');
+      expect(sobreLinks[0]).toHaveClass('transition-colors');
     });
   });
 
   describe('Logo Functionality', () => {
-    it('should link to home page', () => {
+    it('should scroll to top when clicked', () => {
+      const scrollToSpy = jest.fn();
+      Object.defineProperty(window, 'scrollTo', {
+        writable: true,
+        value: scrollToSpy,
+      });
+
+      render(<Header />);
+      const logoLink = screen
+        .getByAltText('Natasha Pereira - Psicóloga')
+        .closest('a') as HTMLAnchorElement;
+
+      fireEvent.click(logoLink);
+
+      expect(scrollToSpy).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' });
+    });
+
+    it('should have href attribute', () => {
       render(<Header />);
       const logoLink = screen
         .getByAltText('Natasha Pereira - Psicóloga')
         .closest('a');
-      expect(logoLink).toHaveAttribute('href', '/');
+      expect(logoLink).toHaveAttribute('href', '#');
     });
 
     it('should have display font styling', () => {
