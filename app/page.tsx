@@ -6,12 +6,10 @@ import Services from '@/components/sections/Services';
 import HowItWorks from '@/components/sections/HowItWorks';
 import { FAQSection } from '@/components/sections/FAQSection';
 import Footer from '@/components/sections/Footer';
-import { SkipLink } from '@/components/SkipLink';
 
 export default function Home() {
   return (
     <>
-      <SkipLink />
       <main id="main-content" tabIndex={-1}>
         <Hero />
         <SoundFamiliar />

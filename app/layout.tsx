@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Sorts_Mill_Goudy, Lora, Inter, Allura } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/Header';
+import { SkipLink } from '@/components/SkipLink';
 
 const sortsMillGoudy = Sorts_Mill_Goudy({
   variable: '--font-display',
@@ -43,6 +44,7 @@ export default function RootLayout({
       <body
         className={`${sortsMillGoudy.variable} ${lora.variable} ${inter.variable} ${allura.variable} antialiased bg-background`}
       >
+        <SkipLink />
         <Header />
         {children}
       </body>

@@ -6,7 +6,7 @@ describe('SkipLink', () => {
     render(<SkipLink />);
 
     const link = screen.getByRole('link', {
-      name: /pular para conteúdo principal/i,
+      name: /pular para o conteúdo principal da página/i,
     });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute('href', '#main-content');
@@ -16,7 +16,7 @@ describe('SkipLink', () => {
     render(<SkipLink />);
 
     const link = screen.getByRole('link', {
-      name: /pular para conteúdo principal/i,
+      name: /pular para o conteúdo principal da página/i,
     });
     expect(link).toHaveClass('sr-only');
     expect(link).toHaveClass('focus:not-sr-only');
