@@ -8,19 +8,7 @@ jest.mock('@/lib/whatsapp', () => ({
 }));
 
 describe('Footer Integration', () => {
-  it('renders WhatsApp link correctly', () => {
-    render(<Footer />);
-
-    const whatsappLink = screen.getByRole('link', {
-      name: /whatsapp: \+55 61 98144-8553/i,
-    });
-    expect(whatsappLink).toBeInTheDocument();
-    expect(whatsappLink).toHaveAttribute('href', 'https://wa.me/5561981448553');
-    expect(whatsappLink).toHaveAttribute('target', '_blank');
-    expect(whatsappLink).toHaveAttribute('rel', 'noopener noreferrer');
-  });
-
-  it('renders CTA button with WhatsApp link', () => {
+  it('renders WhatsApp social link correctly', () => {
     render(<Footer />);
 
     const whatsappLink = screen.getByRole('link', { name: 'WhatsApp' });
@@ -28,19 +16,6 @@ describe('Footer Integration', () => {
     expect(whatsappLink).toHaveAttribute('href', 'https://wa.me/5561981448553');
     expect(whatsappLink).toHaveAttribute('target', '_blank');
     expect(whatsappLink).toHaveAttribute('rel', 'noopener noreferrer');
-  });
-
-  it('renders email link correctly', () => {
-    render(<Footer />);
-
-    const emailLink = screen.getByRole('link', {
-      name: /email: natashaa\.pereira@hotmail\.com/i,
-    });
-    expect(emailLink).toBeInTheDocument();
-    expect(emailLink).toHaveAttribute(
-      'href',
-      'mailto:natashaa.pereira@hotmail.com'
-    );
   });
 
   it('renders Instagram link correctly', () => {
@@ -69,50 +44,72 @@ describe('Footer Integration', () => {
     expect(tiktokLink).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
-  it('renders real address', () => {
+  it('renders email link correctly', () => {
     render(<Footer />);
 
-    expect(screen.getByText(/SEPS 705\/905 Bloco A/)).toBeInTheDocument();
+    const emailLink = screen.getByRole('link', {
+      name: 'npclinicapsicologa@gmail.com',
+    });
+    expect(emailLink).toBeInTheDocument();
+    expect(emailLink).toHaveAttribute(
+      'href',
+      'mailto:npclinicapsicologa@gmail.com'
+    );
   });
 
-  it('renders address with Google Maps link', () => {
+  it('renders address information with maps link', () => {
     render(<Footer />);
 
-    const addressLink = screen.getByRole('link', {
-      name: /endereço/i,
-    });
-    expect(addressLink).toHaveAttribute(
-      'href',
-      expect.stringContaining('google.com/maps')
-    );
+    expect(
+      screen.getByText(/Centro Clínico Brasília Medical Center/i)
+    ).toBeInTheDocument();
+    expect(screen.getByText(/SGAN Qd 607 Conj A/i)).toBeInTheDocument();
+    expect(screen.getByText(/CEP 70830-300/i)).toBeInTheDocument();
+
+    // Address should be a link to Google Maps
+    const addressLink = screen
+      .getByText(/Centro Clínico Brasília Medical Center/i)
+      .closest('a');
+    expect(addressLink).toHaveAttribute('href');
+    expect(addressLink?.getAttribute('href')).toContain('google.com/maps');
+  });
+
+  it('renders phone number with WhatsApp link', () => {
+    render(<Footer />);
+
+    const phoneLink = screen.getByText('(61) 98144-8553');
+    expect(phoneLink).toBeInTheDocument();
+    expect(phoneLink.closest('a')).toHaveAttribute('href');
+    expect(phoneLink.closest('a')?.getAttribute('href')).toContain('wa.me');
+  });
+
+  it('renders copyright with correct year and CRP', () => {
+    render(<Footer />);
+
+    expect(screen.getByText(/© 2026 Natasha Pereira/i)).toBeInTheDocument();
+    expect(screen.getByText(/CRP 01\/22302/)).toBeInTheDocument();
+  });
+
+  it('renders name prominently', () => {
+    render(<Footer />);
+
+    expect(screen.getByText('Natasha Pereira')).toBeInTheDocument();
   });
 
   it('renders navigation links', () => {
     render(<Footer />);
 
-    expect(screen.getByRole('link', { name: /início/i })).toHaveAttribute(
-      'href',
-      '#inicio'
-    );
-    expect(screen.getByRole('link', { name: /quem sou/i })).toHaveAttribute(
-      'href',
-      '#quem-sou'
-    );
-    expect(screen.getByRole('link', { name: /serviços/i })).toHaveAttribute(
-      'href',
-      '#servicos'
-    );
-    expect(screen.getByRole('link', { name: /contato/i })).toHaveAttribute(
-      'href',
-      '#contato'
-    );
+    expect(screen.getByRole('link', { name: 'Sobre' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Serviços' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: 'Como Funciona' })
+    ).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Dúvidas' })).toBeInTheDocument();
   });
 
-  it('renders updated copyright year', () => {
+  it('has navigation landmark', () => {
     render(<Footer />);
 
-    expect(
-      screen.getByText('© 2026 Natasha Pereira | CRP 01/22302')
-    ).toBeInTheDocument();
+    expect(screen.getByLabelText('Navegação do rodapé')).toBeInTheDocument();
   });
 });

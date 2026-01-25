@@ -1,5 +1,6 @@
+'use client';
+
 import React from 'react';
-import { MapPin } from 'lucide-react';
 import { getWhatsAppLink } from '@/lib/whatsapp';
 import { env } from '@/lib/env';
 
@@ -26,143 +27,124 @@ const Footer: React.FC = () => {
   const whatsappLink = getWhatsAppLink(env.NEXT_PUBLIC_WHATSAPP_NUMBER);
   const instagramLink = `https://instagram.com/${env.NEXT_PUBLIC_INSTAGRAM_HANDLE}`;
   const tiktokLink = 'https://www.tiktok.com/@natasha.pereira.p';
+  const mapsLink =
+    'https://www.google.com/maps/search/?api=1&query=Centro+Clinico+Brasilia+Medical+Center+SGAN+607+Brasilia';
 
-  // Google Maps link for the address
-  const address =
-    'SEPS 705/905 Bloco A - Centro Empresarial Santa Cruz - Sala 427, Asa Sul, Brasília 70390-055';
-  const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+  const navLinks = [
+    { label: 'Sobre', href: '#quem-sou' },
+    { label: 'Serviços', href: '#servicos' },
+    { label: 'Como Funciona', href: '#como-funciona' },
+    { label: 'Dúvidas', href: '#faq' },
+  ];
 
   return (
     <footer
       id="rodape"
       role="contentinfo"
-      className="bg-primary text-white py-12 px-6"
+      className="bg-[#662B2D] text-white py-6 px-6"
     >
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-        {/* First Column: Contact - Left aligned */}
-        <div className="space-y-4 text-center md:text-left">
-          <h3 className="text-lg font-semibold">Contato</h3>
-          <div className="space-y-3">
+      <div className="max-w-6xl mx-auto">
+        {/* Main row - horizontal layout */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-4">
+          {/* Left: Contact */}
+          <div className="text-center md:text-left text-sm opacity-80 space-y-1 md:flex-1">
             <a
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="block hover:text-secondary transition-colors text-sm"
-              aria-label="WhatsApp: +55 61 98144-8553"
+              className="block hover:opacity-70 transition-opacity"
             >
-              WhatsApp: +55 61 98144-8553
+              (61) 98144-8553
             </a>
             <a
-              href={`mailto:${env.NEXT_PUBLIC_EMAIL}`}
-              className="block hover:text-secondary transition-colors text-sm"
-              aria-label={`Email: ${env.NEXT_PUBLIC_EMAIL}`}
+              href="mailto:npclinicapsicologa@gmail.com"
+              className="block hover:opacity-70 transition-opacity"
             >
-              Email: {env.NEXT_PUBLIC_EMAIL}
+              npclinicapsicologa@gmail.com
             </a>
             <a
-              href={googleMapsLink}
+              href={mapsLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-2 hover:text-secondary transition-colors text-sm group justify-center md:justify-start"
-              aria-label="Endereço: SEPS 705/905 Bloco A - Centro Empresarial Santa Cruz - Sala 427, Asa Sul, Brasília 70390-055"
+              className="block hover:opacity-70 transition-opacity"
             >
-              <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-              <span>
-                Endereço: SEPS 705/905 Bloco A - Centro Empresarial Santa Cruz -
-                Sala 427, Asa Sul, Brasília 70390-055
+              <span className="block">
+                Centro Clínico Brasília Medical Center
               </span>
+              <span className="block">SGAN Qd 607 Conj A · Asa Norte</span>
+              <span className="block">Brasília - DF · CEP 70830-300</span>
             </a>
           </div>
-        </div>
 
-        {/* Second Column: Logo, Description, Social Icons - Center aligned */}
-        <div className="space-y-4 text-center">
-          <div>
-            <h2 className="font-display text-5xl mb-4">Natasha Pereira</h2>
-            <p className="text-sm opacity-90 leading-relaxed">
-              Psicóloga especializada em terapia para mulheres.
-            </p>
+          {/* Center: Name + Social Icons */}
+          <div className="text-center md:flex-1">
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="font-display text-xl mb-3 hover:opacity-80 transition-opacity cursor-pointer block"
+            >
+              Natasha Pereira
+            </a>
+            <div className="flex justify-center gap-4">
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-70 hover:scale-110 transition-all duration-200"
+                aria-label="WhatsApp"
+              >
+                <WhatsAppIcon className="w-5 h-5" />
+              </a>
+              <a
+                href={instagramLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-70 hover:scale-110 transition-all duration-200"
+                aria-label="Instagram"
+              >
+                <InstagramIcon className="w-5 h-5" />
+              </a>
+              <a
+                href={tiktokLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-70 hover:scale-110 transition-all duration-200"
+                aria-label="TikTok"
+              >
+                <TikTokIcon className="w-5 h-5" />
+              </a>
+            </div>
           </div>
 
-          {/* Social Icons */}
-          <div className="flex justify-center gap-5">
-            <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:opacity-70 hover:scale-110 transition-all duration-200"
-              aria-label="WhatsApp"
-            >
-              <WhatsAppIcon className="w-6 h-6" />
-            </a>
-            <a
-              href={instagramLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:opacity-70 hover:scale-110 transition-all duration-200"
-              aria-label="Instagram"
-            >
-              <InstagramIcon className="w-6 h-6" />
-            </a>
-            <a
-              href={tiktokLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:opacity-70 hover:scale-110 transition-all duration-200"
-              aria-label="TikTok"
-            >
-              <TikTokIcon className="w-6 h-6" />
-            </a>
-          </div>
-        </div>
-
-        {/* Third Column: Navigation - Right aligned */}
-        <div className="space-y-4 text-center md:text-right">
-          <h3 className="text-lg font-semibold">Navegação</h3>
-          <nav>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="#inicio"
-                  className="hover:text-secondary transition-colors text-sm"
-                >
-                  Início
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#quem-sou"
-                  className="hover:text-secondary transition-colors text-sm"
-                >
-                  Quem sou
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#servicos"
-                  className="hover:text-secondary transition-colors text-sm"
-                >
-                  Serviços
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#contato"
-                  className="hover:text-secondary transition-colors text-sm"
-                >
-                  Contato
-                </a>
-              </li>
+          {/* Right: Navigation */}
+          <nav
+            className="text-center md:text-right md:flex-1"
+            aria-label="Navegação do rodapé"
+          >
+            <ul className="space-y-1 text-sm opacity-80">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="hover:opacity-70 transition-opacity"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </nav>
         </div>
-      </div>
 
-      {/* Copyright */}
-      <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-white/20 col-span-full text-center">
-        <p className="text-sm opacity-75">
-          © 2026 Natasha Pereira | CRP 01/22302
-        </p>
+        {/* Bottom: Copyright with CRP */}
+        <div className="border-t border-white/10 pt-4 text-center">
+          <p className="text-xs opacity-60">
+            © 2026 Natasha Pereira · CRP 01/22302 · Todos os direitos reservados
+          </p>
+        </div>
       </div>
     </footer>
   );

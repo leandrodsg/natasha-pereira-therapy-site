@@ -57,11 +57,17 @@ describe('Footer Social Icons', () => {
     ];
 
     socialLinks.forEach((link) => {
-      expect(link).toHaveClass(
-        'hover:opacity-70',
-        'hover:scale-110',
-        'transition-all'
-      );
+      expect(link.className).toMatch(/hover:/);
+      expect(link.className).toMatch(/transition/);
     });
+  });
+
+  it('renders icons with appropriate size', () => {
+    render(<Footer />);
+
+    const whatsappLink = screen.getByRole('link', { name: 'WhatsApp' });
+    const svg = whatsappLink.querySelector('svg');
+    // Icon should have size class (w-5 h-5)
+    expect(svg).toHaveClass('w-5', 'h-5');
   });
 });

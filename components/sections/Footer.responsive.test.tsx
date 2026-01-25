@@ -2,57 +2,63 @@ import { render, screen } from '@testing-library/react';
 import Footer from './Footer';
 
 describe('Footer Responsive', () => {
-  it('renders with responsive 3-column grid layout', () => {
+  it('renders with horizontal layout on desktop', () => {
     render(<Footer />);
 
-    const gridContainer = screen.getByRole('contentinfo').firstElementChild;
-    expect(gridContainer).toHaveClass(
-      'grid',
-      'grid-cols-1',
-      'md:grid-cols-3',
-      'gap-12'
-    );
+    const footer = screen.getByRole('contentinfo');
+    const container = footer.firstElementChild;
+    expect(container).toHaveClass('max-w-6xl');
   });
 
-  it('renders contact section in first column', () => {
+  it('renders name prominently', () => {
     render(<Footer />);
 
-    const contactHeading = screen.getByRole('heading', { name: 'Contato' });
-    expect(contactHeading).toBeInTheDocument();
+    const name = screen.getByText('Natasha Pereira');
+    expect(name).toBeInTheDocument();
   });
 
-  it('renders logo and description in center column', () => {
+  it('renders copyright at bottom', () => {
     render(<Footer />);
 
-    const logo = screen.getByText('Natasha Pereira');
-    expect(logo).toBeInTheDocument();
-    expect(logo.closest('div')).toHaveTextContent(
-      'Psicóloga especializada em terapia para mulheres.'
-    );
+    const copyrightText = screen.getByText(/© 2026 Natasha Pereira/i);
+    expect(copyrightText).toBeInTheDocument();
   });
 
-  it('renders navigation in third column on desktop', () => {
+  it('has compact padding', () => {
     render(<Footer />);
 
-    const navigationHeading = screen.getByRole('heading', {
-      name: 'Navegação',
-    });
-    expect(navigationHeading).toBeInTheDocument();
+    const footer = screen.getByRole('contentinfo');
+    expect(footer).toHaveClass('py-6');
   });
 
-  it('renders copyright at bottom spanning full width', () => {
+  it('renders social icons', () => {
     render(<Footer />);
 
-    const copyrightDiv = screen.getByText(
-      '© 2026 Natasha Pereira | CRP 01/22302'
-    ).parentElement;
-    expect(copyrightDiv).toHaveClass('col-span-full', 'text-center');
+    expect(screen.getByLabelText('WhatsApp')).toBeInTheDocument();
+    expect(screen.getByLabelText('Instagram')).toBeInTheDocument();
+    expect(screen.getByLabelText('TikTok')).toBeInTheDocument();
   });
 
-  it('stacks columns vertically on mobile', () => {
+  it('renders contact information', () => {
     render(<Footer />);
 
-    const gridContainer = screen.getByRole('contentinfo').firstElementChild;
-    expect(gridContainer).toHaveClass('grid-cols-1');
+    expect(screen.getByText('(61) 98144-8553')).toBeInTheDocument();
+    expect(
+      screen.getByText('npclinicapsicologa@gmail.com')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Centro Clínico Brasília Medical Center/i)
+    ).toBeInTheDocument();
+  });
+
+  it('renders navigation links', () => {
+    render(<Footer />);
+
+    expect(screen.getByRole('link', { name: 'Sobre' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Serviços' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: 'Como Funciona' })
+    ).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Dúvidas' })).toBeInTheDocument();
   });
 });
