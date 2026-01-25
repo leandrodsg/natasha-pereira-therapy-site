@@ -2,6 +2,8 @@
 
 > Professional landing page for a psychologist specialized in Cognitive-Behavioral Therapy for women. Built with Next.js 16, React 19, and TypeScript, focused on performance, accessibility, and user experience.
 
+🌐 **Live Site:** [natasha-pereira-therapy-site.vercel.app](https://natasha-pereira-therapy-site.vercel.app/)
+
 [![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-blue)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
