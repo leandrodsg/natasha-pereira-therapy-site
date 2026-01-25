@@ -58,7 +58,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className={`block ${FOOTER_STYLES.link}`}
-              aria-label="Ver localização no Google Maps"
+              aria-label="Centro Clínico Brasília Medical Center"
             >
               <span className="block">
                 {FOOTER_CONTENT.contact.address.line1}
@@ -77,7 +77,7 @@ export default function Footer() {
               href="#"
               onClick={scrollToTop}
               className={FOOTER_STYLES.name}
-              aria-label="Voltar ao topo da página"
+              aria-label="Natasha Pereira"
             >
               {FOOTER_CONTENT.name}
             </a>
