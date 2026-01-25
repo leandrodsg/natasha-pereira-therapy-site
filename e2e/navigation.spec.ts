@@ -10,11 +10,7 @@ test.describe('Navigation', () => {
     const navLinks = footer.locator('nav a');
     await expect(navLinks).toHaveCount(4);
 
-    await expect(navLinks.filter({ hasText: 'Início' })).toHaveAttribute(
-      'href',
-      '#inicio'
-    );
-    await expect(navLinks.filter({ hasText: 'Quem sou' })).toHaveAttribute(
+    await expect(navLinks.filter({ hasText: 'Sobre' })).toHaveAttribute(
       'href',
       '#quem-sou'
     );
@@ -22,9 +18,13 @@ test.describe('Navigation', () => {
       'href',
       '#servicos'
     );
-    await expect(navLinks.filter({ hasText: 'Contato' })).toHaveAttribute(
+    await expect(navLinks.filter({ hasText: 'Como Funciona' })).toHaveAttribute(
       'href',
-      '#contato'
+      '#como-funciona'
+    );
+    await expect(navLinks.filter({ hasText: 'Dúvidas' })).toHaveAttribute(
+      'href',
+      '#faq'
     );
   });
 

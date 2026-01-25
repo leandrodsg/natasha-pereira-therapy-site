@@ -71,10 +71,9 @@ test.describe('Landing Page E2E', () => {
 
     // Footer
     await expect(
-      page.locator('footer h3').filter({ hasText: 'Contato' })
-    ).toBeVisible();
-    await expect(
-      page.locator('text=© 2026 Natasha Pereira | CRP 01/22302')
+      page.locator(
+        'text=© 2026 Natasha Pereira · CRP 01/22302 · Todos os direitos reservados'
+      )
     ).toBeVisible();
   });
 
@@ -140,7 +139,7 @@ test.describe('Landing Page E2E', () => {
     const isMobile = viewportSize && viewportSize.width < 768;
 
     if (!isMobile) {
-      await expect(header.locator('a[href="#inicio"]')).toBeVisible();
+      await expect(header.locator('a[href="#"]')).toBeVisible();
       await expect(header.locator('a[href="#quem-sou"]')).toBeVisible();
       await expect(header.locator('a[href="#servicos"]')).toBeVisible();
     }
