@@ -39,3 +39,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# setup files
+setup/
+
+# playwright
+playwright-report/
+
+# claude
+.claude/
+
+# images (except specific ones if needed)
+public/images/*.jpg
+public/images/*.png
+public/images/*.jpeg
+public/images/*.gif
+public/images/*.webp
+# Uncomment below to allow specific images:
+# !public/images/logo.jpg
+# !public/images/hero.jpg
