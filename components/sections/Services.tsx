@@ -11,7 +11,7 @@ const TITLE_STYLES =
 const SUBTITLE_STYLES =
   'text-muted-foreground max-w-3xl mx-auto leading-relaxed';
 const GRID_STYLES =
-  'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10 auto-rows-[160px]';
+  'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10 auto-rows-[180px] md:auto-rows-[160px]';
 const IMAGE_STYLES = 'rounded-2xl overflow-hidden shadow-sm';
 const CTA_STYLES =
   'inline-block bg-[#662B2D] text-white px-8 py-3 rounded-full font-medium hover:bg-[#662B2D]/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#662B2D] transition-colors duration-200';
