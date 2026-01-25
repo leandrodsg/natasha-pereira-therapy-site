@@ -45,12 +45,10 @@ describe('CTASection Integration', () => {
     const bgImage = screen.getByAltText('Ambiente acolhedor para terapia');
     expect(bgImage).toBeInTheDocument();
 
-    // Check for overlay
-    const overlay = screen.getByTestId('cta-overlay');
+    // Check for overlay by finding element with aria-hidden and gradient class
+    const section = screen.getByRole('region');
+    const overlay = section.querySelector('[aria-hidden="true"]');
     expect(overlay).toBeInTheDocument();
-
-    // Check for content container
-    const content = screen.getByTestId('cta-content');
-    expect(content).toBeInTheDocument();
+    expect(overlay).toHaveClass('bg-gradient-to-b');
   });
 });

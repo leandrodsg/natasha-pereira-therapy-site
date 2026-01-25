@@ -1,16 +1,14 @@
-import * as React from 'react';
+const SKIP_LINK_STYLES =
+  'sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[#662B2D] text-white px-4 py-2 rounded-md shadow-lg z-50 font-semibold text-sm transition-opacity focus:outline-2 focus:outline-offset-2 focus:outline-[#662B2D]';
 
-function SkipLink() {
+export function SkipLink() {
   return (
-    <nav aria-label="Navegação rápida">
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded z-50"
-      >
-        Pular para conteúdo principal
-      </a>
-    </nav>
+    <a
+      href="#main-content"
+      className={SKIP_LINK_STYLES}
+      aria-label="Pular para o conteúdo principal da página"
+    >
+      Pular para conteúdo principal
+    </a>
   );
 }
-
-export { SkipLink };

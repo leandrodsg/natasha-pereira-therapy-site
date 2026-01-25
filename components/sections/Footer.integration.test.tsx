@@ -48,7 +48,7 @@ describe('Footer Integration', () => {
     render(<Footer />);
 
     const emailLink = screen.getByRole('link', {
-      name: 'npclinicapsicologa@gmail.com',
+      name: /enviar email para/i,
     });
     expect(emailLink).toBeInTheDocument();
     expect(emailLink).toHaveAttribute(

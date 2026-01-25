@@ -42,9 +42,8 @@ describe('Credentials', () => {
   it('renders with marsala background color', () => {
     render(<Credentials />);
 
-    const section = screen.getByRole('region', {
-      name: 'Credenciais e experiência',
-    });
+    const heading = screen.getByText('Credenciais e Experiência Profissional');
+    const section = heading.closest('section');
     expect(section).toHaveClass('bg-[#662B2D]');
   });
 
@@ -58,10 +57,9 @@ describe('Credentials', () => {
   it('renders with responsive grid layout', () => {
     render(<Credentials />);
 
-    const section = screen.getByRole('region', {
-      name: 'Credenciais e experiência',
-    });
-    const grid = section.querySelector('.grid');
+    const heading = screen.getByText('Credenciais e Experiência Profissional');
+    const section = heading.closest('section');
+    const grid = section?.querySelector('.grid');
 
     expect(grid).toHaveClass('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-4');
   });
@@ -69,7 +67,9 @@ describe('Credentials', () => {
   it('renders cards with glassmorphism styling', () => {
     render(<Credentials />);
 
-    const card = screen.getByText('7 anos de prática clínica').closest('div');
+    const card = screen
+      .getByText('7 anos de prática clínica')
+      .closest('article');
     expect(card).toHaveClass(
       'bg-[#C58C77]/35',
       'backdrop-blur-sm',
@@ -90,10 +90,9 @@ describe('Credentials', () => {
   it('has correct padding alignment with other sections', () => {
     render(<Credentials />);
 
-    const section = screen.getByRole('region', {
-      name: 'Credenciais e experiência',
-    });
-    const container = section.querySelector('.max-w-7xl');
+    const heading = screen.getByText('Credenciais e Experiência Profissional');
+    const section = heading.closest('section');
+    const container = section?.querySelector('.max-w-7xl');
 
     expect(container).toHaveClass('px-6', 'md:px-12', 'py-16');
   });

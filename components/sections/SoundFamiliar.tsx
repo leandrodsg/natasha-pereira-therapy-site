@@ -1,55 +1,43 @@
 import Image from 'next/image';
 import { PainPointCard } from './PainPointCard';
+import { SOUND_FAMILIAR_CONTENT } from '@/lib/sound-familiar-content';
 
-const painPoints = [
-  'Você sente uma sobrecarga emocional constante, como se carregasse o mundo nos ombros.',
-  'Estabelecer limites parece impossível - você sempre acaba cedendo.',
-  'O medo de desapontar os outros te paralisa nas decisões.',
-  'Culpa ao priorizar você mesma, como se fosse egoísmo.',
-  'Sensação de estar sempre "dividida" entre papéis e expectativas.',
-  'Pressão por ser forte o tempo todo, sem espaço para vulnerabilidade.',
-];
+const SECTION_STYLES = 'w-full bg-[#4F5543] text-white relative';
+const CONTAINER_STYLES = 'max-w-7xl mx-auto px-6 md:px-12 py-16';
+const HEADING_WRAPPER_STYLES = 'mb-8 lg:mb-10 text-center';
+const HEADING_STYLES =
+  'font-display text-[2rem] md:text-[2.375rem] font-light leading-tight';
+const LAYOUT_STYLES = 'flex flex-col lg:flex-row items-stretch gap-8 lg:gap-10';
+const IMAGE_SECTION_STYLES = 'w-full lg:w-[38%] relative flex items-start';
+const IMAGE_WRAPPER_STYLES = 'relative w-[88%] max-w-sm mx-auto lg:mx-0';
+const IMAGE_CONTAINER_STYLES =
+  'relative w-full aspect-[3/4] rounded-tr-[80px] rounded-bl-[80px] overflow-hidden shadow-accent';
+const CONTENT_SECTION_STYLES = 'w-full lg:w-[62%]';
 
 export default function SoundFamiliar() {
+  const { heading, image, painPoints } = SOUND_FAMILIAR_CONTENT;
+
   return (
     <section
-      className="w-full bg-[#4F5543] text-white relative"
+      className={SECTION_STYLES}
       aria-labelledby="sound-familiar-heading"
       role="region"
-      aria-label="Seção Isso soa familiar"
     >
-      {/* Container para centralizar conteúdo */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
-        {/* Heading Principal - Largura Total */}
-        <div className="mb-8 lg:mb-10 text-center">
-          <h2
-            id="sound-familiar-heading"
-            className="font-display text-[2rem] md:text-[2.375rem] font-light leading-tight"
-          >
-            Você está aqui porque <span className="italic">encontrar paz</span>{' '}
-            é importante para você.
+      <div className={CONTAINER_STYLES}>
+        <header className={HEADING_WRAPPER_STYLES}>
+          <h2 id="sound-familiar-heading" className={HEADING_STYLES}>
+            {heading.text} <span className="italic">{heading.emphasis}</span>{' '}
+            {heading.continuation}
           </h2>
-        </div>
+        </header>
 
-        {/* Layout com imagem e lista */}
-        <div className="flex flex-col lg:flex-row items-stretch gap-8 lg:gap-10">
-          {/* Imagem */}
-          <div
-            data-testid="sound-familiar-image"
-            className="w-full lg:w-[38%] relative flex items-start"
-          >
-            <div className="relative w-[88%] max-w-sm mx-auto lg:mx-0">
-              <div
-                data-testid="sound-familiar-image-container"
-                className="relative w-full aspect-[3/4] rounded-tr-[80px] rounded-bl-[80px] overflow-hidden"
-                style={{
-                  boxShadow:
-                    '12px 12px 0px 0px rgba(134, 139, 108, 0.35), 0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-                }}
-              >
+        <div className={LAYOUT_STYLES}>
+          <div className={IMAGE_SECTION_STYLES}>
+            <div className={IMAGE_WRAPPER_STYLES}>
+              <div className={IMAGE_CONTAINER_STYLES}>
                 <Image
-                  src="/images/encontrar-paz.png"
-                  alt="Natasha Pereira em ambiente pensativo"
+                  src={image.src}
+                  alt={image.alt}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
@@ -58,14 +46,10 @@ export default function SoundFamiliar() {
             </div>
           </div>
 
-          {/* Lista de Cards */}
-          <div
-            data-testid="sound-familiar-content"
-            className="w-full lg:w-[62%]"
-          >
+          <div className={CONTENT_SECTION_STYLES}>
             <ul className="space-y-3 mx-auto lg:mx-0">
               {painPoints.map((point, index) => (
-                <PainPointCard key={index} text={point} />
+                <PainPointCard key={`pain-point-${index}`} text={point} />
               ))}
             </ul>
           </div>

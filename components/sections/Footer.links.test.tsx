@@ -23,7 +23,7 @@ describe('Footer Links', () => {
     render(<Footer />);
 
     const emailLink = screen.getByRole('link', {
-      name: 'npclinicapsicologa@gmail.com',
+      name: /enviar email para/i,
     });
     expect(emailLink).toHaveAttribute(
       'href',
@@ -34,7 +34,7 @@ describe('Footer Links', () => {
   it('phone link has correct WhatsApp href', () => {
     render(<Footer />);
 
-    const phoneLink = screen.getByRole('link', { name: '(61) 98144-8553' });
+    const phoneLink = screen.getByRole('link', { name: /ligar para/i });
     expect(phoneLink).toHaveAttribute('href', 'https://wa.me/5561981448553');
   });
 

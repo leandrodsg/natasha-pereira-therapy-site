@@ -8,7 +8,9 @@ describe('Footer', () => {
   describe('Core Content', () => {
     it('renders the name "Natasha Pereira" as a clickable link', () => {
       render(<Footer />);
-      const nameLink = screen.getByRole('link', { name: 'Natasha Pereira' });
+      const nameLink = screen.getByRole('link', {
+        name: 'Voltar ao topo da página',
+      });
       expect(nameLink).toBeInTheDocument();
       expect(nameLink).toHaveAttribute('href', '#');
     });
@@ -21,7 +23,9 @@ describe('Footer', () => {
       });
 
       render(<Footer />);
-      const nameLink = screen.getByRole('link', { name: 'Natasha Pereira' });
+      const nameLink = screen.getByRole('link', {
+        name: 'Voltar ao topo da página',
+      });
 
       fireEvent.click(nameLink);
 
@@ -110,7 +114,9 @@ describe('Footer', () => {
 
     it('renders name with appropriate size (not oversized)', () => {
       render(<Footer />);
-      const name = screen.getByRole('link', { name: 'Natasha Pereira' });
+      const name = screen.getByRole('link', {
+        name: 'Voltar ao topo da página',
+      });
       // Should not have text-5xl (too big), should be smaller
       expect(name).not.toHaveClass('text-5xl');
     });

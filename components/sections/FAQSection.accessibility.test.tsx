@@ -84,7 +84,8 @@ describe('FAQSection Accessibility', () => {
 
   it('FAQ list has appropriate structure', () => {
     render(<FAQSection />);
-    const faqList = document.querySelector('[data-testid="faq-list"]');
+    const section = screen.getByRole('region');
+    const faqList = section.querySelector('.flex.flex-col');
     expect(faqList).toBeInTheDocument();
 
     // Each FAQ item should be a details element

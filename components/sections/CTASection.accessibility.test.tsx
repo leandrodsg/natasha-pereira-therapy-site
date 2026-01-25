@@ -32,7 +32,9 @@ describe('CTASection Accessibility', () => {
     render(<CTASection />);
 
     const link = screen.getByRole('link', { name: 'Agende sua sessão' });
-    const description = screen.getByTestId('cta-description');
+    const description = screen.getByText(
+      /Agende sua sessão e comece a se ouvir/
+    );
 
     expect(link).toHaveAttribute('aria-describedby', 'cta-description');
     expect(description).toHaveTextContent(
@@ -44,12 +46,14 @@ describe('CTASection Accessibility', () => {
     render(<CTASection />);
 
     const headline = screen.getByRole('heading', { level: 2 });
-    const subheadline = screen.getByTestId('cta-description');
+    const subheadline = screen.getByText(
+      /Agende sua sessão e comece a se ouvir/
+    );
 
     // With bg-black/40 overlay, white text should have sufficient contrast
     // This is tested visually in the component styling
     expect(headline).toHaveClass('text-white');
-    expect(subheadline).toHaveClass('text-white');
+    expect(subheadline).toHaveClass('text-white/95');
   });
 
   it('background image has descriptive alt text', () => {

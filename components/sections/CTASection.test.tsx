@@ -42,7 +42,9 @@ describe('CTASection', () => {
     const headline = screen.getByRole('heading', { level: 2 });
     expect(headline).toHaveClass('text-2xl', 'md:text-3xl', 'lg:text-4xl');
 
-    const subheadline = screen.getByTestId('cta-description');
+    const subheadline = screen.getByText(
+      /Agende sua sessão e comece a se ouvir/
+    );
     expect(subheadline).toHaveClass('text-base', 'md:text-lg');
   });
 
@@ -50,15 +52,20 @@ describe('CTASection', () => {
     render(<CTASection />);
 
     const section = screen.getByRole('region');
-    expect(section).toHaveClass('relative', 'min-h-[600px]');
+    expect(section).toHaveClass(
+      'relative',
+      'min-h-[500px]',
+      'md:min-h-[600px]'
+    );
 
     // Check for background image container
     const bgImage = screen.getByAltText('Ambiente acolhedor para terapia');
     expect(bgImage).toBeInTheDocument();
 
     // Check for overlay
-    const overlay = screen.getByTestId('cta-overlay');
-    expect(overlay).toHaveClass('absolute', 'inset-0', 'bg-black/40');
+    const overlay = section.querySelector('[aria-hidden="true"]');
+    expect(overlay).toBeInTheDocument();
+    expect(overlay).toHaveClass('absolute', 'inset-0', 'bg-gradient-to-b');
   });
 
   it('renders text with white color and drop shadow', () => {
@@ -67,8 +74,10 @@ describe('CTASection', () => {
     const headline = screen.getByRole('heading', { level: 2 });
     expect(headline).toHaveClass('text-white', 'drop-shadow-lg');
 
-    const subheadline = screen.getByTestId('cta-description');
-    expect(subheadline).toHaveClass('text-white', 'drop-shadow-md');
+    const subheadline = screen.getByText(
+      /Agende sua sessão e comece a se ouvir/
+    );
+    expect(subheadline).toHaveClass('text-white/95', 'drop-shadow-md');
   });
 
   it('has no accessibility violations', async () => {

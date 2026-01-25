@@ -1,10 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import ServiceCard from './ServiceCard';
+import { User } from 'lucide-react';
 
 const mockService = {
   title: 'Atendimento Individual',
   description:
     'Um espaço seguro para falar de si, elaborar emoções e se escutar com mais profundidade.',
+  icon: User,
   linkText: 'SAIBA MAIS',
   linkHref: '#',
 };

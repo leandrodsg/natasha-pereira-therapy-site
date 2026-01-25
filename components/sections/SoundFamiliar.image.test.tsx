@@ -16,7 +16,9 @@ describe('SoundFamiliar - Image', () => {
   it('image has asymmetric rounded corners', () => {
     render(<SoundFamiliar />);
 
-    const imageContainer = screen.getByTestId('sound-familiar-image-container');
+    const section = screen.getByRole('region');
+    const imageContainer = section.querySelector('.rounded-tr-\\[80px\\]');
+    expect(imageContainer).toBeInTheDocument();
     expect(imageContainer).toHaveClass(
       'rounded-tr-[80px]',
       'rounded-bl-[80px]'
@@ -26,16 +28,19 @@ describe('SoundFamiliar - Image', () => {
   it('image container has aspect ratio', () => {
     render(<SoundFamiliar />);
 
-    const imageContainer = screen.getByTestId('sound-familiar-image-container');
+    const section = screen.getByRole('region');
+    const imageContainer = section.querySelector('.aspect-\\[3\\/4\\]');
+    expect(imageContainer).toBeInTheDocument();
     expect(imageContainer).toHaveClass('aspect-[3/4]');
   });
 
   it('image has shadow styling', () => {
     render(<SoundFamiliar />);
 
-    const imageContainer = screen.getByTestId('sound-familiar-image-container');
-    const style = imageContainer.getAttribute('style');
-    expect(style).toContain('box-shadow');
+    const section = screen.getByRole('region');
+    const imageContainer = section.querySelector('.shadow-accent');
+    expect(imageContainer).toBeInTheDocument();
+    expect(imageContainer).toHaveClass('shadow-accent');
   });
 
   it('image uses Next.js Image component', () => {

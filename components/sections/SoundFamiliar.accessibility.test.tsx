@@ -17,7 +17,10 @@ describe('SoundFamiliar - Accessibility', () => {
 
     const section = screen.getByRole('region');
     expect(section).toBeInTheDocument();
-    expect(section).toHaveAttribute('aria-label', 'Seção Isso soa familiar');
+    expect(section).toHaveAttribute(
+      'aria-labelledby',
+      'sound-familiar-heading'
+    );
   });
 
   it('list has proper semantic structure', () => {
