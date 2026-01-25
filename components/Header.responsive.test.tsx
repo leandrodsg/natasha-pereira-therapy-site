@@ -226,8 +226,8 @@ describe('Header Responsive Behavior - PR #14', () => {
   describe('Responsive Typography', () => {
     it('should use consistent font size for nav links', () => {
       render(<Header />);
-      const inicioLinks = screen.getAllByText('Início');
-      expect(inicioLinks[0]).toHaveClass('text-xs');
+      const sobreLinks = screen.getAllByText('Sobre');
+      expect(sobreLinks[0]).toHaveClass('text-xs');
     });
   });
 
@@ -303,10 +303,10 @@ describe('Header Responsive Behavior - PR #14', () => {
 
       await waitFor(async () => {
         const mobileNav = screen.getByLabelText('Menu mobile');
-        const inicioLink = mobileNav.querySelector('a[href="#inicio"]');
+        const sobreLink = mobileNav.querySelector('a[href="#quem-sou"]');
 
         await act(async () => {
-          fireEvent.click(inicioLink!);
+          fireEvent.click(sobreLink!);
         });
       });
 

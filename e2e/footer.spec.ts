@@ -9,15 +9,14 @@ test.describe('Footer Section', () => {
 
     // Check logo and description
     await expect(
-      footer.locator('h2').filter({ hasText: 'Natasha Pereira' })
-    ).toBeVisible();
-    await expect(
-      footer.locator('text=Psicóloga especializada em terapia para mulheres.')
+      footer.locator('a').filter({ hasText: 'Natasha Pereira' })
     ).toBeVisible();
 
     // Check copyright
     await expect(
-      footer.locator('text=© 2026 Natasha Pereira | CRP 01/22302')
+      footer.locator(
+        'text=© 2026 Natasha Pereira · CRP 01/22302 · Todos os direitos reservados'
+      )
     ).toBeVisible();
   });
 
@@ -39,7 +38,7 @@ test.describe('Footer Section', () => {
     // Check WhatsApp link
     const whatsappLink = footer
       .locator('a')
-      .filter({ hasText: 'WhatsApp: +55 61 98144-8553' });
+      .filter({ hasText: '(61) 98144-8553' });
     await expect(whatsappLink).toBeVisible();
     await expect(whatsappLink).toHaveAttribute(
       'href',
@@ -49,11 +48,11 @@ test.describe('Footer Section', () => {
     // Check Email link
     const emailLink = footer
       .locator('a')
-      .filter({ hasText: 'Email: natashaa.pereira@hotmail.com' });
+      .filter({ hasText: 'npclinicapsicologa@gmail.com' });
     await expect(emailLink).toBeVisible();
     await expect(emailLink).toHaveAttribute(
       'href',
-      'mailto:natashaa.pereira@hotmail.com'
+      'mailto:npclinicapsicologa@gmail.com'
     );
   });
 
@@ -66,11 +65,7 @@ test.describe('Footer Section', () => {
     const navLinks = footer.locator('nav a');
     await expect(navLinks).toHaveCount(4);
 
-    await expect(navLinks.filter({ hasText: 'Início' })).toHaveAttribute(
-      'href',
-      '#inicio'
-    );
-    await expect(navLinks.filter({ hasText: 'Quem sou' })).toHaveAttribute(
+    await expect(navLinks.filter({ hasText: 'Sobre' })).toHaveAttribute(
       'href',
       '#quem-sou'
     );
@@ -78,9 +73,13 @@ test.describe('Footer Section', () => {
       'href',
       '#servicos'
     );
-    await expect(navLinks.filter({ hasText: 'Contato' })).toHaveAttribute(
+    await expect(navLinks.filter({ hasText: 'Como Funciona' })).toHaveAttribute(
       'href',
-      '#contato'
+      '#como-funciona'
+    );
+    await expect(navLinks.filter({ hasText: 'Dúvidas' })).toHaveAttribute(
+      'href',
+      '#faq'
     );
   });
 
@@ -89,14 +88,12 @@ test.describe('Footer Section', () => {
 
     const footer = page.locator('footer#rodape');
 
-    // Check contact section
+    // Check contact info exists
     await expect(
-      footer.locator('h3').filter({ hasText: 'Contato' })
+      footer.locator('a').filter({ hasText: '(61) 98144-8553' })
     ).toBeVisible();
     await expect(
-      footer.locator(
-        'text=Endereço: SEPS 705/905 Bloco A - Centro Empresarial Santa Cruz -'
-      )
+      footer.locator('a').filter({ hasText: 'npclinicapsicologa@gmail.com' })
     ).toBeVisible();
   });
 });

@@ -163,14 +163,14 @@ describe('Header Accessibility - PR #14', () => {
       const logo = getByAltText('Natasha Pereira - Psicóloga');
       const logoLink = logo.closest('a');
 
-      logoLink.focus();
+      logoLink!.focus();
       expect(document.activeElement).toBe(logoLink);
     });
 
     it('should have focusable navigation links', () => {
       const { getAllByText } = render(<Header />);
-      const inicioLinks = getAllByText('Início');
-      const firstLink = inicioLinks[0];
+      const sobreLinks = getAllByText('Sobre');
+      const firstLink = sobreLinks[0];
 
       firstLink.focus();
       expect(document.activeElement).toBe(firstLink);
@@ -206,8 +206,8 @@ describe('Header Accessibility - PR #14', () => {
   describe('Color Contrast', () => {
     it('should use foreground color on nav links with sufficient contrast', () => {
       const { getAllByText } = render(<Header />);
-      const inicioLinks = getAllByText('Início');
-      expect(inicioLinks[0]).toHaveClass('text-[#662B2D]');
+      const sobreLinks = getAllByText('Sobre');
+      expect(sobreLinks[0]).toHaveClass('text-[#662B2D]');
     });
 
     it('should use white text on secondary background for CTA', () => {
@@ -240,10 +240,10 @@ describe('Header Accessibility - PR #14', () => {
     it('should have descriptive text for all links', () => {
       const { getAllByText } = render(<Header />);
 
-      expect(getAllByText('Início').length).toBeGreaterThan(0);
-      expect(getAllByText('Quem sou').length).toBeGreaterThan(0);
+      expect(getAllByText('Sobre').length).toBeGreaterThan(0);
       expect(getAllByText('Serviços').length).toBeGreaterThan(0);
       expect(getAllByText('Como Funciona').length).toBeGreaterThan(0);
+      expect(getAllByText('Dúvidas').length).toBeGreaterThan(0);
       expect(getAllByText('Agende sua sessão').length).toBeGreaterThan(0);
     });
 
@@ -286,10 +286,10 @@ describe('Header Accessibility - PR #14', () => {
 
     it('should have adequate padding on navigation links', () => {
       const { getAllByText } = render(<Header />);
-      const inicioLinks = getAllByText('Início');
+      const sobreLinks = getAllByText('Sobre');
 
       // Links should have appropriate spacing (gap-8 in nav)
-      expect(inicioLinks[0]).toBeInTheDocument();
+      expect(sobreLinks[0]).toBeInTheDocument();
     });
 
     it('should have adequate size on CTA button', () => {
@@ -308,7 +308,7 @@ describe('Header Accessibility - PR #14', () => {
       const logo = getByAltText('Natasha Pereira - Psicóloga');
       const logoLink = logo.closest('a');
 
-      logoLink.focus();
+      logoLink!.focus();
 
       // Should have focus-visible styles from global CSS
       expect(document.activeElement).toBe(logoLink);
@@ -316,8 +316,8 @@ describe('Header Accessibility - PR #14', () => {
 
     it('should have visible focus on navigation links', () => {
       const { getAllByText } = render(<Header />);
-      const inicioLinks = getAllByText('Início');
-      const firstLink = inicioLinks[0];
+      const sobreLinks = getAllByText('Sobre');
+      const firstLink = sobreLinks[0];
 
       firstLink.focus();
 
@@ -338,10 +338,10 @@ describe('Header Accessibility - PR #14', () => {
     it('should use Portuguese text for navigation', () => {
       const { getAllByText } = render(<Header />);
 
-      expect(getAllByText('Início')).toBeTruthy();
-      expect(getAllByText('Quem sou')).toBeTruthy();
+      expect(getAllByText('Sobre')).toBeTruthy();
       expect(getAllByText('Serviços')).toBeTruthy();
       expect(getAllByText('Como Funciona')).toBeTruthy();
+      expect(getAllByText('Dúvidas')).toBeTruthy();
     });
 
     it('should use Portuguese for menu labels', () => {

@@ -133,8 +133,8 @@ describe('Header Security Tests - PR #14', () => {
       render(<Header />);
 
       // Navigation text should be rendered as text, not HTML
-      const inicioText = screen.getByText('Início');
-      expect(inicioText.innerHTML).toBe('Início');
+      const sobreText = screen.getByText('Sobre');
+      expect(sobreText.innerHTML).toBe('Sobre');
     });
   });
 
@@ -142,8 +142,8 @@ describe('Header Security Tests - PR #14', () => {
     it('should use hash navigation for internal links', () => {
       render(<Header />);
 
-      const inicioLinks = screen.getAllByText('Início');
-      const link = inicioLinks[0].closest('a');
+      const sobreLinks = screen.getAllByText('Sobre');
+      const link = sobreLinks[0].closest('a');
       expect(link?.getAttribute('href')).toMatch(/^#/);
     });
 
@@ -171,10 +171,10 @@ describe('Header Security Tests - PR #14', () => {
     it('should use valid anchor IDs for navigation', () => {
       render(<Header />);
       const navLinks = [
-        { text: 'Início', id: 'inicio' },
-        { text: 'Quem sou', id: 'quem-sou' },
+        { text: 'Sobre', id: 'quem-sou' },
         { text: 'Serviços', id: 'servicos' },
         { text: 'Como Funciona', id: 'como-funciona' },
+        { text: 'Dúvidas', id: 'faq' },
       ];
 
       navLinks.forEach(({ text, id }) => {
@@ -192,7 +192,7 @@ describe('Header Security Tests - PR #14', () => {
       const { container } = render(<Header />);
 
       // Verify only expected content is rendered
-      expect(container.textContent).toContain('Início');
+      expect(container.textContent).toContain('Sobre');
       expect(container.textContent).toContain('Agende sua sessão');
     });
 
@@ -343,10 +343,10 @@ describe('Header Security Tests - PR #14', () => {
 
       // All links should have meaningful text
       const expectedLinks = [
-        'Início',
-        'Quem sou',
+        'Sobre',
         'Serviços',
         'Como Funciona',
+        'Dúvidas',
         'Agende sua sessão',
       ];
 

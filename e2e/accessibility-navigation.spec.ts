@@ -6,10 +6,10 @@ test('keyboard navigation works for all sections', async ({ page }) => {
   // Test anchor links from footer navigation
   const footer = page.locator('footer#rodape');
   const footerLinks = [
-    { href: '#inicio', text: 'Início' },
-    { href: '#quem-sou', text: 'Quem sou' },
+    { href: '#quem-sou', text: 'Sobre' },
     { href: '#servicos', text: 'Serviços' },
-    // Note: #contato was removed, replaced with WhatsApp CTA
+    { href: '#como-funciona', text: 'Como Funciona' },
+    { href: '#faq', text: 'Dúvidas' },
   ];
 
   for (const { href } of footerLinks) {

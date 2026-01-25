@@ -41,7 +41,7 @@ test.describe('CTA Integration', () => {
 
     const whatsappLink = page
       .locator('footer a')
-      .filter({ hasText: '+55 61 98144-8553' });
+      .filter({ hasText: '(61) 98144-8553' });
     await expect(whatsappLink).toBeVisible();
 
     await expect(whatsappLink).toHaveAttribute(
@@ -57,12 +57,12 @@ test.describe('CTA Integration', () => {
 
     const emailLink = page
       .locator('footer a')
-      .filter({ hasText: 'natashaa.pereira@hotmail.com' });
+      .filter({ hasText: 'npclinicapsicologa@gmail.com' });
     await expect(emailLink).toBeVisible();
 
     await expect(emailLink).toHaveAttribute(
       'href',
-      'mailto:natashaa.pereira@hotmail.com'
+      'mailto:npclinicapsicologa@gmail.com'
     );
   });
 

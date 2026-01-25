@@ -37,7 +37,7 @@ test.describe('Responsive Design', () => {
       // Check footer layout
       const footer = page.locator('footer#rodape');
       await expect(
-        footer.locator('h2').filter({ hasText: 'Natasha Pereira' })
+        footer.locator('a').filter({ hasText: 'Natasha Pereira' })
       ).toBeVisible();
     });
   }
