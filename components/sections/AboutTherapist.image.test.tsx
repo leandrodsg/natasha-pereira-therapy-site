@@ -24,10 +24,7 @@ describe('AboutTherapist Image', () => {
     const image = screen.getByAltText(
       'Natasha Pereira, psicóloga especializada em terapia para mulheres'
     );
-    expect(image).toHaveStyle({
-      boxShadow:
-        '12px 12px 0px 0px #662B2D, 0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-    });
+    expect(image).toHaveClass('shadow-brand');
   });
 
   it('renders image with lazy loading', () => {

@@ -4,7 +4,7 @@ import Services from './Services';
 describe('Services - Responsive', () => {
   it('applies responsive grid classes for bento box layout', () => {
     render(<Services />);
-    const grid = screen.getByTestId('services-grid');
+    const grid = screen.getByRole('region').querySelector('.grid');
     expect(grid).toHaveClass('grid');
     expect(grid).toHaveClass('grid-cols-1');
     expect(grid).toHaveClass('md:grid-cols-2');

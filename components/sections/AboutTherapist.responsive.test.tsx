@@ -58,10 +58,11 @@ describe('AboutTherapist Responsive', () => {
       'rounded-bl-[100px]',
       'object-cover'
     );
-    expect(image).toHaveStyle({
-      boxShadow:
-        '12px 12px 0px 0px #662B2D, 0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-    });
+
+    // Verifica se o container da imagem tem a classe shadow-brand
+    const imageContainer = image.closest('.shadow-brand');
+    expect(imageContainer).toBeInTheDocument();
+    expect(imageContainer).toHaveClass('shadow-brand');
   });
 
   it('renders content with responsive text sizes', () => {

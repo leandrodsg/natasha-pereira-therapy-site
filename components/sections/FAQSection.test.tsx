@@ -123,7 +123,9 @@ describe('FAQSection', () => {
 
   it('renders FAQ items in single column layout', () => {
     render(<FAQSection />);
-    const container = document.querySelector('[data-testid="faq-list"]');
+    const section = screen.getByRole('region');
+    const container = section.querySelector('.flex.flex-col');
+    expect(container).toBeInTheDocument();
     expect(container).toHaveClass('flex', 'flex-col');
   });
 
@@ -142,7 +144,9 @@ describe('FAQSection', () => {
 
   it('uses full width container like Services', () => {
     render(<FAQSection />);
-    const container = document.querySelector('[data-testid="faq-container"]');
+    const section = screen.getByRole('region');
+    const container = section.querySelector('.max-w-7xl.mx-auto');
+    expect(container).toBeInTheDocument();
     expect(container).toHaveClass('max-w-7xl', 'mx-auto');
   });
 

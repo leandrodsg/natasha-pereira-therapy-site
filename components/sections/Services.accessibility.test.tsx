@@ -43,7 +43,7 @@ describe('Services - Accessibility', () => {
   it('CTA button is keyboard accessible', () => {
     render(<Services />);
     const ctaButton = screen.getByRole('link', {
-      name: /agende sua primeira sessão/i,
+      name: /converse comigo sobre o serviço ideal/i,
     });
     expect(ctaButton).toBeInTheDocument();
   });

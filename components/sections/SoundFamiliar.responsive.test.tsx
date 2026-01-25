@@ -5,21 +5,28 @@ describe('SoundFamiliar - Responsive', () => {
   it('renders with split layout on desktop', () => {
     render(<SoundFamiliar />);
 
-    const contentContainer = screen.getByTestId('sound-familiar-content');
+    const section = screen.getByRole('region');
+    const contentContainer = section.querySelector('.lg\\:w-\\[62\\%\\]');
+    expect(contentContainer).toBeInTheDocument();
     expect(contentContainer).toHaveClass('lg:w-[62%]');
 
-    const imageContainer = screen.getByTestId('sound-familiar-image');
+    const imageContainer = section.querySelector('.lg\\:w-\\[38\\%\\]');
+    expect(imageContainer).toBeInTheDocument();
     expect(imageContainer).toHaveClass('lg:w-[38%]');
   });
 
   it('stacks vertically on mobile', () => {
     render(<SoundFamiliar />);
 
-    const contentContainer = screen.getByTestId('sound-familiar-content');
-    expect(contentContainer).toHaveClass('w-full');
+    const contentContainer = screen
+      .getByRole('region')
+      .querySelector('.w-full.lg\\:w-\\[62\\%\\]');
+    expect(contentContainer).toBeInTheDocument();
 
-    const imageContainer = screen.getByTestId('sound-familiar-image');
-    expect(imageContainer).toHaveClass('w-full');
+    const imageContainer = screen
+      .getByRole('region')
+      .querySelector('.w-full.lg\\:w-\\[38\\%\\]');
+    expect(imageContainer).toBeInTheDocument();
   });
 
   it('maintains list structure across viewports', () => {

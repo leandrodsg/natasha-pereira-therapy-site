@@ -1,90 +1,58 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import ServiceCard from './ServiceCard';
-import { User, MessageCircle, Heart, Brain } from 'lucide-react';
+import { SERVICES, SERVICES_CONTENT } from '@/lib/services-data';
 
-const services = [
-  {
-    title: 'Atendimento Individual',
-    description:
-      'Sessões individuais para trabalhar questões pessoais e redescobrir clareza.',
-    icon: <User />,
-  },
-  {
-    title: 'Roda de Conversa',
-    description: 'Apoio para conexões mais profundas e comunicação saudável.',
-    icon: <MessageCircle />,
-  },
-  {
-    title: 'Terapia de Grupo para Mulheres',
-    description:
-      'Um círculo seguro entre mulheres para fala, escuta e fortalecimento mútuo.',
-    icon: <Heart />,
-  },
-  {
-    title: 'EMDR',
-    description:
-      'Técnica para ressignificar traumas e desbloquear o que te impede de ser livre.',
-    icon: <Brain />,
-  },
-];
+const SECTION_STYLES = 'services min-h-screen flex items-center bg-[#f4eee5]';
+const CONTAINER_STYLES = 'w-full max-w-7xl mx-auto px-6 md:px-12 py-16';
+const HEADER_STYLES = 'text-center mb-10';
+const TITLE_STYLES =
+  'font-display text-4xl md:text-5xl font-light text-center text-[#662B2D] mb-4';
+const SUBTITLE_STYLES =
+  'text-muted-foreground max-w-3xl mx-auto leading-relaxed';
+const GRID_STYLES =
+  'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10 auto-rows-[160px]';
+const IMAGE_STYLES = 'rounded-2xl overflow-hidden shadow-sm';
+const CTA_STYLES =
+  'inline-block bg-[#662B2D] text-white px-8 py-3 rounded-full font-medium hover:bg-[#662B2D]/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#662B2D] transition-colors duration-200';
 
 export default function Services() {
+  const { heading, subtitle, cta, decorativeImages } = SERVICES_CONTENT;
+
   return (
     <section
       id="servicos"
-      className="services min-h-screen flex items-center bg-[#f4eee5]"
+      className={SECTION_STYLES}
       aria-labelledby="services-title"
     >
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 py-16">
-        {/* Header */}
-        <div className="text-center mb-10">
-          <h2
-            id="services-title"
-            className="section-title font-display text-4xl md:text-5xl font-light text-center text-[#662B2D] mb-4"
-          >
-            Serviços pensados para <span className="italic">acolher</span> sua
-            jornada
+      <div className={CONTAINER_STYLES}>
+        <header className={HEADER_STYLES}>
+          <h2 id="services-title" className={TITLE_STYLES}>
+            {heading.text} <span className="italic">{heading.emphasis}</span>{' '}
+            {heading.continuation}
           </h2>
-          <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Atendimento online focado em você: suas necessidades, seu tempo, sua
-            forma de ser.
-          </p>
-        </div>
+          <p className={SUBTITLE_STYLES}>{subtitle}</p>
+        </header>
 
-        {/* Bento Box Grid */}
-        <div
-          data-testid="services-grid"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10 auto-rows-[160px]"
-        >
-          {/* Decorative Image 1 - Top Left */}
-          <div className="rounded-2xl overflow-hidden shadow-sm">
+        <div className={GRID_STYLES}>
+          <div className={IMAGE_STYLES}>
             <Image
-              src="/images/primeira-box.png"
-              alt="Blocos de madeira com emoções"
+              src={decorativeImages[0].src}
+              alt={decorativeImages[0].alt}
               width={400}
               height={160}
               className="w-full h-full object-cover"
             />
           </div>
 
-          {/* Service Card 1 */}
-          <ServiceCard {...services[0]} />
+          {SERVICES.map((service) => (
+            <ServiceCard key={service.id} {...service} />
+          ))}
 
-          {/* Service Card 2 */}
-          <ServiceCard {...services[1]} />
-
-          {/* Service Card 3 */}
-          <ServiceCard {...services[2]} />
-
-          {/* Service Card 4 - EMDR */}
-          <ServiceCard {...services[3]} />
-
-          {/* Decorative Image 2 - Bottom Right */}
-          <div className="rounded-2xl overflow-hidden shadow-sm">
+          <div className={IMAGE_STYLES}>
             <Image
-              src="/images/segunda-box.jpeg"
-              alt="Pessoa contemplando natureza"
+              src={decorativeImages[1].src}
+              alt={decorativeImages[1].alt}
               width={400}
               height={160}
               className="w-full h-full object-cover"
@@ -92,13 +60,9 @@ export default function Services() {
           </div>
         </div>
 
-        {/* CTA Button */}
         <div className="text-center">
-          <Link
-            href="#contato"
-            className="inline-block bg-[#662B2D] text-white px-8 py-3 rounded-full font-medium hover:bg-[#662B2D]/90 transition-colors duration-200"
-          >
-            Agende sua primeira sessão
+          <Link href="#contato" className={CTA_STYLES}>
+            {cta}
           </Link>
         </div>
       </div>

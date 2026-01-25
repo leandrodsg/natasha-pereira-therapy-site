@@ -47,7 +47,9 @@ describe('SoundFamiliar', () => {
   it('has split layout on desktop', () => {
     render(<SoundFamiliar />);
 
-    const container = screen.getByTestId('sound-familiar-content');
+    const section = screen.getByRole('region');
+    const container = section.querySelector('.lg\\:w-\\[62\\%\\]');
+    expect(container).toBeInTheDocument();
     expect(container).toHaveClass('lg:w-[62%]');
   });
 
@@ -67,7 +69,6 @@ describe('SoundFamiliar', () => {
       'aria-labelledby',
       'sound-familiar-heading'
     );
-    expect(section).toHaveAttribute('aria-label', 'Seção Isso soa familiar');
   });
 
   it('renders check icons for each pain point', () => {

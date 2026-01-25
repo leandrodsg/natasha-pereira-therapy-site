@@ -72,7 +72,7 @@ describe('Services', () => {
   it('renders CTA button', () => {
     render(<Services />);
     const ctaButton = screen.getByRole('link', {
-      name: /agende sua primeira sessão/i,
+      name: /converse comigo sobre o serviço ideal/i,
     });
     expect(ctaButton).toBeInTheDocument();
   });
@@ -110,7 +110,9 @@ describe('Services', () => {
 
   it('renders grid layout for bento box', () => {
     render(<Services />);
-    const grid = screen.getByTestId('services-grid');
+    const section = screen.getByRole('region');
+    const grid = section.querySelector('.grid');
+    expect(grid).toBeInTheDocument();
     expect(grid).toHaveClass('grid');
   });
 });
