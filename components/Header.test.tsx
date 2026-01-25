@@ -341,6 +341,116 @@ describe('Header Component - PR #14', () => {
     });
   });
 
+  describe('Mobile Menu - Click Outside & Keyboard', () => {
+    it('should close mobile menu when clicking outside', async () => {
+      const { container } = render(<Header />);
+      const menuButton = screen.getByLabelText('Abrir menu');
+
+      // Open menu
+      await act(async () => {
+        fireEvent.click(menuButton);
+      });
+
+      await waitFor(() => {
+        expect(screen.getByLabelText('Menu mobile')).toBeInTheDocument();
+      });
+
+      // Click outside the menu
+      await act(async () => {
+        fireEvent.mouseDown(container);
+      });
+
+      await waitFor(() => {
+        const mobileNavs = screen.queryAllByLabelText('Menu mobile');
+        expect(mobileNavs.length).toBe(0);
+      });
+    });
+
+    it('should close mobile menu when pressing Escape key', async () => {
+      render(<Header />);
+      const menuButton = screen.getByLabelText('Abrir menu');
+
+      // Open menu
+      await act(async () => {
+        fireEvent.click(menuButton);
+      });
+
+      await waitFor(() => {
+        expect(screen.getByLabelText('Menu mobile')).toBeInTheDocument();
+      });
+
+      // Press Escape key
+      await act(async () => {
+        fireEvent.keyDown(document, { key: 'Escape' });
+      });
+
+      await waitFor(() => {
+        const mobileNavs = screen.queryAllByLabelText('Menu mobile');
+        expect(mobileNavs.length).toBe(0);
+      });
+    });
+
+    it('should not close mobile menu when pressing other keys', async () => {
+      render(<Header />);
+      const menuButton = screen.getByLabelText('Abrir menu');
+
+      // Open menu
+      await act(async () => {
+        fireEvent.click(menuButton);
+      });
+
+      await waitFor(() => {
+        expect(screen.getByLabelText('Menu mobile')).toBeInTheDocument();
+      });
+
+      // Press Enter key (not Escape)
+      await act(async () => {
+        fireEvent.keyDown(document, { key: 'Enter' });
+      });
+
+      // Menu should still be open
+      await waitFor(() => {
+        expect(screen.getByLabelText('Menu mobile')).toBeInTheDocument();
+      });
+
+      // Press Tab key
+      await act(async () => {
+        fireEvent.keyDown(document, { key: 'Tab' });
+      });
+
+      // Menu should still be open
+      await waitFor(() => {
+        expect(screen.getByLabelText('Menu mobile')).toBeInTheDocument();
+      });
+    });
+
+    it('should not close menu when clicking inside the menu', async () => {
+      render(<Header />);
+      const menuButton = screen.getByLabelText('Abrir menu');
+
+      // Open menu
+      await act(async () => {
+        fireEvent.click(menuButton);
+      });
+
+      let mobileNav: HTMLElement;
+      await waitFor(() => {
+        mobileNav = screen.getByLabelText('Menu mobile');
+        expect(mobileNav).toBeInTheDocument();
+      });
+
+      // Click inside the menu
+      await act(async () => {
+        fireEvent.mouseDown(mobileNav!);
+      });
+
+      // Menu should still be open
+      await waitFor(() => {
+        expect(screen.getByLabelText('Menu mobile')).toBeInTheDocument();
+      });
+    });
+  });
+
   describe('Environment Integration', () => {
     it('should use WhatsApp number from environment', () => {
       render(<Header />);
@@ -352,6 +462,121 @@ describe('Header Component - PR #14', () => {
         'href',
         'https://wa.me/5511999999999'
       );
+    });
+  });
+
+  describe('Event Listeners Cleanup', () => {
+    it('should not add event listeners when menu is closed', async () => {
+      const addEventListenerSpy = jest.spyOn(document, 'addEventListener');
+      const removeEventListenerSpy = jest.spyOn(
+        document,
+        'removeEventListener'
+      );
+
+      const { unmount } = render(<Header />);
+
+      // Menu is closed by default, so no listeners should be added
+      expect(addEventListenerSpy).not.toHaveBeenCalledWith(
+        'mousedown',
+        expect.any(Function)
+      );
+      expect(addEventListenerSpy).not.toHaveBeenCalledWith(
+        'keydown',
+        expect.any(Function)
+      );
+
+      // Cleanup component
+      unmount();
+
+      // Cleanup should still be called
+      expect(removeEventListenerSpy).toHaveBeenCalled();
+
+      addEventListenerSpy.mockRestore();
+      removeEventListenerSpy.mockRestore();
+    });
+
+    it('should properly cleanup event listeners on unmount', async () => {
+      const removeEventListenerSpy = jest.spyOn(
+        document,
+        'removeEventListener'
+      );
+
+      const { unmount } = render(<Header />);
+      const menuButton = screen.getByLabelText('Abrir menu');
+
+      // Open menu to add listeners
+      await act(async () => {
+        fireEvent.click(menuButton);
+      });
+
+      await waitFor(() => {
+        expect(screen.getByLabelText('Menu mobile')).toBeInTheDocument();
+      });
+
+      // Unmount component
+      unmount();
+
+      // Should cleanup listeners
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        'mousedown',
+        expect.any(Function)
+      );
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        'keydown',
+        expect.any(Function)
+      );
+
+      removeEventListenerSpy.mockRestore();
+    });
+
+    it('should handle menu state changes between open and closed', async () => {
+      const addEventListenerSpy = jest.spyOn(document, 'addEventListener');
+      const removeEventListenerSpy = jest.spyOn(
+        document,
+        'removeEventListener'
+      );
+
+      render(<Header />);
+      const menuButton = screen.getByLabelText('Abrir menu');
+
+      // Initially closed - no listeners added
+      expect(addEventListenerSpy).not.toHaveBeenCalled();
+
+      // Open menu - listeners should be added
+      await act(async () => {
+        fireEvent.click(menuButton);
+      });
+
+      await waitFor(() => {
+        expect(addEventListenerSpy).toHaveBeenCalledWith(
+          'mousedown',
+          expect.any(Function)
+        );
+        expect(addEventListenerSpy).toHaveBeenCalledWith(
+          'keydown',
+          expect.any(Function)
+        );
+      });
+
+      // Close menu again - listeners should be cleaned up
+      await act(async () => {
+        const closeButton = screen.getByLabelText('Fechar menu');
+        fireEvent.click(closeButton);
+      });
+
+      await waitFor(() => {
+        expect(removeEventListenerSpy).toHaveBeenCalledWith(
+          'mousedown',
+          expect.any(Function)
+        );
+        expect(removeEventListenerSpy).toHaveBeenCalledWith(
+          'keydown',
+          expect.any(Function)
+        );
+      });
+
+      addEventListenerSpy.mockRestore();
+      removeEventListenerSpy.mockRestore();
     });
   });
 });
