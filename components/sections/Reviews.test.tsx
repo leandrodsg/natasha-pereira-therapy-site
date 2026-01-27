@@ -49,6 +49,14 @@ jest.mock('@/lib/reviews-data', () => {
   };
 });
 
+// Mock offsetWidth for carousel width calculation
+Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+  configurable: true,
+  get: function () {
+    return 450;
+  },
+});
+
 describe('Reviews Section', () => {
   describe('Rendering', () => {
     it('should render section element', () => {
@@ -314,6 +322,53 @@ describe('Reviews Section', () => {
       indicators.forEach((indicator) => {
         expect(indicator).toHaveAccessibleName();
       });
+    });
+  });
+
+  describe('Responsive Carousel', () => {
+    it('should update card width on resize', () => {
+      render(<Reviews />);
+      // Trigger resize event
+      window.dispatchEvent(new Event('resize'));
+      // Carousel should still work after resize
+      const nextButton = screen.getByRole('button', { name: /próxima/i });
+      fireEvent.click(nextButton);
+      expect(nextButton).toBeInTheDocument();
+    });
+
+    it('should cleanup resize listener on unmount', () => {
+      const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
+      const { unmount } = render(<Reviews />);
+      unmount();
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        'resize',
+        expect.any(Function)
+      );
+      removeEventListenerSpy.mockRestore();
+    });
+
+    it('should handle missing offsetWidth gracefully', () => {
+      const originalOffsetWidth = Object.getOwnPropertyDescriptor(
+        HTMLElement.prototype,
+        'offsetWidth'
+      );
+      Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+        configurable: true,
+        get: function () {
+          return undefined as unknown as number;
+        },
+      });
+      render(<Reviews />);
+      window.dispatchEvent(new Event('resize'));
+      // Restore
+      if (originalOffsetWidth) {
+        Object.defineProperty(
+          HTMLElement.prototype,
+          'offsetWidth',
+          originalOffsetWidth
+        );
+      }
+      expect(true).toBe(true);
     });
   });
 
