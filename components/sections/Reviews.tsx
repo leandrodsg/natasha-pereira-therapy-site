@@ -152,7 +152,7 @@ export default function Reviews() {
                 <div
                   className={SECTION_STYLES.carouselInner}
                   style={{
-                    transform: `translateX(calc(-${currentIndex * 450}px - ${currentIndex * 16}px))`,
+                    transform: `translateX(-${currentIndex * (450 + 16)}px)`,
                   }}
                 >
                   {reviewsData.map((review) => (
@@ -163,6 +163,7 @@ export default function Reviews() {
 
               {/* Navigation Buttons */}
               <button
+                type="button"
                 onClick={prevReview}
                 className={`${SECTION_STYLES.navButton} ${SECTION_STYLES.prevButton}`}
                 aria-label="Avaliações anteriores"
@@ -170,6 +171,7 @@ export default function Reviews() {
                 <ChevronLeft className="w-5 h-5 text-gray-600" />
               </button>
               <button
+                type="button"
                 onClick={nextReview}
                 className={`${SECTION_STYLES.navButton} ${SECTION_STYLES.nextButton}`}
                 aria-label="Próximas avaliações"
@@ -183,6 +185,7 @@ export default function Reviews() {
               {[...Array(Math.ceil(totalSlides / CARDS_PER_VIEW))].map(
                 (_, index) => (
                   <button
+                    type="button"
                     key={index}
                     onClick={() => setCurrentIndex(index * CARDS_PER_VIEW)}
                     className={SECTION_STYLES.indicator}
