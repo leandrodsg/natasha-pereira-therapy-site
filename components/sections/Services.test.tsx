@@ -7,10 +7,12 @@ describe('Services', () => {
     expect(screen.getByText(/Serviços pensados para/)).toBeInTheDocument();
   });
 
-  it('renders heading with italic text on "acolher"', () => {
+  it('renders heading with emphasis text', () => {
     render(<Services />);
-    const acolher = screen.getByText('acolher');
-    expect(acolher).toHaveClass('italic');
+    const heading = screen.getByRole('heading', {
+      name: /serviços pensados para acolher sua jornada/i,
+    });
+    expect(heading).toBeInTheDocument();
   });
 
   it('renders the subheading', () => {

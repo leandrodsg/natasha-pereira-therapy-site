@@ -2,8 +2,6 @@
 
 > Professional landing page for a psychologist specialized in Cognitive-Behavioral Therapy for women. Built with Next.js 16, React 19, and TypeScript, focused on performance, accessibility, and user experience.
 
-🌐 **Live Site:** [natasha-pereira-therapy-site.vercel.app](https://natasha-pereira-therapy-site.vercel.app/)
-
 [![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-blue)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
@@ -12,15 +10,13 @@
 [![Playwright](https://img.shields.io/badge/Playwright-1.49-2EAD33)](https://playwright.dev/)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-```bash
-npm install && npm run dev
-```
-
 ---
 
 ## About the Project
 
 Modern landing page built with focus on three fundamental pillars: **accessibility**, **performance**, and **code quality**. The project showcases the psychology services of Dr. Natasha Pereira, CRP 01/22302, with emphasis on online therapy for women.
+
+**[View Live Site](https://natasha-pereira-therapy-site.vercel.app/)**
 
 ### Technical Highlights
 
@@ -34,7 +30,7 @@ Modern landing page built with focus on three fundamental pillars: **accessibili
 **Quality**
 
 - 512 unit tests with 100% coverage
-- 340 E2E tests across 5 different browsers
+- 335 E2E tests passing across 5 browsers
 - Rigorous TDD throughout development
 - Zero accessibility violations (axe-core)
 
@@ -51,10 +47,8 @@ Modern landing page built with focus on three fundamental pillars: **accessibili
 
 ### Prerequisites
 
-```bash
-Node.js 18+
-npm or yarn
-```
+- Node.js 18+
+- npm or yarn
 
 ### Installation and Setup
 
@@ -107,15 +101,14 @@ npm start        # Start production server
 
 ### Quality & Testing
 
-| Tool | Function |
-| ---- | -------- |
-
-| Jest | Unit testing framework |
-| React Testing Library | Component testing |
-| Playwright | E2E testing across multiple browsers |
-| axe-core | Accessibility auditing |
-| ESLint | Code linting |
-| Prettier | Code formatting |
+| Tool                  | Function                             |
+| --------------------- | ------------------------------------ |
+| Jest                  | Unit testing framework               |
+| React Testing Library | Component testing                    |
+| Playwright            | E2E testing across multiple browsers |
+| axe-core              | Accessibility auditing               |
+| ESLint                | Code linting                         |
+| Prettier              | Code formatting                      |
 
 ---
 
@@ -125,7 +118,7 @@ npm start        # Start production server
 
 Consistent and scalable design system based on:
 
-- Professional color palette (beige #f4eee5, marsala #662B2D)
+- Professional color palette (beige #f4eee5, marsala #662B2D, olive #4F5543)
 - Hierarchical typography with Google Fonts (Sorts Mill Goudy, Lora, Inter)
 - Reusable components (Button, Card, Input, etc.)
 - Responsive grid (mobile-first)
@@ -170,15 +163,16 @@ CLS (Cumulative Layout Shift):    < 0.1
 - Image lazy loading
 - Automatic bundle splitting
 - Server Components when possible
-- Strategic caching
+- Strategic caching with proper Cache-Control headers
+- Security headers (CSP, HSTS, X-Frame-Options, etc.)
 
 ### Test Coverage
 
 Quality assurance through comprehensive testing:
 
 ```
-Unit Tests:       512 tests • 100% coverage
-E2E Tests:        340 tests • 5 browsers
+Unit Tests:       512 tests | 100% coverage
+E2E Tests:        335 tests | 5 browsers
 Accessibility:    0 violations (axe-core)
 ```
 
@@ -199,46 +193,54 @@ frontend/
 ├── app/
 │   ├── globals.css              # Global styles and Tailwind
 │   ├── layout.tsx               # Root layout with fonts
-│   └── page.tsx                 # Main page
+│   └── page.tsx                 # Main page with lazy loading
 │
 ├── components/
-│   ├── Header.tsx               # Main navigation
-│   ├── SkipLink.tsx            # Accessibility skip link
-│   ├── layout-wrapper.tsx       # Main container
+│   ├── Header.tsx               # Main navigation with scroll behavior
+│   ├── SkipLink.tsx             # Accessibility skip link
+│   ├── WhatsAppButton.tsx       # Floating WhatsApp CTA
 │   │
-│   ├── sections/               # Landing page sections
-│   │   ├── Hero.tsx           # Hero section with CTA
-│   │   ├── SoundFamiliar.tsx  # Problem list
-│   │   ├── AboutTherapist.tsx # About the psychologist
-│   │   ├── Credentials.tsx    # Credentials and education
-│   │   ├── Services.tsx       # Services offered
-│   │   ├── HowItWorks.tsx     # How it works
-│   │   ├── FAQSection.tsx     # Frequently asked questions
-│   │   ├── CTASection.tsx     # Call-to-action
-│   │   └── Footer.tsx         # Footer
+│   ├── sections/                # Landing page sections
+│   │   ├── Hero.tsx             # Hero section with CTA
+│   │   ├── SoundFamiliar.tsx    # Problem identification
+│   │   ├── AboutTherapist.tsx   # About the psychologist
+│   │   ├── Credentials.tsx      # Credentials and education
+│   │   ├── Services.tsx         # Services offered
+│   │   ├── HowItWorks.tsx       # How therapy works
+│   │   ├── FAQSection.tsx       # Frequently asked questions
+│   │   ├── Reviews.tsx          # Doctoralia reviews carousel
+│   │   ├── InstagramFeed.tsx    # Instagram feed widget
+│   │   └── Footer.tsx           # Footer with links
 │   │
-│   └── ui/                    # Base components (shadcn/ui)
+│   ├── icons/                   # SVG icon components
+│   │   └── SocialIcons.tsx      # WhatsApp, Instagram icons
+│   │
+│   └── ui/                      # Base components (shadcn/ui)
 │       ├── button.tsx
 │       ├── card.tsx
 │       └── input.tsx
 │
 ├── lib/
-│   ├── env.ts                 # Environment variable validation
-│   ├── utils.ts               # Utility functions
-│   ├── security.ts            # Security helpers
-│   ├── whatsapp.ts            # WhatsApp link generation
-│   ├── *-data.ts             # Section data
-│   └── *-schema.ts           # JSON-LD schemas for SEO
+│   ├── env.ts                   # Environment variable validation (Zod)
+│   ├── utils.ts                 # Utility functions
+│   ├── whatsapp.ts              # WhatsApp link generation
+│   ├── reviews-data.ts          # Doctoralia reviews data
+│   ├── *-data.ts                # Section content data
+│   └── *-schema.ts              # JSON-LD schemas for SEO
 │
-├── e2e/                       # E2E tests (Playwright)
-│   ├── accessibility.spec.ts
-│   ├── full-page.spec.ts
+├── e2e/                         # E2E tests (Playwright)
+│   ├── accessibility-navigation.spec.ts
 │   ├── navigation.spec.ts
-│   ├── responsive.spec.ts
-│   └── ...
+│   ├── faq.spec.ts
+│   ├── footer.spec.ts
+│   ├── fonts.spec.ts
+│   ├── credentials.spec.ts
+│   └── security-headers.spec.ts
 │
 ├── public/
-│   └── images/               # Static images
+│   └── images/                  # Static images
+│       ├── instagram/           # Instagram feed images
+│       └── ...
 ```
 
 ---
@@ -283,7 +285,7 @@ All files                   |     100 |      100 |     100 |     100 |
 
 ### E2E Results
 
-- 340 tests passing
+- 335 tests passing
 - 5 browsers tested (Chromium, Firefox, WebKit, Mobile Chrome, Mobile Safari)
 - 0 accessibility violations
 - Average time: ~3 minutes
@@ -391,7 +393,7 @@ This project strictly follows the TDD (Test-Driven Development) cycle:
 Lines of Code:     ~8,000
 React Components:  35+
 Unit Tests:        512 (100% coverage)
-E2E Tests:         340 (5 browsers)
+E2E Tests:         335 (5 browsers)
 ```
 
 ### Quality

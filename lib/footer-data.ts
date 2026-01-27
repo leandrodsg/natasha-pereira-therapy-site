@@ -34,5 +34,6 @@ export const FOOTER_NAV_LINKS: readonly NavLink[] = [
   { label: 'Sobre', href: '#quem-sou' },
   { label: 'Serviços', href: '#servicos' },
   { label: 'Como Funciona', href: '#como-funciona' },
+  { label: 'Opiniões', href: '#avaliacoes' },
   { label: 'Dúvidas', href: '#faq' },
 ] as const;

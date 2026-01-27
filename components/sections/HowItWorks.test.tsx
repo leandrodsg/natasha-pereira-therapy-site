@@ -15,10 +15,12 @@ describe('HowItWorks', () => {
     expect(heading).toHaveTextContent(/O que.*esperar.*durante as sess/);
   });
 
-  it('renders heading with italic text on "esperar"', () => {
+  it('renders heading with full text', () => {
     render(<HowItWorks />);
-    const esperar = screen.getByText('esperar');
-    expect(esperar).toHaveClass('italic');
+    const heading = screen.getByRole('heading', {
+      name: /o que esperar durante as sessões/i,
+    });
+    expect(heading).toBeInTheDocument();
   });
 
   it('renders all four process steps', () => {

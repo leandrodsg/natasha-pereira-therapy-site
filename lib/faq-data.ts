@@ -19,15 +19,21 @@ export const faqItems: FAQItem[] = [
   },
   {
     id: 'publico-atendimento',
-    question: 'Você atende apenas mulheres?',
+    question: 'Qual é o público-alvo dos atendimentos?',
     answer:
-      'O foco do meu trabalho é o atendimento de mulheres, especialmente 40+, mas outros públicos também são acolhidos quando fazem sentido dentro da proposta clínica.',
+      'Meu foco principal é o atendimento de mulheres, especialmente 40+, mas também acolho outros públicos quando fazem sentido dentro da proposta clínica.',
+  },
+  {
+    id: 'atendimento-exterior',
+    question: 'Você atende pacientes fora do Brasil?',
+    answer:
+      'Com certeza! Esse é um dos benefícios da terapia online: não existe limitação geográfica. Atendo brasileiras no mundo todo e tenho flexibilidade de horários para diferentes fusos.',
   },
   {
     id: 'gestalt-terapia',
     question: 'O que é Gestalt-terapia?',
     answer:
-      'A Gestalt-terapia é uma abordagem que te ajuda a compreender como você vive suas experiências no momento presente, suas emoções, pensamentos e sensações corporais. É um processo que promove consciência, responsabilidade e presença — ajudando você a se perceber, se posicionar melhor, criar limites saudáveis e romper padrões que te impedem de viver de forma mais leve e autêntica.',
+      'A Gestalt-terapia é uma abordagem que te ajuda a compreender como você vive suas experiências no momento presente, suas emoções, pensamentos e sensações corporais. É um processo que promove consciência, responsabilidade e presença, te ajudando a se perceber, se posicionar melhor, criar limites saudáveis e romper padrões que te impedem de viver de forma mais leve e autêntica.',
   },
   {
     id: 'quando-buscar-terapia',

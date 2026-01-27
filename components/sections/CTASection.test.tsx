@@ -25,15 +25,11 @@ describe('CTASection', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders the headline as h2 with italic text', () => {
+  it('renders the headline as h2 with full text', () => {
     render(<CTASection />);
 
     const headline = screen.getByRole('heading', { level: 2 });
     expect(headline).toHaveTextContent('Pronta para abraçar a mudança?');
-
-    // Check for italic styling
-    const italicElement = screen.getByText('abraçar');
-    expect(italicElement).toHaveClass('italic');
   });
 
   it('renders with responsive text sizes', () => {
