@@ -45,8 +45,7 @@ export function CTASection() {
 
       <div className={CONTENT_STYLES}>
         <h2 id="cta-heading" className={HEADING_STYLES}>
-          {heading.text} <span className="italic">{heading.emphasis}</span>{' '}
-          {heading.continuation}
+          {heading.text} {heading.emphasis} {heading.continuation}
         </h2>
         <p id="cta-description" className={DESCRIPTION_STYLES}>
           {description}

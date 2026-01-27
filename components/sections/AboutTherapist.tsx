@@ -31,8 +31,7 @@ export function AboutTherapist() {
               id="about-heading"
               className="font-display text-4xl md:text-5xl text-[#662B2D] font-light mb-8"
             >
-              {heading.text} <span className="italic">{heading.emphasis}</span>{' '}
-              {heading.continuation}
+              {heading.text} {heading.emphasis} {heading.continuation}
             </h2>
             <div className="space-y-6 text-[#662B2D]/80">
               {paragraphs.map((paragraph, index) => (

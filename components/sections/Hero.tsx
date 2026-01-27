@@ -37,8 +37,7 @@ export function Hero() {
         <div className={TEXT_CONTAINER_STYLES}>
           <span className={SUBTITLE_STYLES}>{subtitle}</span>
           <h1 id="hero-headline" className={HEADING_STYLES}>
-            {heading.text} <span className="italic">{heading.emphasis}</span>{' '}
-            {heading.continuation}
+            {heading.text} {heading.emphasis} {heading.continuation}
           </h1>
           <p id="hero-description" className={DESCRIPTION_STYLES}>
             {description}

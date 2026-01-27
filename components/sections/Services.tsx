@@ -28,8 +28,7 @@ export default function Services() {
       <div className={CONTAINER_STYLES}>
         <header className={HEADER_STYLES}>
           <h2 id="services-title" className={TITLE_STYLES}>
-            {heading.text} <span className="italic">{heading.emphasis}</span>{' '}
-            {heading.continuation}
+            {heading.text} {heading.emphasis} {heading.continuation}
           </h2>
           <p className={SUBTITLE_STYLES}>{subtitle}</p>
         </header>
