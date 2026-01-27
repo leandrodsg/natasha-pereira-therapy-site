@@ -14,13 +14,13 @@ const SECTION_STYLES = {
   grid: 'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start justify-center max-w-[950px] mx-auto',
   imageColumn: 'flex justify-center',
   imageWrapper:
-    'bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-full max-w-[450px]',
+    'bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-full max-w-[450px] lg:h-[240px]',
   carouselColumn: 'relative w-full',
   carouselWrapper: 'relative w-full max-w-[450px] mx-auto',
   carouselContainer: 'relative overflow-hidden rounded-xl',
   carouselInner: 'flex transition-transform duration-500 ease-in-out',
   reviewCard:
-    'flex-shrink-0 w-full bg-white rounded-xl p-4 md:p-5 shadow-md border border-gray-100 min-h-[280px] md:min-h-[240px] flex flex-col box-border',
+    'flex-shrink-0 w-full bg-white rounded-xl p-4 md:p-5 shadow-md border border-gray-100 h-[280px] md:h-[240px] flex flex-col box-border',
   reviewHeader: 'flex items-start gap-4 mb-4',
   avatar:
     'w-12 h-12 rounded-full bg-teal-700 flex items-center justify-center text-white font-semibold text-lg flex-shrink-0',
@@ -31,11 +31,12 @@ const SECTION_STYLES = {
   verifiedBadge:
     'text-[10px] uppercase bg-gray-100 text-gray-600 px-2 py-1 rounded mt-1 inline-block font-medium tracking-wide',
   rating: 'flex items-center gap-0.5 flex-shrink-0',
-  reviewComment: 'text-gray-700 leading-relaxed text-[15px] flex-1',
+  reviewComment:
+    'text-gray-700 leading-relaxed text-[15px] max-h-[120px] overflow-hidden',
   reviewFooter: 'mt-4 pt-4 border-t border-gray-100',
   reviewDate: 'text-xs text-gray-500',
   navButton:
-    'absolute top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all hover:scale-110 z-10',
+    'hidden md:flex absolute top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all hover:scale-110 z-10',
   prevButton: 'left-2 md:-left-14',
   nextButton: 'right-2 md:-right-14',
   moreLink: 'text-center mt-4 max-w-3xl mx-auto',
@@ -152,7 +153,7 @@ export default function Reviews() {
                 alt="Badge Doctoralia - Natasha Pereira"
                 width={450}
                 height={240}
-                className="w-full h-auto"
+                className="w-full h-full object-cover"
                 priority
               />
             </a>

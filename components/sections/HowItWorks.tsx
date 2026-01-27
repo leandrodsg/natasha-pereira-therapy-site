@@ -1,4 +1,4 @@
-import { MessageSquareHeart, Heart, HandHeart, Venus } from 'lucide-react';
+import { Pencil, ShieldCheck, HandHeart, Heart } from 'lucide-react';
 
 interface ProcessStep {
   number: number;
@@ -13,13 +13,13 @@ const processSteps: ProcessStep[] = [
     title: 'Primeira Sessão',
     description:
       'Conversamos sobre seus objetivos e como posso acompanhar sua jornada.',
-    icon: MessageSquareHeart,
+    icon: Pencil,
   },
   {
     number: 2,
     title: 'Ambiente Seguro',
     description: 'Espaço livre de julgamentos com sigilo e acolhimento.',
-    icon: Heart,
+    icon: ShieldCheck,
   },
   {
     number: 3,
@@ -31,7 +31,7 @@ const processSteps: ProcessStep[] = [
     number: 4,
     title: 'Conexão Aberta',
     description: 'Participação ativa com espaço para dúvidas e descobertas.',
-    icon: Venus,
+    icon: Heart,
   },
 ];
 

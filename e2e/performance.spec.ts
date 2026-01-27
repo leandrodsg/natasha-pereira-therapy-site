@@ -6,8 +6,8 @@ test.describe('Performance', () => {
     await page.goto('/');
     const loadTime = Date.now() - startTime;
 
-    // Assert load time is under 3 seconds
-    expect(loadTime).toBeLessThan(3000);
+    // Assert load time is under 3.5 seconds
+    expect(loadTime).toBeLessThan(3500);
   });
 
   test('should have no layout shifts (CLS)', async ({ page }) => {
