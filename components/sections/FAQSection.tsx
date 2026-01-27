@@ -1,4 +1,3 @@
-import Script from 'next/script';
 import { faqItems, faqSectionContent } from '@/lib/faq-data';
 import { getFAQSchemaScript } from '@/lib/faq-schema';
 import { getWhatsAppLink } from '@/lib/whatsapp';
@@ -31,8 +30,7 @@ export function FAQSection() {
       role="region"
       aria-labelledby="faq-heading"
     >
-      <Script
-        id="faq-schema"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: schemaData }}
       />

@@ -19,12 +19,13 @@ const NAV_LINKS = [
   { label: 'Sobre', href: '#quem-sou' },
   { label: 'Serviços', href: '#servicos' },
   { label: 'Como Funciona', href: '#como-funciona' },
+  { label: 'Opiniões', href: '#avaliacoes' },
   { label: 'Dúvidas', href: '#faq' },
 ] as const;
 
 const HEADER_STYLES = {
   base: 'w-full py-3 px-6 md:px-12 flex justify-between items-center fixed top-0 z-50 bg-[#f4eee5]/95 backdrop-blur-sm border-b border-transparent transition-transform duration-300',
-  link: 'text-xs font-semibold uppercase tracking-widest text-[#662B2D] hover:text-[#662B2D]/70 transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#662B2D] rounded',
+  link: 'text-xs font-semibold uppercase tracking-widest text-[#662B2D] hover:text-[#662B2D]/70 transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#662B2D] rounded whitespace-nowrap',
   button:
     'bg-[#662B2D] text-white text-xs font-bold uppercase px-6 py-3 rounded hover:bg-[#662B2D]/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#662B2D]',
 } as const;

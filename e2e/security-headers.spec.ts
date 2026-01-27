@@ -2,6 +2,11 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Security Headers', () => {
   test('should have security headers in production build', async ({ page }) => {
+    // Skip this test in development mode as headers are only applied in production
+    if (process.env.NODE_ENV !== 'production') {
+      test.skip();
+      return;
+    }
     // Navigate to the page first to ensure server is running
     await page.goto('/');
 

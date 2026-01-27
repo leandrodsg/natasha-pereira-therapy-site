@@ -51,7 +51,7 @@ export default function HowItWorks() {
           id="how-it-works-heading"
           className="font-display text-4xl md:text-5xl text-white font-light max-w-3xl mx-auto leading-tight"
         >
-          O que <span className="italic">esperar</span> durante as sessões
+          O que esperar durante as sessões
         </h2>
       </div>
 

@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { Sorts_Mill_Goudy, Lora, Inter, Allura } from 'next/font/google';
 import './globals.css';
+import './doctoralia-widget.css';
 import { Header } from '@/components/Header';
 import { SkipLink } from '@/components/SkipLink';
+import { WhatsAppButton } from '@/components/WhatsAppButton';
 
 const sortsMillGoudy = Sorts_Mill_Goudy({
   variable: '--font-display',
@@ -47,6 +49,7 @@ export default function RootLayout({
         <SkipLink />
         <Header />
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );

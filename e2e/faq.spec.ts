@@ -27,7 +27,7 @@ test.describe('FAQ Section', () => {
       faqSection.locator('text=Quanto tempo dura cada sessão?')
     ).toBeVisible();
     await expect(
-      faqSection.locator('text=Você atende apenas mulheres?')
+      faqSection.locator('text=Qual é o público-alvo dos atendimentos?')
     ).toBeVisible();
     await expect(
       faqSection.locator('text=O que é Gestalt-terapia?')
@@ -72,7 +72,7 @@ test.describe('FAQ Section', () => {
 
     // All details elements exist
     const detailsElements = faqSection.locator('details');
-    await expect(detailsElements).toHaveCount(5);
+    await expect(detailsElements).toHaveCount(6);
   });
 
   test('should navigate with keyboard', async ({ page }) => {
@@ -106,9 +106,27 @@ test.describe('FAQ Section', () => {
   test('should have FAQPage schema for SEO', async ({ page }) => {
     await page.goto('/');
 
-    // Check for JSON-LD script
-    const schemaScript = page.locator('script[type="application/ld+json"]');
-    const schemaContent = await schemaScript.first().textContent();
+    // Wait for the page to be fully loaded
+    await page.waitForLoadState('networkidle');
+
+    // Wait for the FAQ section to be rendered
+    await page.waitForSelector('#faq');
+    await page.locator('#faq').scrollIntoViewIfNeeded();
+
+    // Check for JSON-LD script using evaluate to avoid locator issues
+    const scriptCount = await page.evaluate(() => {
+      return document.querySelectorAll('script[type="application/ld+json"]')
+        .length;
+    });
+    expect(scriptCount).toBeGreaterThan(0);
+
+    // Get the script content directly
+    const schemaContent = await page.evaluate(() => {
+      const script = document.querySelector(
+        'script[type="application/ld+json"]'
+      );
+      return script ? script.textContent : '';
+    });
 
     expect(schemaContent).toContain('"@type":"FAQPage"');
     expect(schemaContent).toContain('schema.org');
@@ -130,7 +148,7 @@ test.describe('FAQ Section', () => {
 
     // All FAQ items visible
     const detailsElements = faqSection.locator('details');
-    await expect(detailsElements).toHaveCount(5);
+    await expect(detailsElements).toHaveCount(6);
 
     // CTA button visible
     await expect(

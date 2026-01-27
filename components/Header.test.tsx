@@ -75,6 +75,7 @@ describe('Header Component - PR #14', () => {
       expect(screen.getByText('Sobre')).toBeInTheDocument();
       expect(screen.getByText('Serviços')).toBeInTheDocument();
       expect(screen.getByText('Como Funciona')).toBeInTheDocument();
+      expect(screen.getByText('Opiniões')).toBeInTheDocument();
       expect(screen.getByText('Dúvidas')).toBeInTheDocument();
     });
 

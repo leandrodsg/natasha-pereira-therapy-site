@@ -2,8 +2,8 @@ import { faqItems, faqSectionContent, type FAQItem } from './faq-data';
 
 describe('FAQ Data', () => {
   describe('faqItems', () => {
-    it('should have 5 FAQ items', () => {
-      expect(faqItems).toHaveLength(5);
+    it('should have 6 FAQ items', () => {
+      expect(faqItems).toHaveLength(6);
     });
 
     it('should have unique IDs for each item', () => {
@@ -41,7 +41,7 @@ describe('FAQ Data', () => {
       const questions = faqItems.map((item) => item.question);
       expect(questions).toContain('Como funciona o primeiro atendimento?');
       expect(questions).toContain('Quanto tempo dura cada sessão?');
-      expect(questions).toContain('Você atende apenas mulheres?');
+      expect(questions).toContain('Qual é o público-alvo dos atendimentos?');
       expect(questions).toContain('O que é Gestalt-terapia?');
       expect(questions).toContain(
         'Preciso estar passando por algo "muito grave" para buscar terapia?'
