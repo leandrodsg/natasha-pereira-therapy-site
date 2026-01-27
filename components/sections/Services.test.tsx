@@ -74,7 +74,7 @@ describe('Services', () => {
   it('renders CTA button', () => {
     render(<Services />);
     const ctaButton = screen.getByRole('link', {
-      name: /converse comigo sobre o serviço ideal/i,
+      name: /descubra o serviço ideal/i,
     });
     expect(ctaButton).toBeInTheDocument();
   });

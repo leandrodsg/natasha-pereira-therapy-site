@@ -45,7 +45,7 @@ export const SERVICES_CONTENT = {
   },
   subtitle:
     'Atendimento online focado em você: suas necessidades, seu tempo, sua forma de ser.',
-  cta: 'Converse comigo sobre o serviço ideal',
+  cta: 'Descubra o serviço ideal',
   decorativeImages: [
     {
       src: '/images/primeira-box.png',
