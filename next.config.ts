@@ -1,11 +1,6 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  experimental: {
-    sri: {
-      algorithm: 'sha256',
-    },
-  },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
