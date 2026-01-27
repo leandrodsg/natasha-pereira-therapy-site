@@ -18,7 +18,8 @@ const SECTION_STYLES = {
   carouselColumn: 'relative w-full',
   carouselWrapper: 'relative w-full max-w-[450px] mx-auto',
   carouselContainer: 'relative overflow-hidden rounded-xl',
-  carouselInner: 'flex transition-transform duration-500 ease-in-out',
+  carouselInner:
+    'flex transition-transform duration-500 ease-in-out touch-pan-x',
   reviewCard:
     'flex-shrink-0 w-full bg-white rounded-xl p-4 md:p-5 shadow-md border border-gray-100 h-[280px] md:h-[240px] flex flex-col box-border',
   reviewHeader: 'flex items-start gap-4 mb-4',
@@ -97,6 +98,8 @@ function ReviewCard({ review }: { review: (typeof reviewsData)[0] }) {
 export default function Reviews() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardWidth, setCardWidth] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const CARDS_PER_VIEW = 1;
   const totalSlides = reviewsData.length;
@@ -121,6 +124,27 @@ export default function Reviews() {
       const newIndex = prev - CARDS_PER_VIEW;
       return newIndex < 0 ? totalSlides - CARDS_PER_VIEW : newIndex;
     });
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    setTouchEndX(e.changedTouches[0].clientX);
+    handleSwipe();
+  };
+
+  const handleSwipe = () => {
+    const distance = touchStartX - touchEndX;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextReview();
+    } else if (isRightSwipe) {
+      prevReview();
+    }
   };
 
   return (
@@ -171,6 +195,8 @@ export default function Reviews() {
                   style={{
                     transform: `translateX(-${currentIndex * cardWidth}px)`,
                   }}
+                  onTouchStart={handleTouchStart}
+                  onTouchEnd={handleTouchEnd}
                 >
                   {reviewsData.map((review) => (
                     <ReviewCard key={review.id} review={review} />
