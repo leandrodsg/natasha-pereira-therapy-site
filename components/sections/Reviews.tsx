@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { reviewsData, reviewsSectionContent } from '../../lib/reviews-data';
@@ -11,16 +11,16 @@ const SECTION_STYLES = {
   header: 'text-center mb-12',
   heading:
     'font-display text-4xl md:text-5xl text-white font-light max-w-3xl mx-auto leading-tight',
-  grid: 'grid grid-cols-1 lg:grid-cols-[450px_450px] gap-16 items-start justify-center',
+  grid: 'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start justify-center max-w-[950px] mx-auto',
   imageColumn: 'flex justify-center',
   imageWrapper:
-    'bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-[450px] h-[240px]',
-  carouselColumn: 'relative',
-  carouselWrapper: 'relative w-[450px]',
-  carouselContainer: 'relative overflow-hidden',
-  carouselInner: 'flex transition-transform duration-500 ease-in-out gap-4',
+    'bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-full max-w-[450px]',
+  carouselColumn: 'relative w-full',
+  carouselWrapper: 'relative w-full max-w-[450px] mx-auto',
+  carouselContainer: 'relative overflow-hidden rounded-xl',
+  carouselInner: 'flex transition-transform duration-500 ease-in-out',
   reviewCard:
-    'flex-shrink-0 w-[450px] bg-white rounded-xl p-5 shadow-md border border-gray-100 h-[240px] flex flex-col box-border',
+    'flex-shrink-0 w-full bg-white rounded-xl p-4 md:p-5 shadow-md border border-gray-100 min-h-[280px] md:min-h-[240px] flex flex-col box-border',
   reviewHeader: 'flex items-start gap-4 mb-4',
   avatar:
     'w-12 h-12 rounded-full bg-teal-700 flex items-center justify-center text-white font-semibold text-lg flex-shrink-0',
@@ -35,9 +35,9 @@ const SECTION_STYLES = {
   reviewFooter: 'mt-4 pt-4 border-t border-gray-100',
   reviewDate: 'text-xs text-gray-500',
   navButton:
-    'absolute top-1/2 transform -translate-y-1/2 bg-white/40 hover:bg-white/70 rounded-full p-2 shadow-lg transition-all hover:scale-110 z-10',
-  prevButton: '-left-14',
-  nextButton: '-right-14',
+    'absolute top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all hover:scale-110 z-10',
+  prevButton: 'left-2 md:-left-14',
+  nextButton: 'right-2 md:-right-14',
   moreLink: 'text-center mt-4 max-w-3xl mx-auto',
   moreLinkText:
     'text-white/80 hover:text-white hover:underline text-base leading-relaxed transition-colors',
@@ -95,8 +95,21 @@ function ReviewCard({ review }: { review: (typeof reviewsData)[0] }) {
 
 export default function Reviews() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardWidth, setCardWidth] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
   const CARDS_PER_VIEW = 1;
   const totalSlides = reviewsData.length;
+
+  useEffect(() => {
+    const updateCardWidth = () => {
+      const width = containerRef.current?.offsetWidth ?? 0;
+      setCardWidth(width);
+    };
+
+    updateCardWidth();
+    window.addEventListener('resize', updateCardWidth);
+    return () => window.removeEventListener('resize', updateCardWidth);
+  }, []);
 
   const nextReview = () => {
     setCurrentIndex((prev) => (prev + CARDS_PER_VIEW) % totalSlides);
@@ -148,11 +161,14 @@ export default function Reviews() {
           {/* Carousel Column */}
           <div className={SECTION_STYLES.carouselColumn}>
             <div className={SECTION_STYLES.carouselWrapper}>
-              <div className={SECTION_STYLES.carouselContainer}>
+              <div
+                ref={containerRef}
+                className={SECTION_STYLES.carouselContainer}
+              >
                 <div
                   className={SECTION_STYLES.carouselInner}
                   style={{
-                    transform: `translateX(-${currentIndex * (450 + 16)}px)`,
+                    transform: `translateX(-${currentIndex * cardWidth}px)`,
                   }}
                 >
                   {reviewsData.map((review) => (

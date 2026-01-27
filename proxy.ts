@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
 
-export function proxy(request: NextRequest) {
+export function proxy() {
   const cspHeader = [
     "default-src 'self'",
     "script-src 'self' 'unsafe-inline'",
