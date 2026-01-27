@@ -21,10 +21,10 @@ describe('FAQSection', () => {
     expect(heading).toHaveClass('font-display');
   });
 
-  it('renders all 5 FAQ items', () => {
+  it('renders all 6 FAQ items', () => {
     render(<FAQSection />);
     const faqGroups = screen.getAllByRole('group');
-    expect(faqGroups).toHaveLength(5);
+    expect(faqGroups).toHaveLength(6);
   });
 
   it('renders all expected questions', () => {
@@ -36,7 +36,10 @@ describe('FAQSection', () => {
       screen.getByText('Quanto tempo dura cada sessão?')
     ).toBeInTheDocument();
     expect(
-      screen.getByText('Você atende apenas mulheres?')
+      screen.getByText('Qual é o público-alvo dos atendimentos?')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('Você atende pacientes fora do Brasil?')
     ).toBeInTheDocument();
     expect(screen.getByText('O que é Gestalt-terapia?')).toBeInTheDocument();
     expect(
@@ -55,7 +58,10 @@ describe('FAQSection', () => {
       screen.getByText(/duração aproximada de 50 minutos/)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/foco do meu trabalho é o atendimento de mulheres/)
+      screen.getByText(/Meu foco principal é o atendimento de mulheres/)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Atendo brasileiras no mundo todo/)
     ).toBeInTheDocument();
     expect(
       screen.getByText(/Gestalt-terapia é uma abordagem/)

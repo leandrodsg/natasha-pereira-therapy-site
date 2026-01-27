@@ -119,13 +119,13 @@ describe('AboutTherapist', () => {
     expect(imageDiv).toHaveClass('order-1', 'md:order-2');
   });
 
-  it('renders headline with italic emphasis', () => {
+  it('renders headline with emphasis text', () => {
     render(<AboutTherapist />);
 
     const headline = screen.getByRole('heading', { level: 2 });
-    const italicSpan = headline.querySelector('span.italic');
-    expect(italicSpan).toBeInTheDocument();
-    expect(italicSpan).toHaveTextContent('refúgio seguro');
+    expect(headline).toHaveTextContent(
+      'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.'
+    );
   });
 
   it('has correct padding alignment with Hero and SoundFamiliar', () => {

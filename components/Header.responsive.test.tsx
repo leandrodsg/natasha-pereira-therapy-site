@@ -65,7 +65,7 @@ describe('Header Responsive Behavior - PR #14', () => {
       const desktopNav = screen.getByLabelText('Navegação principal');
 
       const links = desktopNav.querySelectorAll('a');
-      expect(links.length).toBe(4); // 4 nav links
+      expect(links.length).toBe(5); // 5 nav links (inclui Opiniões)
     });
 
     it('should have horizontal layout with gap-8', () => {

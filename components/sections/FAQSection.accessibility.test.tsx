@@ -27,7 +27,7 @@ describe('FAQSection Accessibility', () => {
   it('uses semantic details/summary for expand/collapse', () => {
     render(<FAQSection />);
     const detailsElements = document.querySelectorAll('details');
-    expect(detailsElements.length).toBe(5);
+    expect(detailsElements.length).toBe(6);
 
     detailsElements.forEach((details) => {
       const summary = details.querySelector('summary');
@@ -90,7 +90,7 @@ describe('FAQSection Accessibility', () => {
 
     // Each FAQ item should be a details element
     const items = faqList?.querySelectorAll('details');
-    expect(items?.length).toBe(5);
+    expect(items?.length).toBe(6);
   });
 
   it('each FAQ item has unique id for linking', () => {
