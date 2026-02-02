@@ -125,13 +125,23 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  html {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+    max-width: 100%;
   }
+
   html {
     scroll-behavior: smooth;
     font-family: var(--font-sans);
   }
+
   h1,
   h2,
   h3,
@@ -140,6 +150,7 @@
   h6 {
     font-family: var(--font-display);
   }
+
   body {
     font-family: var(--font-body);
   }
