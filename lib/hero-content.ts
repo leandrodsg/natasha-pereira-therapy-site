@@ -1,7 +1,7 @@
 export const HERO_CONTENT = {
-  subtitle: 'Terapia online para mulheres em Brasília',
+  subtitle: 'Terapia online para mulheres',
   heading: {
-    text: 'Um espaço onde você finalmente pode',
+    text: 'Um espaço onde você pode',
     emphasis: 'existir',
     continuation: 'sem medo.',
   },

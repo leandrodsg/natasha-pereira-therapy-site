@@ -28,7 +28,7 @@ describe('Hero Integration', () => {
     render(<Hero />);
 
     expect(
-      screen.getByText('Um espaço onde você finalmente pode', { exact: false })
+      screen.getByText('Um espaço onde você pode', { exact: false })
     ).toBeInTheDocument();
     expect(
       screen.getByText(/Para mulheres que carregam histórias/)

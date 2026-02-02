@@ -23,12 +23,12 @@ describe('SoundFamiliar', () => {
 
     // Verifica se todos os 6 pontos estão sendo renderizados
     const painPoints = [
-      'Você sente uma sobrecarga emocional constante, como se carregasse o mundo nos ombros.',
-      'Estabelecer limites parece impossível - você sempre acaba cedendo.',
-      'O medo de desapontar os outros te paralisa nas decisões.',
-      'Culpa ao priorizar você mesma, como se fosse egoísmo.',
-      'Sensação de estar sempre "dividida" entre papéis e expectativas.',
-      'Pressão por ser forte o tempo todo, sem espaço para vulnerabilidade.',
+      'Você carrega o mundo nos ombros. E ninguém parece notar.',
+      'Dizer "não" parece impossível. Você sempre cede.',
+      'O medo de desapontar paralisa suas decisões.',
+      'Cuidar de si parece egoísmo. A culpa é constante.',
+      'Dividida entre mil papéis, você não sabe mais quem é.',
+      'A obrigação de ser forte. Sem espaço para chorar.',
     ];
 
     painPoints.forEach((point) => {

@@ -10,19 +10,19 @@ test.describe('About Therapist Section', () => {
     // Check heading
     await expect(
       aboutSection.locator('h2').filter({
-        hasText: 'Acredito que você tem o poder de criar um',
+        hasText: 'Existe um refúgio seguro',
       })
     ).toBeVisible();
 
     // Check bio text presence - new content
     await expect(
-      aboutSection.locator('text=A busca constante por provar nosso valor')
+      aboutSection.locator('text=Provar o próprio valor')
     ).toBeVisible();
     await expect(
-      aboutSection.locator('text=Como psicóloga, entendo que teoria')
+      aboutSection.locator('text=Minha formação em Gestalt-Terapia')
     ).toBeVisible();
     await expect(
-      aboutSection.locator('text=O conjunto das dimensões sociais')
+      aboutSection.locator('text=Tudo isso me trouxe até aqui')
     ).toBeVisible();
   });
 

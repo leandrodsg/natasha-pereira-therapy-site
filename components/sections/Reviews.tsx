@@ -10,7 +10,7 @@ const SECTION_STYLES = {
   container: 'max-w-7xl mx-auto px-6 md:px-12',
   header: 'text-center mb-12',
   heading:
-    'font-display text-4xl md:text-5xl text-white font-light max-w-3xl mx-auto leading-tight',
+    'font-display text-3xl md:text-5xl text-white font-light max-w-4xl mx-auto leading-tight',
   grid: 'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start justify-center max-w-[950px] mx-auto',
   imageColumn: 'flex justify-center',
   imageWrapper:
@@ -99,7 +99,6 @@ export default function Reviews() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardWidth, setCardWidth] = useState(0);
   const [touchStartX, setTouchStartX] = useState(0);
-  const [touchEndX, setTouchEndX] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const CARDS_PER_VIEW = 1;
   const totalSlides = reviewsData.length;
@@ -131,18 +130,15 @@ export default function Reviews() {
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    setTouchEndX(e.changedTouches[0].clientX);
-    handleSwipe();
-  };
-
-  const handleSwipe = () => {
-    const distance = touchStartX - touchEndX;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
+    const endX = e.changedTouches[0].clientX;
+    const distance = touchStartX - endX;
+    const isLeftSwipe = distance >= 50;
+    const isRightSwipe = distance <= -50;
 
     if (isLeftSwipe) {
       nextReview();
-    } else if (isRightSwipe) {
+    }
+    if (isRightSwipe) {
       prevReview();
     }
   };
@@ -197,6 +193,7 @@ export default function Reviews() {
                   }}
                   onTouchStart={handleTouchStart}
                   onTouchEnd={handleTouchEnd}
+                  data-testid="carousel-inner"
                 >
                   {reviewsData.map((review) => (
                     <ReviewCard key={review.id} review={review} />

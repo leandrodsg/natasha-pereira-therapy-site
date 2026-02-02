@@ -4,13 +4,13 @@ import Services from './Services';
 describe('Services', () => {
   it('renders the main heading', () => {
     render(<Services />);
-    expect(screen.getByText(/Serviços pensados para/)).toBeInTheDocument();
+    expect(screen.getByText(/Atendimentos pensados para/)).toBeInTheDocument();
   });
 
   it('renders heading with emphasis text', () => {
     render(<Services />);
     const heading = screen.getByRole('heading', {
-      name: /serviços pensados para acolher sua jornada/i,
+      name: /atendimentos pensados para acolher sua jornada/i,
     });
     expect(heading).toBeInTheDocument();
   });
@@ -74,7 +74,7 @@ describe('Services', () => {
   it('renders CTA button', () => {
     render(<Services />);
     const ctaButton = screen.getByRole('link', {
-      name: /descubra o serviço ideal/i,
+      name: /descubra como posso te ajudar/i,
     });
     expect(ctaButton).toBeInTheDocument();
   });
@@ -82,7 +82,7 @@ describe('Services', () => {
   it('has correct semantic structure', () => {
     render(<Services />);
     const section = screen.getByRole('region', {
-      name: /serviços pensados para/i,
+      name: /atendimentos pensados para/i,
     });
     expect(section).toBeInTheDocument();
     expect(section.tagName).toBe('SECTION');
@@ -91,7 +91,7 @@ describe('Services', () => {
   it('applies background image to section', () => {
     render(<Services />);
     const section = screen.getByRole('region', {
-      name: /serviços pensados para/i,
+      name: /atendimentos pensados para/i,
     });
     expect(section).toHaveStyle({
       backgroundImage: expect.stringContaining('white-background'),
@@ -100,13 +100,13 @@ describe('Services', () => {
 
   it('renders title with serif font and large size', () => {
     render(<Services />);
-    const title = screen.getByText(/Serviços pensados para/);
+    const title = screen.getByText(/Atendimentos pensados para/);
     expect(title).toHaveClass('font-display');
   });
 
   it('renders title centered', () => {
     render(<Services />);
-    const title = screen.getByText(/Serviços pensados para/);
+    const title = screen.getByText(/Atendimentos pensados para/);
     expect(title).toHaveClass('text-center');
   });
 

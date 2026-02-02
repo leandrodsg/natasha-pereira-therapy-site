@@ -13,7 +13,7 @@ test.describe('Landing Page E2E', () => {
     // Hero section
     await expect(
       page.locator('h1').filter({
-        hasText: 'Um espaço onde você finalmente pode existir sem medo.',
+        hasText: 'Um espaço onde você pode existir sem medo.',
       })
     ).toBeVisible();
     await expect(
@@ -39,18 +39,18 @@ test.describe('Landing Page E2E', () => {
         hasText: 'Você está aqui porque encontrar paz é importante para você',
       })
     ).toBeVisible();
-    await expect(page.locator('text=sobrecarga emocional')).toBeVisible();
+    await expect(
+      page.locator('text=Você carrega o mundo nos ombros')
+    ).toBeVisible();
 
     // About Therapist section
     await expect(
-      page
-        .locator('h2')
-        .filter({ hasText: 'Acredito que você tem o poder de criar um' })
+      page.locator('h2').filter({ hasText: 'Existe um refúgio seguro' })
     ).toBeVisible();
 
     // Services section
     await expect(
-      page.locator('h2').filter({ hasText: 'Serviços pensados para' })
+      page.locator('h2').filter({ hasText: 'Atendimentos pensados para' })
     ).toBeVisible();
     await expect(page.locator('text=Atendimento Individual')).toBeVisible();
 

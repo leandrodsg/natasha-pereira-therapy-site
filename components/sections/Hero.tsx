@@ -6,12 +6,12 @@ import { HERO_CONTENT } from '@/lib/hero-content';
 
 const SECTION_STYLES = 'relative w-full bg-[#f4eee5]';
 const CONTAINER_STYLES =
-  'pt-20 md:pt-28 pb-32 px-6 md:px-12 max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-start items-center gap-12';
-const TEXT_CONTAINER_STYLES = 'w-full md:w-1/2 space-y-8';
-const SUBTITLE_STYLES = 'block text-xs tracking-[0.2em] text-[#4F5543]';
+  'pt-20 md:pt-28 pb-24 px-6 md:px-12 max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-center items-center gap-12';
+const TEXT_CONTAINER_STYLES = 'w-full md:w-1/2 space-y-6';
+const SUBTITLE_STYLES = 'block text-sm tracking-[0.2em] text-[#4F5543]';
 const HEADING_STYLES =
   'font-display text-4xl md:text-5xl lg:text-6xl leading-[1.15] text-[#4F5543] font-light';
-const DESCRIPTION_STYLES = 'text-lg text-[#4F5543] max-w-md';
+const DESCRIPTION_STYLES = 'text-xl leading-relaxed text-[#4F5543] max-w-lg';
 const BUTTON_STYLES =
   'bg-[#4F5543] text-white text-xs font-bold uppercase px-8 py-4 rounded hover:bg-[#4F5543]/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4F5543] transition-all shadow-lg transform hover:-translate-y-1 duration-200';
 const IMAGE_CONTAINER_STYLES = 'w-full md:w-[45%] relative flex items-start';

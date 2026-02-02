@@ -6,7 +6,7 @@ describe('AboutTherapist Responsive', () => {
     render(<AboutTherapist />);
 
     const section = screen.getByRole('region', {
-      name: 'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.',
+      name: 'Existe um refúgio seguro dentro de você.',
     });
 
     // Section should not have padding classes (moved to container)
@@ -27,13 +27,11 @@ describe('AboutTherapist Responsive', () => {
     render(<AboutTherapist />);
 
     const section = screen.getByRole('region', {
-      name: 'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.',
+      name: 'Existe um refúgio seguro dentro de você.',
     });
 
-    // Check text container (55%)
-    const textContainer = section.querySelector(
-      'div.w-full.md\\:w-\\[55\\%\\]'
-    );
+    // Check text container (50%)
+    const textContainer = section.querySelector('div.w-full.md\\:w-1\\/2');
     expect(textContainer).toBeInTheDocument();
 
     // Check image container (45%)
@@ -68,10 +66,10 @@ describe('AboutTherapist Responsive', () => {
   it('renders content with responsive text sizes', () => {
     render(<AboutTherapist />);
 
-    const intro = screen.getByText('Olá, sou Natasha.');
+    const intro = screen.getByText('Olá, sou a Natasha.');
     expect(intro).toHaveClass(
       'block',
-      'text-xs',
+      'text-sm',
       'tracking-widest',
       'text-[#662B2D]',
       'mb-4'
@@ -91,7 +89,7 @@ describe('AboutTherapist Responsive', () => {
   it('renders with correct mobile stack order (image first, text second)', () => {
     render(<AboutTherapist />);
 
-    const contentDiv = screen.getByText('Olá, sou Natasha.').closest('div');
+    const contentDiv = screen.getByText('Olá, sou a Natasha.').closest('div');
     const imageDiv = screen
       .getByAltText(
         'Natasha Pereira, psicóloga especializada em terapia para mulheres'
@@ -106,7 +104,7 @@ describe('AboutTherapist Responsive', () => {
   it('renders with correct desktop layout (text left, image right)', () => {
     render(<AboutTherapist />);
 
-    const contentDiv = screen.getByText('Olá, sou Natasha.').closest('div');
+    const contentDiv = screen.getByText('Olá, sou a Natasha.').closest('div');
     const imageDiv = screen
       .getByAltText(
         'Natasha Pereira, psicóloga especializada em terapia para mulheres'
@@ -122,7 +120,7 @@ describe('AboutTherapist Responsive', () => {
     render(<AboutTherapist />);
 
     const section = screen.getByRole('region', {
-      name: 'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.',
+      name: 'Existe um refúgio seguro dentro de você.',
     });
 
     const container = section.querySelector('.max-w-7xl');

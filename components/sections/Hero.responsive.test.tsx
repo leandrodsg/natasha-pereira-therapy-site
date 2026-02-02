@@ -8,17 +8,15 @@ describe('Hero Responsive', () => {
     const headline = screen.getByRole('heading', { level: 1 });
     expect(headline).toHaveClass('text-4xl', 'md:text-5xl', 'lg:text-6xl');
 
-    const subtitle = screen.getByText(
-      'Terapia online para mulheres em Brasília'
-    );
-    expect(subtitle).toHaveClass('text-xs');
+    const subtitle = screen.getByText('Terapia online para mulheres');
+    expect(subtitle).toHaveClass('text-sm');
   });
 
   it('renders with responsive split layout', () => {
     render(<Hero />);
 
     const section = screen.getByRole('region', {
-      name: 'Um espaço onde você finalmente pode existir sem medo.',
+      name: 'Um espaço onde você pode existir sem medo.',
     });
     const container = section.querySelector('div');
     expect(container).toHaveClass(
@@ -34,7 +32,7 @@ describe('Hero Responsive', () => {
     render(<Hero />);
 
     const textDiv = screen
-      .getByText('Terapia online para mulheres em Brasília')
+      .getByText('Terapia online para mulheres')
       .closest('div');
     expect(textDiv).toHaveClass('w-full', 'md:w-1/2');
   });
@@ -53,7 +51,7 @@ describe('Hero Responsive', () => {
     render(<Hero />);
 
     const section = screen.getByRole('region', {
-      name: 'Um espaço onde você finalmente pode existir sem medo.',
+      name: 'Um espaço onde você pode existir sem medo.',
     });
     const container = section.querySelector('div');
     expect(container).toHaveClass('flex-col'); // Mobile first

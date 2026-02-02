@@ -25,22 +25,22 @@ test.describe('Sound Familiar Section', () => {
 
     // Check specific items (updated to match actual content)
     await expect(
-      soundFamiliarSection.locator('text=sobrecarga emocional')
+      soundFamiliarSection.locator('text=Você carrega o mundo nos ombros')
     ).toBeVisible();
     await expect(
-      soundFamiliarSection.locator('text=Estabelecer limites')
+      soundFamiliarSection.locator('text=Dizer "não" parece impossível')
     ).toBeVisible();
     await expect(
-      soundFamiliarSection.locator('text=medo de desapontar')
+      soundFamiliarSection.locator('text=O medo de desapontar paralisa')
     ).toBeVisible();
     await expect(
-      soundFamiliarSection.locator('text=Culpa ao priorizar')
+      soundFamiliarSection.locator('text=Cuidar de si parece egoísmo')
     ).toBeVisible();
     await expect(
-      soundFamiliarSection.locator('text=Sensação de estar sempre')
+      soundFamiliarSection.locator('text=Dividida entre mil papéis')
     ).toBeVisible();
     await expect(
-      soundFamiliarSection.locator('text=Pressão por ser forte')
+      soundFamiliarSection.locator('text=A obrigação de ser forte')
     ).toBeVisible();
   });
 

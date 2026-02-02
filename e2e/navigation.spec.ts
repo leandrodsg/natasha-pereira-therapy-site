@@ -14,7 +14,7 @@ test.describe('Navigation', () => {
       'href',
       '#quem-sou'
     );
-    await expect(navLinks.filter({ hasText: 'Serviços' })).toHaveAttribute(
+    await expect(navLinks.filter({ hasText: 'Atendimentos' })).toHaveAttribute(
       'href',
       '#servicos'
     );

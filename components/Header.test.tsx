@@ -73,7 +73,7 @@ describe('Header Component - PR #14', () => {
     it('should render all navigation links', () => {
       render(<Header />);
       expect(screen.getByText('Sobre')).toBeInTheDocument();
-      expect(screen.getByText('Serviços')).toBeInTheDocument();
+      expect(screen.getByText('Atendimentos')).toBeInTheDocument();
       expect(screen.getByText('Como Funciona')).toBeInTheDocument();
       expect(screen.getByText('Opiniões')).toBeInTheDocument();
       expect(screen.getByText('Dúvidas')).toBeInTheDocument();
@@ -105,7 +105,7 @@ describe('Header Component - PR #14', () => {
       const sobreLinks = screen.getAllByText('Sobre');
       expect(sobreLinks[0].closest('a')).toHaveAttribute('href', '#quem-sou');
 
-      const servicosLinks = screen.getAllByText('Serviços');
+      const servicosLinks = screen.getAllByText('Atendimentos');
       expect(servicosLinks[0].closest('a')).toHaveAttribute(
         'href',
         '#servicos'

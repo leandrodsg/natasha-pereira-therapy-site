@@ -17,7 +17,7 @@ const SCROLL_THRESHOLD = 100;
 
 const NAV_LINKS = [
   { label: 'Sobre', href: '#quem-sou' },
-  { label: 'Serviços', href: '#servicos' },
+  { label: 'Atendimentos', href: '#servicos' },
   { label: 'Como Funciona', href: '#como-funciona' },
   { label: 'Opiniões', href: '#avaliacoes' },
   { label: 'Dúvidas', href: '#faq' },

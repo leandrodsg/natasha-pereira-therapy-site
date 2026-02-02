@@ -12,7 +12,7 @@ const IMAGE_SECTION_STYLES = 'w-full lg:w-[38%] relative flex items-start';
 const IMAGE_WRAPPER_STYLES = 'relative w-[88%] max-w-sm mx-auto lg:mx-0';
 const IMAGE_CONTAINER_STYLES =
   'relative w-full aspect-[3/4] rounded-tr-[80px] rounded-bl-[80px] overflow-hidden shadow-accent';
-const CONTENT_SECTION_STYLES = 'w-full lg:w-[62%]';
+const CONTENT_SECTION_STYLES = 'w-full lg:w-[62%] flex items-center';
 
 export default function SoundFamiliar() {
   const { heading, image, painPoints } = SOUND_FAMILIAR_CONTENT;
@@ -46,7 +46,7 @@ export default function SoundFamiliar() {
           </div>
 
           <div className={CONTENT_SECTION_STYLES}>
-            <ul className="space-y-3 mx-auto lg:mx-0">
+            <ul className="space-y-4 w-full mx-auto lg:mx-0">
               {painPoints.map((point, index) => (
                 <PainPointCard key={`pain-point-${index}`} text={point} />
               ))}

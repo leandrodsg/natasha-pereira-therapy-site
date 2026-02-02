@@ -11,7 +11,7 @@ test.describe('Services Section', () => {
     await expect(
       servicesSection
         .locator('h2')
-        .filter({ hasText: 'Serviços pensados para' })
+        .filter({ hasText: 'Atendimentos pensados para' })
     ).toBeVisible();
 
     // Check all four service cards

@@ -172,7 +172,7 @@ describe('Header Security Tests - PR #14', () => {
       render(<Header />);
       const navLinks = [
         { text: 'Sobre', id: 'quem-sou' },
-        { text: 'Serviços', id: 'servicos' },
+        { text: 'Atendimentos', id: 'servicos' },
         { text: 'Como Funciona', id: 'como-funciona' },
         { text: 'Dúvidas', id: 'faq' },
       ];
@@ -344,7 +344,7 @@ describe('Header Security Tests - PR #14', () => {
       // All links should have meaningful text
       const expectedLinks = [
         'Sobre',
-        'Serviços',
+        'Atendimentos',
         'Como Funciona',
         'Dúvidas',
         'Agende sua sessão',

@@ -11,7 +11,7 @@ test.describe('Hero Section', () => {
     // Check headline
     await expect(
       heroSection.locator('h1').filter({
-        hasText: 'Um espaço onde você finalmente pode existir sem medo.',
+        hasText: 'Um espaço onde você pode existir sem medo.',
       })
     ).toBeVisible();
 

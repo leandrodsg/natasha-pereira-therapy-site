@@ -39,13 +39,13 @@ export const SERVICES: readonly ServiceItem[] = [
 
 export const SERVICES_CONTENT = {
   heading: {
-    text: 'Serviços pensados para',
+    text: 'Atendimentos pensados para',
     emphasis: 'acolher',
     continuation: 'sua jornada',
   },
   subtitle:
     'Atendimento online focado em você: suas necessidades, seu tempo, sua forma de ser.',
-  cta: 'Descubra o serviço ideal',
+  cta: 'Descubra como posso te ajudar',
   decorativeImages: [
     {
       src: '/images/primeira-box.png',

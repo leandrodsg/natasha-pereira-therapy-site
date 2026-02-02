@@ -241,7 +241,7 @@ describe('Header Accessibility - PR #14', () => {
       const { getAllByText } = render(<Header />);
 
       expect(getAllByText('Sobre').length).toBeGreaterThan(0);
-      expect(getAllByText('Serviços').length).toBeGreaterThan(0);
+      expect(getAllByText('Atendimentos').length).toBeGreaterThan(0);
       expect(getAllByText('Como Funciona').length).toBeGreaterThan(0);
       expect(getAllByText('Dúvidas').length).toBeGreaterThan(0);
       expect(getAllByText('Agende sua sessão').length).toBeGreaterThan(0);
@@ -339,7 +339,7 @@ describe('Header Accessibility - PR #14', () => {
       const { getAllByText } = render(<Header />);
 
       expect(getAllByText('Sobre')).toBeTruthy();
-      expect(getAllByText('Serviços')).toBeTruthy();
+      expect(getAllByText('Atendimentos')).toBeTruthy();
       expect(getAllByText('Como Funciona')).toBeTruthy();
       expect(getAllByText('Dúvidas')).toBeTruthy();
     });
