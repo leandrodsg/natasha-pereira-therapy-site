@@ -62,7 +62,7 @@ describe('Reviews Section', () => {
     it('should render section element', () => {
       render(<Reviews />);
       const section = screen.getByRole('region', {
-        name: /histórias de quem já passou por aqui/i,
+        name: /palavras de quem se permitiu começar/i,
       });
       expect(section).toBeInTheDocument();
     });
@@ -70,7 +70,7 @@ describe('Reviews Section', () => {
     it('should have correct section id', () => {
       render(<Reviews />);
       const section = screen.getByRole('region', {
-        name: /histórias de quem já passou por aqui/i,
+        name: /palavras de quem se permitiu começar/i,
       });
       expect(section).toHaveAttribute('id', 'avaliacoes');
     });
@@ -80,7 +80,7 @@ describe('Reviews Section', () => {
       const heading = screen.getByRole('heading', { level: 2 });
       expect(heading).toBeInTheDocument();
       expect(heading).toHaveTextContent(
-        /histórias de quem já passou por aqui/i
+        /palavras de quem se permitiu começar/i
       );
     });
 
@@ -245,6 +245,67 @@ describe('Reviews Section', () => {
     });
   });
 
+  describe('Touch Navigation', () => {
+    beforeEach(() => {
+      // Mock offsetWidth for carousel container
+      jest
+        .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
+        .mockReturnValue(450);
+    });
+
+    it('should handle left swipe to navigate next', () => {
+      render(<Reviews />);
+      const carouselInner = screen.getByTestId('carousel-inner');
+
+      // Simulate left swipe (next)
+      fireEvent.touchStart(carouselInner, {
+        targetTouches: [{ clientX: 100 }],
+      });
+      fireEvent.touchEnd(carouselInner, {
+        changedTouches: [{ clientX: 50 }], // Moved left (50px difference)
+      });
+
+      // Check that transform changed to next slide
+      expect(carouselInner.style.transform).toBe('translateX(-450px)');
+    });
+
+    it('should handle right swipe to navigate previous', () => {
+      render(<Reviews />);
+      const carouselInner = screen.getByTestId('carousel-inner');
+
+      // Start at index 0, transform should be 0
+      expect(carouselInner.style.transform).toBe('translateX(-0px)');
+
+      // Simulate right swipe (previous)
+      fireEvent.touchStart(carouselInner, {
+        targetTouches: [{ clientX: 50 }],
+      });
+      fireEvent.touchEnd(carouselInner, {
+        changedTouches: [{ clientX: 100 }], // Moved right (50px difference)
+      });
+
+      // After swipe right from index 0, should loop to last slide (index 3)
+      // Index 3 * 450px = 1350px
+      expect(carouselInner.style.transform).toBe('translateX(-1350px)');
+    });
+
+    it('should not navigate on small swipe', () => {
+      render(<Reviews />);
+      const carouselInner = screen.getByTestId('carousel-inner');
+
+      // Simulate small movement (less than 50px)
+      fireEvent.touchStart(carouselInner, {
+        targetTouches: [{ clientX: 100 }],
+      });
+      fireEvent.touchEnd(carouselInner, {
+        changedTouches: [{ clientX: 95 }], // Only 5px difference
+      });
+
+      // Check that transform remains at start (should be at index 0)
+      expect(carouselInner.style.transform).toBe('translateX(-0px)');
+    });
+  });
+
   describe('Card Styling', () => {
     it('should render cards with Doctoralia style', () => {
       render(<Reviews />);
@@ -281,7 +342,7 @@ describe('Reviews Section', () => {
     it('should have green background', () => {
       render(<Reviews />);
       const section = screen.getByRole('region', {
-        name: /histórias de quem já passou por aqui/i,
+        name: /palavras de quem se permitiu começar/i,
       });
       expect(section).toHaveClass('bg-[#4F5543]');
     });
@@ -297,7 +358,7 @@ describe('Reviews Section', () => {
     it('should have aria-labelledby pointing to heading', () => {
       render(<Reviews />);
       const section = screen.getByRole('region', {
-        name: /histórias de quem já passou por aqui/i,
+        name: /palavras de quem se permitiu começar/i,
       });
       expect(section).toHaveAttribute('aria-labelledby', 'reviews-heading');
     });

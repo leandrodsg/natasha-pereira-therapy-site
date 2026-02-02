@@ -55,7 +55,9 @@ describe('Footer Responsive', () => {
     render(<Footer />);
 
     expect(screen.getByRole('link', { name: 'Sobre' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Serviços' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: 'Atendimentos' })
+    ).toBeInTheDocument();
     expect(
       screen.getByRole('link', { name: 'Como Funciona' })
     ).toBeInTheDocument();

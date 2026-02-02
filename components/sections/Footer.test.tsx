@@ -141,7 +141,7 @@ describe('Footer', () => {
       render(<Footer />);
       expect(screen.getByRole('link', { name: 'Sobre' })).toBeInTheDocument();
       expect(
-        screen.getByRole('link', { name: 'Serviços' })
+        screen.getByRole('link', { name: 'Atendimentos' })
       ).toBeInTheDocument();
       expect(
         screen.getByRole('link', { name: 'Como Funciona' })

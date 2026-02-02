@@ -18,7 +18,7 @@ export function PainPointCard({ text }: PainPointCardProps) {
           aria-hidden="true"
         />
       </div>
-      <p className="text-base text-white/95 leading-relaxed">{text}</p>
+      <p className="text-[1.125rem] leading-relaxed text-white/95">{text}</p>
     </li>
   );
 }

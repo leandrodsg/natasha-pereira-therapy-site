@@ -20,7 +20,7 @@ describe('Services - Accessibility', () => {
   it('section has proper aria-labelledby', () => {
     render(<Services />);
     const section = screen.getByRole('region', {
-      name: /serviços pensados para/i,
+      name: /atendimentos pensados para/i,
     });
     expect(section).toHaveAttribute('aria-labelledby', 'services-title');
   });
@@ -43,7 +43,7 @@ describe('Services - Accessibility', () => {
   it('CTA button is keyboard accessible', () => {
     render(<Services />);
     const ctaButton = screen.getByRole('link', {
-      name: /descubra o serviço ideal/i,
+      name: /descubra como posso te ajudar/i,
     });
     expect(ctaButton).toBeInTheDocument();
   });

@@ -9,11 +9,11 @@ describe('Hero', () => {
     render(<Hero />);
 
     expect(
-      screen.getByText('Terapia online para mulheres em Brasília')
+      screen.getByText('Terapia online para mulheres')
     ).toBeInTheDocument();
 
     expect(
-      screen.getByText('Um espaço onde você finalmente pode', { exact: false })
+      screen.getByText('Um espaço onde você pode', { exact: false })
     ).toBeInTheDocument();
 
     expect(
@@ -32,7 +32,7 @@ describe('Hero', () => {
 
     const headline = screen.getByRole('heading', { level: 1 });
     expect(headline).toHaveTextContent(
-      'Um espaço onde você finalmente pode existir sem medo.'
+      'Um espaço onde você pode existir sem medo.'
     );
     expect(headline).toHaveClass(
       'font-display',
@@ -46,11 +46,9 @@ describe('Hero', () => {
   it('renders subtitle with uppercase and tracking', () => {
     render(<Hero />);
 
-    const subtitle = screen.getByText(
-      'Terapia online para mulheres em Brasília'
-    );
+    const subtitle = screen.getByText('Terapia online para mulheres');
     expect(subtitle).toHaveClass(
-      'text-xs',
+      'text-sm',
       'tracking-[0.2em]',
       'text-[#4F5543]'
     );
@@ -60,7 +58,7 @@ describe('Hero', () => {
     render(<Hero />);
 
     const section = screen.getByRole('region', {
-      name: 'Um espaço onde você finalmente pode existir sem medo.',
+      name: 'Um espaço onde você pode existir sem medo.',
     });
     const container = section.querySelector('div');
     expect(container).toHaveClass(
@@ -76,9 +74,9 @@ describe('Hero', () => {
     render(<Hero />);
 
     const textDiv = screen
-      .getByText('Terapia online para mulheres em Brasília')
+      .getByText('Terapia online para mulheres')
       .closest('div');
-    expect(textDiv).toHaveClass('w-full', 'md:w-1/2', 'space-y-8');
+    expect(textDiv).toHaveClass('w-full', 'md:w-1/2', 'space-y-6');
   });
 
   it('renders image in right column with asymmetric rounded corners', () => {

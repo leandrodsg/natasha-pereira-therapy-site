@@ -70,7 +70,7 @@ describe('Footer Links', () => {
       'href',
       '#quem-sou'
     );
-    expect(screen.getByRole('link', { name: 'Serviços' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'Atendimentos' })).toHaveAttribute(
       'href',
       '#servicos'
     );

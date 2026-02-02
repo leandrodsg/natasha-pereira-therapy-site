@@ -47,9 +47,9 @@ describe('PainPointCard', () => {
 
     const textElement = screen.getByText(testText);
     expect(textElement).toHaveClass(
-      'text-base',
-      'text-white/95',
-      'leading-relaxed'
+      'text-[1.125rem]',
+      'leading-relaxed',
+      'text-white/95'
     );
   });
 });

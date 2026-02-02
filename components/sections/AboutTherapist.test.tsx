@@ -8,23 +8,23 @@ describe('AboutTherapist', () => {
   it('renders the about therapist section with correct Portuguese text', () => {
     render(<AboutTherapist />);
 
-    expect(screen.getByText('Olá, sou Natasha.')).toBeInTheDocument();
+    expect(screen.getByText('Olá, sou a Natasha.')).toBeInTheDocument();
 
     // Test the main headline
     const headline = screen.getByRole('heading', { level: 2 });
     expect(headline).toHaveTextContent(
-      'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.'
+      'Existe um refúgio seguro dentro de você.'
     );
   });
 
   it('renders the intro as span', () => {
     render(<AboutTherapist />);
 
-    const intro = screen.getByText('Olá, sou Natasha.');
+    const intro = screen.getByText('Olá, sou a Natasha.');
     expect(intro).toBeInTheDocument();
     expect(intro).toHaveClass(
       'block',
-      'text-xs',
+      'text-sm',
       'tracking-widest',
       'text-[#662B2D]',
       'mb-4'
@@ -50,37 +50,37 @@ describe('AboutTherapist', () => {
 
     expect(
       screen.getByText(
-        'A busca constante por provar nosso valor, a necessidade de aceitação e o medo de não ser útil o suficiente, são questões comuns a nós, mulheres, que observo há mais de 7 anos, quando passei a exercer a psicologia.'
+        'Provar o próprio valor. Buscar aceitação. O medo de não ser útil o suficiente. Há mais de 7 anos escuto essas histórias. Cada história merece ser ouvida com atenção.'
       )
     ).toBeInTheDocument();
 
     expect(
       screen.getByText(
-        'Como psicóloga, entendo que teoria e estudos acerca do contexto social caminham juntos. Minha especialização em Gestalt Terapia (2019) norteia meu olhar para o aqui e agora, compreendendo como nossas relações acontecem no contato com o outro e com o mundo.'
+        'Minha formação em Gestalt-Terapia guia meu olhar para o aqui e agora. Para o contato com o mundo. Para como você se relaciona e sente o hoje.'
       )
     ).toBeInTheDocument();
 
     expect(
       screen.getByText(
-        'Como entusiasta da autonomia, procurei outra abordagem que pudesse enriquecer o tratamento dos meus pacientes. O EMDR (2020), uma linha que trabalha com traumas e comportamentos não saudáveis. Pois entendo que para sermos livres, precisamos desbloquear aquilo que nos prende.'
+        'Busquei o EMDR para ir além. Essa abordagem desbloqueia traumas e comportamentos que nos prendem. Pois entendo que, para sermos livres, precisamos recuperar nossa autonomia.'
       )
     ).toBeInTheDocument();
 
     expect(
       screen.getByText(
-        'A minha vivência e sensibilidade, somada aos estudos, contribuíram para o desenvolvimento da leitura de uma comunicação não verbal, me permitindo alcançar aquilo que muitas vezes não conseguimos traduzir em palavras.'
+        'Com o tempo, refinei a leitura da comunicação não verbal. O corpo fala. O silêncio fala. Nem tudo precisa virar palavra para ser compreendido.'
       )
     ).toBeInTheDocument();
 
     expect(
       screen.getByText(
-        'Sempre tive um cuidado com mulheres, por entender que a estrutura da nossa sociedade nem sempre proporciona segurança para externalizarmos nossas vozes e sentimentos reais, o que me levou a uma Formação em Psicologia, voltada para a Saúde Mental da Mulher (2024), que me possibilita compreender como e porquê da dor de cada mulher.'
+        'Sempre tive um olhar especial para mulheres. A estrutura da nossa sociedade nem sempre oferece espaço para sermos reais. Por isso, me especializei em Saúde Mental da Mulher. Para entender a origem da dor. E aliviar o peso.'
       )
     ).toBeInTheDocument();
 
     expect(
       screen.getByText(
-        'O conjunto das dimensões sociais e dos meus estudos moveram o meu ideal: abrir o meu próprio consultório, para criar um espaço seguro e livre de qualquer julgamento, para que cada mulher possa se enxergar, sentir o mundo do próprio jeito, desejar o que quiser, e, claro, ser livre.'
+        'Tudo isso me trouxe até aqui: criar um espaço seguro, livre de julgamento. Onde você pode se enxergar, sentir do seu jeito, desejar o que quiser. E, finalmente, ser livre.'
       )
     ).toBeInTheDocument();
   });
@@ -89,7 +89,7 @@ describe('AboutTherapist', () => {
     render(<AboutTherapist />);
 
     const section = screen.getByRole('region', {
-      name: 'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.',
+      name: 'Existe um refúgio seguro dentro de você.',
     });
 
     // Check flex layout instead of grid
@@ -97,17 +97,17 @@ describe('AboutTherapist', () => {
     expect(flexContainer).toHaveClass('flex-col', 'md:flex-row', 'gap-12');
 
     // Check proportions
-    const contentDiv = section.querySelector('div.w-full.md\\:w-\\[55\\%\\]');
+    const contentDiv = section.querySelector('div.w-full.md\\:w-1\\/2');
     const imageDiv = section.querySelector('div.w-full.md\\:w-\\[45\\%\\]');
 
-    expect(contentDiv).toBeInTheDocument(); // text ~55%
+    expect(contentDiv).toBeInTheDocument(); // text ~50%
     expect(imageDiv).toBeInTheDocument(); // image ~45%
   });
 
   it('renders with correct mobile stack order (image first, text second)', () => {
     render(<AboutTherapist />);
 
-    const contentDiv = screen.getByText('Olá, sou Natasha.').closest('div');
+    const contentDiv = screen.getByText('Olá, sou a Natasha.').closest('div');
     const imageDiv = screen
       .getByAltText(
         'Natasha Pereira, psicóloga especializada em terapia para mulheres'
@@ -124,7 +124,7 @@ describe('AboutTherapist', () => {
 
     const headline = screen.getByRole('heading', { level: 2 });
     expect(headline).toHaveTextContent(
-      'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.'
+      'Existe um refúgio seguro dentro de você.'
     );
   });
 
@@ -132,7 +132,7 @@ describe('AboutTherapist', () => {
     render(<AboutTherapist />);
 
     const section = screen.getByRole('region', {
-      name: 'Acredito que você tem o poder de criar um refúgio seguro dentro de si mesma.',
+      name: 'Existe um refúgio seguro dentro de você.',
     });
 
     // Should have padding inside the max-w-7xl container, not on section
