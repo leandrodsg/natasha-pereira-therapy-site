@@ -48,7 +48,7 @@ export const reviewsData: Review[] = [
 
 export const reviewsSectionContent = {
   label: 'Mais de 11 avaliações verificadas',
-  heading: 'Histórias de quem já passou por aqui',
+  heading: 'Palavras de quem se permitiu começar',
   averageRating: 5.0,
   totalReviews: 11,
 };
