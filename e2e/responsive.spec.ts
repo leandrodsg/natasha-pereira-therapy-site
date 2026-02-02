@@ -27,7 +27,7 @@ test.describe('Responsive Design', () => {
 
       // Check hero content
       await expect(
-        page.locator('h1').filter({ hasText: 'Um espaço onde você finalmente' })
+        page.locator('h1').filter({ hasText: 'Um espaço onde você pode' })
       ).toBeVisible();
 
       // Check services grid (should adapt to viewport)
