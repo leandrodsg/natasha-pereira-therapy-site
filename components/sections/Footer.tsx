@@ -81,7 +81,7 @@ export default function Footer() {
             >
               {FOOTER_CONTENT.name}
             </a>
-            <p className="text-sm opacity-75 mb-3 leading-relaxed whitespace-nowrap">
+            <p className="text-sm opacity-75 mb-3 leading-relaxed px-4 md:px-0">
               Psicóloga, palestrante e facilitadora em saúde mental da mulher.
             </p>
             <div
